@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.Models
 {
-    public class About
+    public class Speakers
     {
         public int Id { get; set; }
-        [Required, MaxLength(100)]
-        public string Title { get; set; }
-        public string Description { get; set; }
         [Required]
         public string Image { get; set; }
+        public string SpeakerName { get; set; }
+        public string Position { get; set; }
+        public virtual EventDetails EventDetails { get; set; }
+        public int EventDetailsId { get; set; }
     }
 }

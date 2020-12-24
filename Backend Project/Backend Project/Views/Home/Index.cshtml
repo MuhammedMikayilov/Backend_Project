@@ -1,6 +1,9 @@
 ﻿@model HomeVM
 @{
     ViewData["Title"] = "Home Page";
+    string ind;
+    string[] month = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+    int count = 0;
 }
 <!-- Background Area Start -->
 <section id="slider-container" class="slider-area two">
@@ -94,53 +97,7 @@
 <!-- Courses Area End -->
 <!-- Notice Start -->
 <section class="notice-area two pt-140">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="notice-right-wrapper mb-25 pb-25">
-                    <h3>TAKE A VIDEO TOUR</h3>
-                    <div class="notice-video">
-                        <div class="video-icon video-hover">
-                            <a class="video-popup" href="https://www.youtube.com/watch?v=to6Ghf8UL7o">
-                                <i class="zmdi zmdi-play"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="notice-left-wrapper">
-                    <h3>notice board</h3>
-                    <div class="notice-left">
-                        <div class="single-notice-left mb-23 pb-20">
-                            <h4>5, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left hidden-sm mb-23 pb-20">
-                            <h4>4, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left pb-70">
-                            <h4>3, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left mb-23 pb-20">
-                            <h4>5, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left hidden-sm mb-23 pb-20">
-                            <h4>4, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left pb-70">
-                            <h4>3, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @await Component.InvokeAsync("Notice")
 </section>
 <!-- Notice End -->
 <!-- Event Area Start -->
@@ -149,48 +106,41 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="section-title">
-                    <img src="~/img/icon/section.png" alt="section-title">
-                    <h2>UPCOMMING EVENTS</h2>
+                    <img src="~/img/icon/@Model.Titles.ElementAt(1).Icon" alt="section-title">
+                    <h2>@Model.Titles.ElementAt(1).Title</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="single-event mb-35">
-                    <div class="event-img">
-                        <a href="event-details.html"><img src="~/img/event/event1.jpg" alt="event"></a>
-                    </div>
-                    <div class="event-content text-left">
-                        <h3>20 June 2017</h3>
-                        <h4><a href="event-details.html">ADVANCE PHP WORKSHOP</a></h4>
-                        <ul>
-                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
-                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
-                        </ul>
-                        <div class="event-content-right">
-                            <a class="default-btn" href="event-details.html">join now</a>
+                @foreach (Event events in Model.Events)
+                {
+                    if (count % 2 == 0 && count != 0)
+                    {
+                        @Html.Raw("</div><div class='col-md-6 col-sm-12 col-xs-12'>")
+                    }
+                    <div class="single-event mb-35">
+                        <div class="event-img">
+                            <a href="event-details.html"><img src="~/img/event/@events.Image" alt="event"></a>
+                        </div>
+                        <div class="event-content text-left">
+                            <h3>@events.EventDate.ToString("dd MM yyyy")</h3>
+                            <h4><a href="event-details.html">@events.Title</a></h4>
+                            <ul>
+                                <li><i class="fa fa-clock-o"></i>@events.EventTimeLine</li>
+                                <li><i class="fa fa-map-marker"></i>@events.EventPlace</li>
+                            </ul>
+                            <div class="event-content-right">
+                                <a class="default-btn" href="event-details.html">join now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="single-event hidden-sm hidden-xs">
-                    <div class="event-img">
-                        <a href="event-details.html"><img src="~/img/event/event3.jpg" alt="event"></a>
-                    </div>
-                    <div class="event-content text-left">
-                        <h3>16 June 2017</h3>
-                        <h4><a href="event-details.html">learning english history</a></h4>
-                        <ul>
-                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
-                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
-                        </ul>
-                        <div class="event-content-right">
-                            <a class="default-btn" href="event-details.html">join now</a>
-                        </div>
-                    </div>
-                </div>
+                    count++;
+                }
+
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="single-event mb-35">
+            <div class="d-none col-md-6 col-sm-12 col-xs-12">
+                @*<div class="single-event mb-35">
                     <div class="event-img">
                         <a href="event-details.html"><img src="~/img/event/event2.jpg" alt="event"></a>
                     </div>
@@ -205,8 +155,8 @@
                             <a class="default-btn" href="event-details.html">join now</a>
                         </div>
                     </div>
-                </div>
-                <div class="single-event hidden-sm hidden-xs">
+                </div>*@
+                @*<div class="single-event hidden-sm hidden-xs">
                     <div class="event-img">
                         <a href="event-details.html"><img src="~/img/event/event3.jpg" alt="event"></a>
                     </div>
@@ -221,7 +171,7 @@
                             <a class="default-btn" href="event-details.html">join now</a>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

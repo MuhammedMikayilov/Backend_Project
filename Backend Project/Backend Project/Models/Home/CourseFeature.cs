@@ -8,7 +8,7 @@ namespace Backend_Project.Models
     public class CourseFeature
     {
         public int Id { get; set; }
-        public DateTime Starts { get; set; }
+        public DateTime? Starts { get; set; }
         public string Duration { get; set; }
         public string ClassDuration { get; set; }
         public string SkillLevel { get; set; }

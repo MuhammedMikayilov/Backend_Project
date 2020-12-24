@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.ViewComponents
 {
-    public class EduhomeViewComponent:ViewComponent
+    public class NoticeViewComponent:ViewComponent
     {
         private AppDbContext _context;
-        public EduhomeViewComponent(AppDbContext context)
+        public NoticeViewComponent(AppDbContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace Backend_Project.ViewComponents
         {
             HomeVM homeVM = new HomeVM
             {
-                About = _context.Abouts.FirstOrDefault(),
+                Notices = _context.Notices.Include(n => n.Boards).ToList(),
             };
             return View(await Task.FromResult(homeVM));
         }

@@ -15,6 +15,8 @@ namespace Backend_Project.Models
         public string CourseName { get; set; }
         [Required]
         public string CourseDescription { get; set; }
+        public bool isDelete { get; set; }
+        public DateTime? DeletedTime { get; set; }
         public virtual CourseDetail CourseDetail { get; set; }
         public int CourseDetailId { get; set; }
     }

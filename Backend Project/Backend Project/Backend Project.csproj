@@ -10,6 +10,8 @@
     <Compile Remove="Migrations\20201224003847_CreateCourse.Designer.cs" />
     <Compile Remove="Migrations\20201224003922_CreateCourse.cs" />
     <Compile Remove="Migrations\20201224003922_CreateCourse.Designer.cs" />
+    <Compile Remove="Migrations\20201224015446_CreateNoticeBoard.cs" />
+    <Compile Remove="Migrations\20201224015446_CreateNoticeBoard.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

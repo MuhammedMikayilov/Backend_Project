@@ -31,9 +31,9 @@ namespace Backend_Project.Controllers
                 Services = _context.Services.ToList(),
                 About = _context.Abouts.FirstOrDefault(),
                 Titles = _context.Titles.ToList(),
-                Courses = _context.Courses.ToList(),
-                //CourseDetails = _context.CourseDetails.Include(cD=>cD.CourseFeatures.ToList()).ToList(),
-                //CourseFeatures = _context.CourseFeatures.ToList(),
+                Courses = _context.Courses.Where(c=>c.isDelete==false).ToList(),
+                Notices = _context.Notices.Include(n=>n.Boards).ToList(),
+                Events = _context.Events.Where(e=>e.isDelete==false).ToList()
 
             };
             return View(homeVM);

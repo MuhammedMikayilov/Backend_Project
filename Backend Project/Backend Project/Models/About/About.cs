@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.Models
 {
-    public class Service
+    public class About
     {
         public int Id { get; set; }
         [Required, MaxLength(100)]
         public string Title { get; set; }
         public string Description { get; set; }
+        [Required]
+        public string Image { get; set; }
         public bool isDelete { get; set; }
         public DateTime DeletedTime { get; set; }
     }
