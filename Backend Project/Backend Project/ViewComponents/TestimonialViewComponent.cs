@@ -19,12 +19,7 @@ namespace Backend_Project.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-
-            HomeVM homeVM = new HomeVM
-            {
-                Testimonials = _context.Testimonials.ToList(),
-            };
-            return View(await Task.FromResult(homeVM));
+            return View(await Task.FromResult(_context.Testimonials.ToList()));
         }
     }
 }

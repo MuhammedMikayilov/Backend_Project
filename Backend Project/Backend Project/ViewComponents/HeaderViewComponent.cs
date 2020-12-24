@@ -1,5 +1,4 @@
 ﻿using Backend_Project.DAL;
-using Backend_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.ViewComponents
 {
-    public class BlogsViewComponent:ViewComponent
+    public class HeaderViewComponent:ViewComponent
     {
         private readonly AppDbContext _context;
-        public BlogsViewComponent(AppDbContext context)
+        public HeaderViewComponent(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int? take)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(_context.Blogs.Where(b => b.isDelete == false).Take((int)take).ToList());
+            return View(await Task.FromResult(_context.Header.FirstOrDefault()));
         }
+
     }
 }

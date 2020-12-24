@@ -13,7 +13,6 @@ namespace Backend_Project.DAL
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
         }
-
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<About> Abouts { get; set; }
@@ -28,6 +27,8 @@ namespace Backend_Project.DAL
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Blogs> Blogs { get; set; }
         public DbSet<BlogDetail> BlogDetails { get; set; }
+        public DbSet<Header> Header { get; set; }
+        public DbSet<Footer> Footer { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

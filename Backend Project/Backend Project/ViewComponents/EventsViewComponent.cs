@@ -20,9 +20,7 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int? take)
         {
-            List<Event> events = new List<Event>();
-            events = _context.Events.Where(b => b.isDelete == false).Take((int)take).ToList();
-            return View(await Task.FromResult(events));
+            return View(await Task.FromResult(_context.Events.Where(b => b.isDelete == false).Take((int)take).ToList()));
         }
     }
 }

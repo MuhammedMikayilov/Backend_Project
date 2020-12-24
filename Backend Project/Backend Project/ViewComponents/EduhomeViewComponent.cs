@@ -20,9 +20,7 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            About about = new About();
-            about = _context.Abouts.FirstOrDefault();
-            return View(await Task.FromResult(about));
+            return View(await Task.FromResult(_context.Abouts.FirstOrDefault()));
         }
     }
 }

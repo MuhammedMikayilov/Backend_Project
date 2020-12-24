@@ -19,12 +19,12 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            HomeVM homeVM = new HomeVM
+            NoticeBoardVM noticeBoard = new NoticeBoardVM
             {
                 Notices = _context.Notices.FirstOrDefault(),
                 Boards = _context.Boards.ToList(),
             };
-            return View(await Task.FromResult(homeVM));
+            return View(await Task.FromResult(noticeBoard));
         }
     }
 }
