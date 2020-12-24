@@ -12,16 +12,10 @@ namespace Backend_Project.ViewModels
     {
         public List<Slider> Sliders { get; set; }
         public List<Service> Services { get; set; }
-        public About About { get; set; }
         public List<Titles> Titles { get; set; }
-        public List<Course> Courses { get; set; }
-        public List<CourseDetail> CourseDetails { get; set; }
-        public List<CourseFeature> CourseFeatures { get; set; }
-        public List<Notice> Notices { get; set; }
+        public Notice Notices { get; set; }
         public List<Board> Boards { get; set; }
-        public List<Event> Events { get; set; }
-        public List<EventDetails> EventDetails { get; set; }
-        public List<Speakers> Speakers { get; set; }
+        public List<Testimonial> Testimonials { get; set; }
 
     }
 }

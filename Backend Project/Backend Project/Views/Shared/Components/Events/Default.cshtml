@@ -1,0 +1,31 @@
+﻿@model List<Event>
+@{
+    int count = 0;
+}
+<div class="col-md-6 col-sm-12 col-xs-12">
+    @foreach (Event events in Model)
+    {
+        if (count % 2 == 0 && count != 0)
+        {
+            @Html.Raw("</div><div class='col-md-6 col-sm-12 col-xs-12'>")
+        }
+        <div class="single-event mb-35">
+            <div class="event-img">
+                <a href="event-details.html"><img src="~/img/event/@events.Image" alt="event"></a>
+            </div>
+            <div class="event-content text-left">
+                <h3>@events.EventDate.ToString("dd MMMM yyyy")</h3>
+                <h4><a href="event-details.html">@events.Title</a></h4>
+                <ul>
+                    <li><i class="fa fa-clock-o"></i>@events.EventTimeLine</li>
+                    <li><i class="fa fa-map-marker"></i>@events.EventPlace</li>
+                </ul>
+                <div class="event-content-right">
+                    <a class="default-btn" href="event-details.html">join now</a>
+                </div>
+            </div>
+        </div>
+        count++;
+    }
+
+</div>

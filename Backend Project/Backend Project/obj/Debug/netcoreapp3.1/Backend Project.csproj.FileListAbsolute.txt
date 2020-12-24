@@ -155,3 +155,7 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\
 C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Eduhome\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Notice\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Testimonial\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Events\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Course\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Blogs\Default.cshtml.g.cs

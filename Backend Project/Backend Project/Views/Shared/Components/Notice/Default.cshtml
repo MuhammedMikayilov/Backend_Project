@@ -6,7 +6,7 @@
                 <h3>TAKE A VIDEO TOUR</h3>
                 <div class="notice-video">
                     <div class="video-icon video-hover">
-                        <a class="video-popup" href="@Model.Notices.ElementAt(0).Video">
+                        <a class="video-popup" href="@Model.Notices.Video">
                             <i class="zmdi zmdi-play"></i>
                         </a>
                     </div>
@@ -17,11 +17,11 @@
             <div class="notice-left-wrapper">
                 <h3>notice board</h3>
                 <div class="notice-left">
-                    @foreach (Board board in Model.Notices.ElementAt(0).Boards)
+                    @foreach (Board board in Model.Boards)
                     {
                         <div class="single-notice-left mb-23 pb-20">
                             <h4>
-                                <asp:TextBox ID="TextBox1" runat="server">@board.Time.ToString("dd, MM yyyy")</asp:TextBox>
+                                <asp:TextBox ID="TextBox1" runat="server">@board.Time.ToString("dd, MMMM yyyy")</asp:TextBox>
                             </h4>
 
                             <p>@Html.Raw(board.Description) </p>

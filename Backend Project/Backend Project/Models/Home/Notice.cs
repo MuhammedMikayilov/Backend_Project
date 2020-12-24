@@ -9,6 +9,5 @@ namespace Backend_Project.Models
     {
         public int Id { get; set; }
         public string Video { get; set; }
-        public List<Board> Boards { get; set; }
     }
 }

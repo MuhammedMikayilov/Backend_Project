@@ -12,8 +12,6 @@ namespace Backend_Project.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
         public DateTime Time { get; set; }
         public string Description { get; set; }
-        public virtual Notice Notice { get; set; }
-        public int NoticeId { get; set; }
 
 
         

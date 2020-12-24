@@ -21,7 +21,8 @@ namespace Backend_Project.ViewComponents
         {
             HomeVM homeVM = new HomeVM
             {
-                Notices = _context.Notices.Include(n => n.Boards).ToList(),
+                Notices = _context.Notices.FirstOrDefault(),
+                Boards = _context.Boards.ToList(),
             };
             return View(await Task.FromResult(homeVM));
         }

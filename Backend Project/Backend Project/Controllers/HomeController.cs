@@ -29,11 +29,8 @@ namespace Backend_Project.Controllers
             {
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.ToList(),
-                About = _context.Abouts.FirstOrDefault(),
                 Titles = _context.Titles.ToList(),
-                Courses = _context.Courses.Where(c=>c.isDelete==false).ToList(),
-                Notices = _context.Notices.Include(n=>n.Boards).ToList(),
-                Events = _context.Events.Where(e=>e.isDelete==false).ToList()
+                Testimonials = _context.Testimonials.ToList()
 
             };
             return View(homeVM);

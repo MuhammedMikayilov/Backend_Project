@@ -1,0 +1,23 @@
+﻿@model List<Blogs>
+@foreach (Blogs blog in Model)
+{
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-blog">
+            <div class="blog-img">
+                <a href="blog-details.html"><img src="~/img/blog/@blog.Image" alt="blog"></a>
+                <div class="blog-hover">
+                    <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id"><i class="fa fa-link"></i></a>
+                </div>
+            </div>
+            <div class="blog-content">
+                <div class="blog-top">
+                    <p>By @blog.Author  /  @blog.DateWrite.Date.ToString("dd MMMM yyyy") /  <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
+                </div>
+                <div class="blog-bottom">
+                    <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
+                    <a href="blog-details.html">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,4 +1,5 @@
 ﻿using Backend_Project.DAL;
+using Backend_Project.Models;
 using Backend_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +20,9 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            HomeVM homeVM = new HomeVM
-            {
-                About = _context.Abouts.FirstOrDefault(),
-            };
-            return View(await Task.FromResult(homeVM));
+            About about = new About();
+            about = _context.Abouts.FirstOrDefault();
+            return View(await Task.FromResult(about));
         }
     }
 }
