@@ -30,14 +30,6 @@ namespace Backend_Project.Controllers
 
             Blogs blogs = _context.Blogs.Where(blg => blg.isDelete == false).Include(blg => blg.Detail).Include(blg => blg.TagToBlogs)
                 .ThenInclude(blg => blg.Tags).FirstOrDefault(blg => blg.Id == id);
-
-            BlogsVM blogsVM = new BlogsVM()
-            {
-                Blog = _context.Blogs.Where(blg=>blg.isDelete==false).Include(blg => blg.Detail).Include(blg=>blg.TagToBlogs)
-                .ThenInclude(blg=>blg.Tags).FirstOrDefault(blg => blg.Id == id),
-                Blogs = _context.Blogs.Where(blg=>blg.isDelete==false)
-                .OrderByDescending(blg=>blg.DateWrite).Take(3).ToList()
-            };
             return View(blogs);
         }
     }
