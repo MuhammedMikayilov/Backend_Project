@@ -30,9 +30,20 @@ namespace Backend_Project.Controllers
                 .Include(c=>c.CategoryCourses).ThenInclude(c=>c.Categories)
                 .Include(c=>c.TagCourses).ThenInclude(c=>c.Tags)
                 .FirstOrDefault(c => c.Id == id);
+
+            CourseVM courseVM = new CourseVM()
+            {
+                Course = _context.Courses.Where(c => c.isDelete == false).Include(c => c.CourseDetail)
+                .Include(c => c.CategoryCourses).ThenInclude(c => c.Categories)
+                .Include(c => c.TagCourses).ThenInclude(c => c.Tags)
+                .FirstOrDefault(c => c.Id == id),
+
+                Blogs = _context.Blogs.Where(blg => blg.isDelete == false)
+                .OrderByDescending(blg => blg.DateWrite).Take(3).ToList()
+            };
             
             if (course == null) NotFound();
-            return View(course);
+            return View(courseVM);
         }
     }
 }
