@@ -46,9 +46,14 @@
                         <li><a href="#" data-id="all">All</a></li>
                         @foreach (Categories categories in Model)
                         {
-                            <li class="text-danger"><a href="" data-id="@categories.Id">@categories.NameCategory</a></li>
+                            <li class="text-danger">
+                        <a 
+                           asp-controller="Blog"
+                           asp-action="Filter"
+                           asp-route-name="@categories.NameCategory">
+                                @categories.NameCategory
+                            </a></li>
                         }
-
                     </ul>
                 </nav>
             </div>

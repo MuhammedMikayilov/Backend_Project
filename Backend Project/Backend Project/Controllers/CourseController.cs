@@ -35,5 +35,6 @@ namespace Backend_Project.Controllers
             if (course == null) NotFound();
             return View(course);
         }
+
     }
 }

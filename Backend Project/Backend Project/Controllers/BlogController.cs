@@ -32,5 +32,6 @@ namespace Backend_Project.Controllers
                 .ThenInclude(blg => blg.Tags).FirstOrDefault(blg => blg.Id == id);
             return View(blogs);
         }
+
     }
 }
