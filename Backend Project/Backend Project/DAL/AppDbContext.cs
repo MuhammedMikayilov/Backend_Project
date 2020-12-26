@@ -43,12 +43,10 @@ namespace Backend_Project.DAL
         public DbSet<Header> Header { get; set; }
         public DbSet<Footer> Footer { get; set; }
         #endregion
-
         #region Categories
         public DbSet<CategoryCourse> CategoryCourses { get; set; }
         public DbSet<Categories> Categories { get; set; }
         #endregion
-
         #region Tags
         public DbSet<Tags> Tags { get; set; }
         public DbSet<TagCourse> TagCourses { get; set; }

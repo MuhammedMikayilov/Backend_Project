@@ -164,3 +164,4 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\
 C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Teachers\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Course\Detail.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Event\Detail.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\Backend Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Detail.cshtml.g.cs
