@@ -50,6 +50,7 @@ namespace Backend_Project.DAL
         #region Tags
         public DbSet<Tags> Tags { get; set; }
         public DbSet<TagCourse> TagCourses { get; set; }
+        public DbSet<TagToBlog> TagToBlogs { get; set; }
 
         #endregion
     }

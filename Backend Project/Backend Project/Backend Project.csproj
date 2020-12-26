@@ -12,6 +12,10 @@
     <Compile Remove="Migrations\20201224003922_CreateCourse.Designer.cs" />
     <Compile Remove="Migrations\20201224015446_CreateNoticeBoard.cs" />
     <Compile Remove="Migrations\20201224015446_CreateNoticeBoard.Designer.cs" />
+    <Compile Remove="Migrations\20201226164714_CreateBlogManyToMany.cs" />
+    <Compile Remove="Migrations\20201226164714_CreateBlogManyToMany.Designer.cs" />
+    <Compile Remove="Migrations\20201226164856_CreateBlogsManyToMany.cs" />
+    <Compile Remove="Migrations\20201226164856_CreateBlogsManyToMany.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

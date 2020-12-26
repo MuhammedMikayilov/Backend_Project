@@ -20,18 +20,20 @@ namespace Backend_Project.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Blogs.Where(blg=>blg.isDelete==false).Take(6).ToList());
+            return View(_context.Categories.ToList());
         }
 
         public IActionResult Detail(int? id)
         {
             if (id == null) return NotFound();
-            Blogs blogs = _context.Blogs.Include(blg => blg.Detail).FirstOrDefault(blg => blg.Id == id);
+            //Blogs blogs = _context.Blogs.Include(blg => blg.Detail).FirstOrDefault(blg => blg.Id == id);
 
             BlogsVM blogsVM = new BlogsVM()
             {
-                Blog = _context.Blogs.Include(blg => blg.Detail).FirstOrDefault(blg => blg.Id == id),
-                Blogs = _context.Blogs.Where(blg=>blg.isDelete==false).OrderByDescending(blg=>blg.DateWrite).Take(3).ToList()
+                Blog = _context.Blogs.Where(blg=>blg.isDelete==false).Include(blg => blg.Detail).Include(blg=>blg.TagToBlogs)
+                .ThenInclude(blg=>blg.Tags).FirstOrDefault(blg => blg.Id == id),
+                Blogs = _context.Blogs.Where(blg=>blg.isDelete==false)
+                .OrderByDescending(blg=>blg.DateWrite).Take(3).ToList()
             };
             return View(blogsVM);
         }

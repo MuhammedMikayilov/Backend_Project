@@ -19,6 +19,8 @@ namespace Backend_Project.Models
         public string Title { get; set; }
         public BlogDetail Detail { get; set; }
         public int DetailId { get; set; }
+        //public ICollection<CategoryCourse> CategoryCourses { get; set; }
+        public ICollection<TagToBlog> TagToBlogs { get; set; }
 
     }
 }
