@@ -14,12 +14,10 @@ namespace Backend_Project.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, AppDbContext context)
+        public HomeController(AppDbContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
@@ -29,7 +27,7 @@ namespace Backend_Project.Controllers
             {
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.ToList(),
-                Titles = _context.Titles.ToList(),
+                Titles = _context.Titles.Where(title=>title.IsDelete==false).ToList(),
                 Testimonials = _context.Testimonials.ToList()
 
             };

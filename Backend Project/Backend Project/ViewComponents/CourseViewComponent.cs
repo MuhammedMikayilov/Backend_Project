@@ -2,6 +2,7 @@
 using Backend_Project.Models;
 using Backend_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,9 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int? take)
         {
-            return View(await Task.FromResult(_context.Courses.Where(c => c.isDelete == false)
-                .Take((int)take).ToList()));
+            List<Course> course = _context.Courses.Where(c => c.isDelete == false)
+                .Take((int)take).ToList();
+            return View(await Task.FromResult(course));
         }
     }
 }

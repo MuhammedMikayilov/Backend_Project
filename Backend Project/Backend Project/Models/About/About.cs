@@ -15,6 +15,6 @@ namespace Backend_Project.Models
         [Required]
         public string Image { get; set; }
         public bool isDelete { get; set; }
-        public DateTime DeletedTime { get; set; }
+        public DateTime? DeletedTime { get; set; }
     }
 }

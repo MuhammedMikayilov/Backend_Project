@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Categories>
 @{
     ViewData["Title"] = "Index";
 }
@@ -34,6 +34,23 @@
                         <button type="submit">search</button>
                     </form>
                 </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="main-menu">
+                <nav>
+                    
+                    <ul>
+                        <h1>Categories</h1>
+                        <li><a href="#" data-id="all">All</a></li>
+                        @foreach (Categories categories in Model)
+                        {
+                            <li class="text-danger"><a href="" data-id="@categories.Id">@categories.NameCategory</a></li>
+                        }
+
+                    </ul>
+                </nav>
             </div>
         </div>
 

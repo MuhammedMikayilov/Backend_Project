@@ -2,7 +2,7 @@
 
 @foreach (Course course in Model)
 {
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div data-id="@course.CategoryCourses" class="col-md-4 col-sm-6 col-xs-12 my">
         <div class="single-course">
             <div class="course-img">
                 <a href="course-details.html">
@@ -15,7 +15,7 @@
             <div class="course-content">
                 <h3><a href="course-details.html">@course.CourseName</a></h3>
                 <p>@Html.Raw(course.CourseDescription)</p>
-                <a class="default-btn" asp-action="CourseDetail">read more</a>
+                <a class="default-btn" asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">read more</a>
             </div>
         </div>
     </div>

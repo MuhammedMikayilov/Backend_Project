@@ -19,5 +19,11 @@ namespace Backend_Project.Models
         public DateTime? DeletedTime { get; set; }
         public virtual CourseDetail CourseDetail { get; set; }
         public int CourseDetailId { get; set; }
+        public ICollection<CategoryCourse> CategoryCourses { get; set; }
+
+        public static implicit operator List<object>(Course v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

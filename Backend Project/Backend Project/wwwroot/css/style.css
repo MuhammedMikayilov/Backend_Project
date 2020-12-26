@@ -54,7 +54,16 @@ img{
     transition: all 0.3s ease-out 0s;
 	height:auto;
 }
-h1, h2, h3, h4, h5, h6 {font-weight: 700; margin: 0; padding: 0}
+
+.my{
+    margin-top: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin: 0;
+    padding: 0
+}
 a{
     -webkit-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
@@ -591,7 +600,7 @@ textarea {
     text-align: right;
 }
 .main-menu nav > ul > li > a {
-    color: #fff;
+    /*color: #fff;*/
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;

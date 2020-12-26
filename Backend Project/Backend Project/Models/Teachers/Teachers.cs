@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.Models
 {
-    public class Titles
+    public class Teachers
     {
         public int Id { get; set; }
-        public string Icon { get; set; }
-        [Required]
-        public string Title { get; set; }
+        [Required, StringLength(256)]
+        public string Image { get; set; }
+        public string Fullname { get; set; }
+        public string Speciality { get; set; }
         public bool IsDelete { get; set; }
         public DateTime? DeletedTime { get; set; }
+
+        public TeachersDetail TeachersDetail { get; set; }
+
     }
 }

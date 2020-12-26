@@ -1,6 +1,6 @@
-﻿@model List<Event>
+﻿@model Event
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Detail";
 }
 
 <!-- Banner Area Start -->
@@ -11,7 +11,7 @@
                 <div class="col-xs-12">
                     <div class="banner-content-wrapper">
                         <div class="banner-content">
-                            <h2>event / left side bar</h2>
+                            <h2>event / details</h2>
                         </div>
                     </div>
                 </div>
@@ -20,12 +20,73 @@
     </div>
 </div>
 <!-- Banner Area End -->
-<!-- Blog Start -->
-<div class="blog-area event-area three pt-150 pb-90">
+<!-- Event Details Start -->
+<div class="event-details-area blog-area pt-150 pb-140">
     <div class="container">
         <div class="row">
+            <div class="col-md-8">
+                <div class="event-details">
+                    <div class="event-details-img">
+                        <img width="750" src="~/img/event/@Model.Image" alt="event-details">
+                        <div class="event-date">
+                            <h3>@Model.EventDate.ToString("dd") <span>@Model.EventDate.ToString("MMM")</span></h3>
+                        </div>
+                    </div>
+                    <div class="event-details-content">
+                        <h2>@Model.Title</h2>
+                        <ul>
+                            <li><span>time : </span>@Model.EventTimeLine</li>
+                            <li><span>venue : </span>@Model.EventPlace</li>
+                        </ul>
+                        <p>@Html.Raw(Model.EventDetails.EventDescription)</p>
+                        <div class="speakers-area fix">
+                            <h4>speakers</h4>
+                            <div class="row">
+                                @foreach (Speakers speakers in Model.EventDetails.Speakers)
+                                {
+                                    <div class="single-speaker col-md-6">
+                                        <div class="speaker-img">
+                                            <img src="~/img/event/@speakers.Image" alt="speaker">
+                                        </div>
+                                        <div class="speaker-name">
+                                            <h5>@speakers.SpeakerName</h5>
+                                            <p>@speakers.Position </p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                           
+
+                        </div>
+                    </div>
+                    <div class="reply-area">
+                        <h3>LEAVE A REPLY</h3>
+                        <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut<br> the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+                        <form id="contact-form" action="http://demo.devitems.com/eduhome/mail.php" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Name</p>
+                                    <input type="text" name="name" id="name">
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Email</p>
+                                    <input type="text" name="email" id="email">
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Subject</p>
+                                    <input type="text" name="subject" id="subject">
+                                    <p>Massage</p>
+                                    <textarea name="message" id="message" cols="15" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <a class="reply-btn" href="#" data-text="send"><span>send message</span></a>
+                            <p class="form-messege"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4">
-                <div class="blog-sidebar left">
+                <div class="blog-sidebar right">
                     <div class="single-blog-widget mb-50">
                         <h3>search</h3>
                         <div class="blog-search">
@@ -50,7 +111,7 @@
                     </div>
                     <div class="single-blog-widget mb-50">
                         <div class="single-blog-banner">
-                            <a href="blog-details.html" id="blog"><img src="img/blog/blog-img.jpg" alt="blog"></a>
+                            <a href="blog-details.html" id="blog"><img src="~/img/blog/blog-img.jpg" alt="blog"></a>
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
@@ -59,7 +120,7 @@
                         <div class="single-post mb-30">
                             <div class="single-post-img">
                                 <a href="blog-details.html">
-                                    <img src="img/post/post1.jpg" alt="post">
+                                    <img src="~/img/post/post1.jpg" alt="post">
                                     <div class="blog-hover">
                                         <i class="fa fa-link"></i>
                                     </div>
@@ -73,7 +134,7 @@
                         <div class="single-post mb-30">
                             <div class="single-post-img">
                                 <a href="blog-details.html">
-                                    <img src="img/post/post2.jpg" alt="post">
+                                    <img src="~/img/post/post2.jpg" alt="post">
                                     <div class="blog-hover">
                                         <i class="fa fa-link"></i>
                                     </div>
@@ -87,7 +148,7 @@
                         <div class="single-post">
                             <div class="single-post-img">
                                 <a href="blog-details.html">
-                                    <img src="img/post/post3.jpg" alt="post">
+                                    <img src="~/img/post/post3.jpg" alt="post">
                                     <div class="blog-hover">
                                         <i class="fa fa-link"></i>
                                     </div>
@@ -112,39 +173,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="row">
-                    @foreach (Event events in Model)
-                    {
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="single-event mb-60">
-                                <div class="event-img">
-                                    <a href="event-details.html">
-                                        <img src="img/event/@events.Image" alt="event">
-                                        <div class="course-hover">
-                                            <i class="fa fa-link"></i>
-                                        </div>
-                                    </a>
-                                    <div class="event-date">
-                                        <h3>@events.EventDate.ToString("dd") <span>@events.EventDate.ToString("MMM")</span></h3>
-                                    </div>
-                                </div>
-                                <div class="event-content text-left">
-                                    <h4><a href="event-details.html">@events.Title</a></h4>
-                                    <ul>
-                                        <li><span>time:</span> @events.EventTimeLine</li>
-                                        <li><span>venue</span> @events.EventPlace</li>
-                                    </ul>
-                                    <div class="event-content-right">
-                                        <a class="default-btn" asp-action="Detail" asp-route-id="@events.Id">join now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
         </div>
     </div>
 </div>
-<!-- Blog End -->
+<!-- Event Details End -->
