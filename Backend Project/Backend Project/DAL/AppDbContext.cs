@@ -48,5 +48,11 @@ namespace Backend_Project.DAL
         public DbSet<CategoryCourse> CategoryCourses { get; set; }
         public DbSet<Categories> Categories { get; set; }
         #endregion
+
+        #region Tags
+        public DbSet<Tags> Tags { get; set; }
+        public DbSet<TagCourse> TagCourses { get; set; }
+
+        #endregion
     }
 }

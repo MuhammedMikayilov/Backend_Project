@@ -20,10 +20,7 @@ namespace Backend_Project.Models
         public virtual CourseDetail CourseDetail { get; set; }
         public int CourseDetailId { get; set; }
         public ICollection<CategoryCourse> CategoryCourses { get; set; }
+        public ICollection<TagCourse> TagCourses { get; set; }
 
-        public static implicit operator List<object>(Course v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
