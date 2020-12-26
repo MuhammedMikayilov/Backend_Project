@@ -119,8 +119,8 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="single-event mb-60">
                                 <div class="event-img">
-                                    <a href="event-details.html">
-                                        <img src="img/event/@events.Image" alt="event">
+                                    <a asp-action="Detail" asp-route-id="@events.Id">
+                                        <img src="~/img/event/@events.Image" alt="event">
                                         <div class="course-hover">
                                             <i class="fa fa-link"></i>
                                         </div>
@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="event-content text-left">
-                                    <h4><a href="event-details.html">@events.Title</a></h4>
+                                    <h4><a asp-action="Detail" asp-route-id="@events.Id">@events.Title</a></h4>
                                     <ul>
                                         <li><span>time:</span> @events.EventTimeLine</li>
                                         <li><span>venue</span> @events.EventPlace</li>

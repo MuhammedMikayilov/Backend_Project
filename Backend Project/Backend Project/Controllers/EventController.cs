@@ -1,5 +1,6 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
+using Backend_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,6 +27,8 @@ namespace Backend_Project.Controllers
             if (id == null) return NotFound();
             Event events = _context.Events.Where(c => c.isDelete == false).Include(e=>e.EventDetails).Include(e=>e.EventDetails.Speakers)
                 .FirstOrDefault(e => e.Id == id);
+
+           
             if (events == null) NotFound();
             return View(events);
         }

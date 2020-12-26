@@ -332,3 +332,4 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.pdb
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.genruntimeconfig.cache
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LatestBlog\Default.cshtml.g.cs
