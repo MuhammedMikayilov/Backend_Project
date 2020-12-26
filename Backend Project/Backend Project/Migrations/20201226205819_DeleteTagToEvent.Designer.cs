@@ -4,14 +4,16 @@ using Backend_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201226205819_DeleteTagToEvent")]
+    partial class DeleteTagToEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -531,28 +533,6 @@ namespace Backend_Project.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Backend_Project.Models.TagsToEvents", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EventsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventsId");
-
-                    b.HasIndex("TagsId");
-
-                    b.ToTable("TagToEvents");
-                });
-
             modelBuilder.Entity("Backend_Project.Models.Teachers", b =>
                 {
                     b.Property<int>("Id")
@@ -778,21 +758,6 @@ namespace Backend_Project.Migrations
                     b.HasOne("Backend_Project.Models.Blogs", "Blogs")
                         .WithMany("TagToBlogs")
                         .HasForeignKey("BlogsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend_Project.Models.Tags", "Tags")
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Backend_Project.Models.TagsToEvents", b =>
-                {
-                    b.HasOne("Backend_Project.Models.Event", "Events")
-                        .WithMany("TagsToEvents")
-                        .HasForeignKey("EventsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

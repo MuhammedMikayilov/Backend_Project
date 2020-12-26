@@ -16,6 +16,8 @@
     <Compile Remove="Migrations\20201226164714_CreateBlogManyToMany.Designer.cs" />
     <Compile Remove="Migrations\20201226164856_CreateBlogsManyToMany.cs" />
     <Compile Remove="Migrations\20201226164856_CreateBlogsManyToMany.Designer.cs" />
+    <Compile Remove="Migrations\20201226205014_CreateTagToEvents.cs" />
+    <Compile Remove="Migrations\20201226205014_CreateTagToEvents.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

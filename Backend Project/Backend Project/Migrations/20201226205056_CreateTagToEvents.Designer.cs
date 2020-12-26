@@ -4,14 +4,16 @@ using Backend_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201226205056_CreateTagToEvents")]
+    partial class CreateTagToEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -516,6 +518,28 @@ namespace Backend_Project.Migrations
                     b.ToTable("TagToBlogs");
                 });
 
+            modelBuilder.Entity("Backend_Project.Models.TagToEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("TagToEvents");
+                });
+
             modelBuilder.Entity("Backend_Project.Models.Tags", b =>
                 {
                     b.Property<int>("Id")
@@ -529,28 +553,6 @@ namespace Backend_Project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("Backend_Project.Models.TagsToEvents", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EventsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventsId");
-
-                    b.HasIndex("TagsId");
-
-                    b.ToTable("TagToEvents");
                 });
 
             modelBuilder.Entity("Backend_Project.Models.Teachers", b =>
@@ -788,11 +790,11 @@ namespace Backend_Project.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Backend_Project.Models.TagsToEvents", b =>
+            modelBuilder.Entity("Backend_Project.Models.TagToEvent", b =>
                 {
-                    b.HasOne("Backend_Project.Models.Event", "Events")
-                        .WithMany("TagsToEvents")
-                        .HasForeignKey("EventsId")
+                    b.HasOne("Backend_Project.Models.Event", "Event")
+                        .WithMany("TagToEvent")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
