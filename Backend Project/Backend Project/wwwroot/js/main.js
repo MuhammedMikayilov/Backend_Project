@@ -172,5 +172,28 @@ $(document).ready(function () {
     $(document).on('keyup', '#search-event', function () {
         ajaxFunction('event')
     })
+    $(document).on('click', '#search-list-header', function (e) {
+        e.preventDefault();
+        let path = window.location.pathname;
+        let pathname = path.substring(1, path.length)
+        console.log("ppp", pathname)
+        switch (pathname) {
+            case 'Blog':
+                ajaxFunction('blg')
+                console.log("blg");
+                break;
+            case 'Course':
+                ajaxFunction('crs')
+                console.log("crs");
+                break;
+            case 'Event':
+                ajaxFunction('event')
+                console.log("event");
+                break;
+            default:
+                "not found"
+                break;
+        }
+    })
 })
 //----Searching end----\\

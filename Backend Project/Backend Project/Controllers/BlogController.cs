@@ -13,13 +13,16 @@ namespace Backend_Project.Controllers
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IViewComponentHelper _componentHelper;
 
-        public BlogController(AppDbContext context)
+        public BlogController(AppDbContext context, IViewComponentHelper componentHelper)
         {
             _context = context;
+            _componentHelper = componentHelper;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
+            if (page == null) return View();
             return View(_context.Categories.ToList());
         }
 

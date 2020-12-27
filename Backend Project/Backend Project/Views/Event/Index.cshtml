@@ -65,6 +65,20 @@
                     </div>
                 </div>
             }
+
+            <div class="col-md-12">
+                <div class="pagination">
+                    <ul>
+                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+                        {
+                            <li><a asp-controller="Event" asp-action="Index" asp-route-page="@i">@i</a></li>
+                        }
+                        @*<li><a href="#">@ViewBag.PageCount</a></li>
+
+                    <li><a href="#">3</a></li>*@
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

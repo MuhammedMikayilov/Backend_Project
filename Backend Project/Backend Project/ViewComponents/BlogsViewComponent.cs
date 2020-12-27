@@ -18,6 +18,8 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int? take)
         {
+            ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Blogs
+                .Where(blg => blg.isDelete == false).Count() / (int)take);
             return View(_context.Blogs.Where(b => b.isDelete == false).Take((int)take).ToList());
         }
     }

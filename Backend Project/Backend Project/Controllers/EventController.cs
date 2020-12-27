@@ -17,9 +17,13 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            return View(_context.Events.Where(e=>e.isDelete==false).Take(6).ToList());
+            
+            ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Events
+                .Where(blg => blg.isDelete == false).Count() / 3);
+            if (page == null) return View(_context.Events.Where(e => e.isDelete == false).Take(3).ToList());
+            return View(_context.Events.Where(e=>e.isDelete==false).Skip(((int)page - 1)*3).Take(3).ToList());
         }
 
         public IActionResult Detail(int? id)

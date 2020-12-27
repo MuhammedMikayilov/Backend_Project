@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="category">
+        @*<div class="category">
             <div class="main-menu">
                 <nav>
 
@@ -57,19 +57,10 @@
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div>*@
 
         <div class="row" id="search-list-blg">
-            @await Component.InvokeAsync("Blogs", 9)
-            <div class="col-md-12">
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                    </ul>
-                </div>
-            </div>
+            @await Component.InvokeAsync("Blogs", 6)
         </div>
     </div>
 </div>
