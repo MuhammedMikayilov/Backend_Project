@@ -11,7 +11,7 @@
                 <div class="col-xs-12">
                     <div class="banner-content-wrapper">
                         <div class="banner-content">
-                            <h2>event / left side bar</h2>
+                            <h2>event</h2>
                         </div>
                     </div>
                 </div>
@@ -20,90 +20,53 @@
     </div>
 </div>
 <!-- Banner Area End -->
-<!-- Blog Start -->
-<div class="blog-area event-area three pt-150 pb-90">
+<!-- Event Start -->
+<div class="event-area three text-center pt-150 pb-150">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="blog-sidebar left">
-                    <div class="single-blog-widget mb-50">
-                        <h3>search</h3>
-                        <div class="blog-search">
-                            <form id="search" action="#">
-                                <input type="search" placeholder="Search..." name="search" />
-                                <button type="submit">
-                                    <span><i class="fa fa-search"></i></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>categories</h3>
-                        <ul>
-                            <li><a href="#">CSS Engineering (10)</a></li>
-                            <li><a href="#">Political Science (12)</a></li>
-                            <li><a href="#">Micro Biology (08)</a></li>
-                            <li><a href="#">HTML5 &amp; CSS3 (15)</a></li>
-                            <li><a href="#">Web Design (20)</a></li>
-                            <li><a href="#">PHP (23)</a></li>
-                        </ul>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <div class="single-blog-banner">
-                            <a href="blog-details.html" id="blog"><img src="img/blog/blog-img.jpg" alt="blog"></a>
-                            <h2>best<br> eductaion<br> theme</h2>
-                        </div>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>latest post</h3>
-                        @await Component.InvokeAsync("LatestBlog")
-                    </div>
-                    <div class="single-blog-widget">
-                        <h3>tags</h3>
-                        <div class="single-tag">
-                            <a href="blog-details.html" class="mr-10 mb-10">course</a>
-                            <a href="blog-details.html" class="mr-10 mb-10">education</a>
-                            <a href="blog-details.html" class="mb-10">teachers</a>
-                            <a href="blog-details.html" class="mr-10">learning</a>
-                            <a href="blog-details.html" class="mr-10">university</a>
-                            <a href="blog-details.html">events</a>
-                        </div>
-                    </div>
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    @foreach (Event events in Model)
-                    {
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="single-event mb-60">
-                                <div class="event-img">
-                                    <a asp-action="Detail" asp-route-id="@events.Id">
-                                        <img src="~/img/event/@events.Image" alt="event">
-                                        <div class="course-hover">
-                                            <i class="fa fa-link"></i>
-                                        </div>
-                                    </a>
-                                    <div class="event-date">
-                                        <h3>@events.EventDate.ToString("dd") <span>@events.EventDate.ToString("MMM")</span></h3>
-                                    </div>
-                                </div>
-                                <div class="event-content text-left">
-                                    <h4><a asp-action="Detail" asp-route-id="@events.Id">@events.Title</a></h4>
-                                    <ul>
-                                        <li><span>time:</span> @events.EventTimeLine</li>
-                                        <li><span>venue</span> @events.EventPlace</li>
-                                    </ul>
-                                    <div class="event-content-right">
-                                        <a class="default-btn" asp-action="Detail" asp-route-id="@events.Id">join now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                <div class="course-form">
+                    <form id="search">
+                        <input type="search" id="search-event" placeholder="Search Event..." name="searchEvent" />
+                        <button type="submit" id="search-ev">search</button>
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="row" id="search-list-event">
+            @foreach (Event events in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12 my">
+                    <div class="single-event mb-60">
+                        <div class="event-img">
+                            <a asp-action="Detail" asp-route-id="@events.Id">
+                                <img style="height:240px" class="img-fluid" src="~/img/event/@events.Image" alt="event">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                            <div class="event-date">
+                                <h3>@events.EventDate.ToString("dd MMM")</h3>
+                            </div>
+                        </div>
+                        <div class="event-content text-left">
+                            <h4><a asp-action="Detail" asp-route-id="@events.Id">@events.Title</a></h4>
+                            <ul>
+                                <li><span>time:</span> @events.EventTimeLine</li>
+                                <li><span>venue</span> @events.EventPlace</li>
+                            </ul>
+                            <div class="event-content-right">
+                                <a class="default-btn" asp-action="Detail" asp-route-id="@events.Id">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
-<!-- Blog End -->
+<!-- Event End -->
+

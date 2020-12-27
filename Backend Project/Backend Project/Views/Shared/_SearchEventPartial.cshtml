@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Event>
+@{
+    ViewData["Title"] = "_SearchEventPartial";
+}
+
+@foreach (Event events in Model)
+{
+    <div data-id="@events.Title" class="col-md-4 col-sm-6 col-xs-12 searching">
+        <div class="single-event mb-60">
+            <div class="event-img">
+                <a asp-action="Detail" asp-route-id="@events.Id">
+                    <img style="height:240px" class="img-fluid" src="~/img/event/@events.Image" alt="event">
+                    <div class="course-hover">
+                        <i class="fa fa-link"></i>
+                    </div>
+                </a>
+                <div class="event-date">
+                    <h3>@events.EventDate.ToString("dd MMM")</h3>
+                </div>
+            </div>
+            <div class="event-content text-left">
+                <h4><a asp-action="Detail" asp-route-id="@events.Id">@events.Title</a></h4>
+                <ul>
+                    <li><span>time:</span> @events.EventTimeLine</li>
+                    <li><span>venue</span> @events.EventPlace</li>
+                </ul>
+                <div class="event-content-right">
+                    <a class="default-btn" asp-action="Detail" asp-route-id="@events.Id">join now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

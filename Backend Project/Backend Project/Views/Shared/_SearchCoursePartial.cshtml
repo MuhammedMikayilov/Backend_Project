@@ -5,7 +5,7 @@
 
 @foreach (Course course in Model)
 {
-    <div data-id="@course.CourseName" class="col-md-4 col-sm-6 col-xs-12 my searching">
+    <div class="col-md-4 col-sm-6 col-xs-12 my searching">
         <div class="single-course">
             <div class="course-img">
                 <a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">

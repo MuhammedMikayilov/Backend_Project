@@ -138,12 +138,14 @@ $(document).ready(function () {
         let controller = pathname.substring(1, pathname.length)
 
         let inputVal = $(`#search-${action}`).val().trim();
+        console.log("input", inputVal)
         if (inputVal !== "") {
             $(`#search-list-${action} div`).css("display", "none");
         }
         if (inputVal === "") {
             $(`#search-list-${action} div`).css("display", "block");
             $(`#search-list-${action} .searching`).remove();
+            console.log("Action", action, "Class", $(`#search-list-${action}`))
         }
         console.log("test", inputVal)
         if (inputVal.length >= 0) {
@@ -167,6 +169,8 @@ $(document).ready(function () {
         ajaxFunction('crs')
     })
 
-    
+    $(document).on('keyup', '#search-event', function () {
+        ajaxFunction('event')
+    })
 })
 //----Searching end----\\
