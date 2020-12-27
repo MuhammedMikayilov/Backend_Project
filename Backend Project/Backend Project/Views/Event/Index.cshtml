@@ -71,7 +71,7 @@
                     <ul>
                         @for (int i = 1; i <= ViewBag.PageCount; i++)
                         {
-                            <li><a asp-controller="Event" asp-action="Index" asp-route-page="@i">@i</a></li>
+                            <li><a asp-controller="Event" asp-action="Index" asp-route-page="@i" asp-route-take="6">@i</a></li>
                         }
                         @*<li><a href="#">@ViewBag.PageCount</a></li>
 

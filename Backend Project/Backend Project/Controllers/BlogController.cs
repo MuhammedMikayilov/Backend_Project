@@ -1,29 +1,30 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
-using Backend_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Backend_Project.Controllers
 {
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IViewComponentHelper _componentHelper;
 
-        public BlogController(AppDbContext context, IViewComponentHelper componentHelper)
+
+        public BlogController(AppDbContext context)
         {
             _context = context;
-            _componentHelper = componentHelper;
         }
         public IActionResult Index(int? page)
         {
-            if (page == null) return View();
-            return View(_context.Categories.ToList());
+            //if (page == null) return View();
+
+            ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Blogs
+               .Where(blg => blg.isDelete == false).Count() / 6);
+            ViewBag.Page = page;
+            return View();
         }
 
         public IActionResult Detail(int? id)

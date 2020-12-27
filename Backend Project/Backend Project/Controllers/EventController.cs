@@ -21,9 +21,9 @@ namespace Backend_Project.Controllers
         {
             
             ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Events
-                .Where(blg => blg.isDelete == false).Count() / 3);
-            if (page == null) return View(_context.Events.Where(e => e.isDelete == false).Take(3).ToList());
-            return View(_context.Events.Where(e=>e.isDelete==false).Skip(((int)page - 1)*3).Take(3).ToList());
+                .Where(blg => blg.isDelete == false).Count() / 6);
+            if (page == null) return View(_context.Events.Where(e => e.isDelete == false).Take(6).ToList());
+            return View(_context.Events.Where(e=>e.isDelete==false).Skip(((int)page - 1)*6).Take(6).ToList());
         }
 
         public IActionResult Detail(int? id)

@@ -878,6 +878,15 @@
           "lib/netstandard1.6/NuGet.Frameworks.dll": {}
         }
       },
+      "RazorEngine/3.10.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/RazorEngine.dll": {}
+        },
+        "runtime": {
+          "lib/net45/RazorEngine.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -4007,6 +4016,22 @@
         "lib/netstandard1.6/NuGet.Frameworks.xml",
         "nuget.frameworks.4.7.0.nupkg.sha512",
         "nuget.frameworks.nuspec"
+      ]
+    },
+    "RazorEngine/3.10.0": {
+      "sha512": "xWjGSjhMTM+Qzh3kabsRXR7kpCZQALbYGGYrOPc7wf6IBeDee4OVuO/LRTgWpgIFA8W/widTfszLBm0MfVHRGg==",
+      "type": "package",
+      "path": "razorengine/3.10.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net40/RazorEngine.dll",
+        "lib/net40/RazorEngine.xml",
+        "lib/net45/RazorEngine.dll",
+        "lib/net45/RazorEngine.xml",
+        "razorengine.3.10.0.nupkg.sha512",
+        "razorengine.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -8470,7 +8495,8 @@
       "Microsoft.EntityFrameworkCore >= 3.1.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.10",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.10",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
+      "RazorEngine >= 3.10.0"
     ]
   },
   "packageFolders": {
@@ -8529,6 +8555,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.4, )"
+          },
+          "RazorEngine": {
+            "target": "Package",
+            "version": "[3.10.0, )"
           }
         },
         "imports": [
@@ -8552,5 +8582,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'RazorEngine 3.10.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "RazorEngine",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

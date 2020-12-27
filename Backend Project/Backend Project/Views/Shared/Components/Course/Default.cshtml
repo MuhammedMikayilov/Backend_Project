@@ -21,3 +21,14 @@
     </div>
 }
 
+<div class="col-md-12">
+    <div class="pagination">
+        <ul>
+            @for (int i = 1; i <= ViewBag.PageCount; i++)
+            {
+                <li><a asp-controller="Course" asp-action="Index" asp-route-page="@i">@i</a></li>
+            }
+        </ul>
+    </div>
+</div>
+

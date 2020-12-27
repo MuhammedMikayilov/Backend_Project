@@ -18,8 +18,11 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
+            ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Courses
+               .Where(blg => blg.isDelete == false).Count() / 6);
+            ViewBag.Page = page;
             return View(_context.Categories.ToList());
         }
 

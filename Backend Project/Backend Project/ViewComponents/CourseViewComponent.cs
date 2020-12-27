@@ -20,9 +20,16 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int? take)
         {
-            if (take == null) return View();
+            if (take == null) return View(await Task.FromResult(_context.Courses.Where(c => c.isDelete == false)
+                .Include(c => c.CategoryCourses).ThenInclude(c => c.Categories).ToList()));
+
+            if (ViewBag.Page == null) return View(await Task.FromResult(_context.Courses.Where(b => b.isDelete == false)
+                 .Take((int)take).ToList()));
+
             List<Course> course = _context.Courses.Where(c => c.isDelete == false)
+                .Skip(((int)ViewBag.Page - 1) * (int)take)
                 .Take((int)take).Include(c=>c.CategoryCourses).ThenInclude(c=>c.Categories).ToList();
+
             return View(await Task.FromResult(course));
         }
     }
