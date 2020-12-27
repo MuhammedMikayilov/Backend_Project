@@ -29,15 +29,15 @@
                     <h3>search courses</h3>
                 </div>
                 <div class="course-form">
-                    <form id="search" action="#">
-                        <input type="search" placeholder="Search..." name="search" />
-                        <button type="submit">search</button>
+                    <form id="search" >
+                        <input type="search" id="search-crs" placeholder="Search..." name="search" />
+                        <button type="submit" id="search-btn-crs">search</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="search-list-crs">
             @await Component.InvokeAsync("Course", 9)
           
         </div>

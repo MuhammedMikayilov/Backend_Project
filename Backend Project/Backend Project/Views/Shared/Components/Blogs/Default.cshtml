@@ -14,7 +14,7 @@
                     <p>By @blog.Author  /  @blog.DateWrite.Date.ToString("dd MMMM yyyy") /  <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
                 </div>
                 <div class="blog-bottom">
-                    <h2><a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">I must explain to you how all this a mistaken idea </a></h2>
+                    <h2><a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">@blog.Title </a></h2>
                     <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">read more</a>
                 </div>
             </div>

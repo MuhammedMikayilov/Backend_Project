@@ -128,3 +128,53 @@ $(".notice-left").niceScroll({
         });
 
 })(jQuery);	
+
+
+$(document).ready(function () {
+    $(document).on('keyup', '#search-blog', function () {
+        let inputVal = $(this).val().trim();
+        if (inputVal !== "") {
+            $('#search-list-blg div').css("display", "none");
+            console.log("Em")
+        }
+        if (inputVal === "") {
+            $('#search-list-blg div').css("display", "block");
+            $('#search-list-blg .searching').remove();
+        }
+
+        if (inputVal.length > 0) {
+            $.ajax({
+                url: "/Blog/Search?search=" + inputVal,
+                type: "GET",
+                success: function (res) {
+                    $("#search-list-blg").append(res)
+                }
+            })
+        }
+    })
+})
+
+$(document).ready(function () {
+    $(document).on('keyup', '#search-crs', function () {
+        let inputVal = $(this).val();
+        if (inputVal !== "") {
+            $('#search-list-crs div').css("display", "none");
+            console.log("Em")
+        }
+        if (inputVal === "") {
+            $('#search-list-crs div').css("display", "block");
+            $('#search-list-crs .searching').remove();
+        }
+        console.log("test", inputVal)
+        if (inputVal.length >= 0) {
+            $.ajax({
+                url: "/Course/Search?search=" + inputVal,
+                type: "GET",
+                success: function (res) {
+                    //res.addClass("searched")
+                    $("#search-list-crs").append(res)
+                }
+            })
+        }
+    })
+})

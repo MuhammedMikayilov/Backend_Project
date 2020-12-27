@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Shared\Components\Partials\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
