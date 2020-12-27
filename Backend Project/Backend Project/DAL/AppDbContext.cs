@@ -54,5 +54,9 @@ namespace Backend_Project.DAL
         public DbSet<TagsToEvents> TagToEvents { get; set; }
 
         #endregion
+        #region Contact
+        public DbSet<Contact> Contacts { get; set; }
+        #endregion
     }
+
 }
