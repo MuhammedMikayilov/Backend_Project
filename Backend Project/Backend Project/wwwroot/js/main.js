@@ -130,51 +130,43 @@ $(".notice-left").niceScroll({
 })(jQuery);	
 
 
+//----Searching start----\\
 $(document).ready(function () {
-    $(document).on('keyup', '#search-blog', function () {
-        let inputVal = $(this).val().trim();
+    //---- Ajax function start ----\\
+    const ajaxFunction = (action) => {
+        let pathname = window.location.pathname;
+        let controller = pathname.substring(1, pathname.length)
+
+        let inputVal = $(`#search-${action}`).val().trim();
         if (inputVal !== "") {
-            $('#search-list-blg div').css("display", "none");
-            console.log("Em")
+            $(`#search-list-${action} div`).css("display", "none");
         }
         if (inputVal === "") {
-            $('#search-list-blg div').css("display", "block");
-            $('#search-list-blg .searching').remove();
-        }
-
-        if (inputVal.length > 0) {
-            $.ajax({
-                url: "/Blog/Search?search=" + inputVal,
-                type: "GET",
-                success: function (res) {
-                    $("#search-list-blg").append(res)
-                }
-            })
-        }
-    })
-})
-
-$(document).ready(function () {
-    $(document).on('keyup', '#search-crs', function () {
-        let inputVal = $(this).val();
-        if (inputVal !== "") {
-            $('#search-list-crs div').css("display", "none");
-            console.log("Em")
-        }
-        if (inputVal === "") {
-            $('#search-list-crs div').css("display", "block");
-            $('#search-list-crs .searching').remove();
+            $(`#search-list-${action} div`).css("display", "block");
+            $(`#search-list-${action} .searching`).remove();
         }
         console.log("test", inputVal)
         if (inputVal.length >= 0) {
             $.ajax({
-                url: "/Course/Search?search=" + inputVal,
+                url: `/${controller}/Search?search=` + inputVal,
                 type: "GET",
                 success: function (res) {
-                    //res.addClass("searched")
-                    $("#search-list-crs").append(res)
+                    $(`#search-list-${action}`).append(res)
                 }
             })
         }
+        console.log("window location", controller)
+    }
+    //---- Ajax function end----\\
+    
+    $(document).on('keyup', '#search-blg', function () {
+        ajaxFunction('blg')
     })
+
+    $(document).on('keyup', '#search-crs', function () {
+        ajaxFunction('crs')
+    })
+
+    
 })
+//----Searching end----\\
