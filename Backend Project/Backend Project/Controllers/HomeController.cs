@@ -29,7 +29,6 @@ namespace Backend_Project.Controllers
                 Services = _context.Services.ToList(),
                 Titles = _context.Titles.Where(title=>title.IsDelete==false).ToList(),
                 Testimonials = _context.Testimonials.ToList()
-
             };
             return View(homeVM);
         }

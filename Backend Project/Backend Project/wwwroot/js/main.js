@@ -227,5 +227,9 @@ $(document).ready(function () {
     $(document).on('click', '#search-list-header', function (e) {
         e.preventDefault();
     })
+
+    //$(document).on('click', '.default-btn', function (e) {
+
+    //})
 })
 //----Searching end----\\

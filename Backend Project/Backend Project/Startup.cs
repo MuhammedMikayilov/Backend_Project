@@ -27,7 +27,7 @@ namespace Backend_Project
             services.AddControllersWithViews();
             services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
             {
-                identityOptions.Password.RequiredLength = 8;
+                identityOptions.Password.RequiredLength = 6;
                 identityOptions.Password.RequireNonAlphanumeric = true;
                 identityOptions.Password.RequireDigit = true;
                 identityOptions.Password.RequireLowercase = true;
@@ -40,7 +40,8 @@ namespace Backend_Project
                 identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 identityOptions.Lockout.MaxFailedAccessAttempts = 5;
                 identityOptions.Lockout.AllowedForNewUsers = true;
-            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>(); 
+
             services.AddDbContext<AppDbContext>(options=>{
                 options.UseSqlServer(_config["ConnectionString:Default"]);
                 });
@@ -64,6 +65,8 @@ namespace Backend_Project
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

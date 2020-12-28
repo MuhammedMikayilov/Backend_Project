@@ -13,7 +13,5 @@ namespace Backend_Project.Models
         public string Firstname { get; set; } 
         public string Lastname { get; set; }
         public bool isDelete { get; set; }
-
-
     }
 }

@@ -25,6 +25,8 @@ namespace Backend_Project.DAL
                 .HasOne(bD => bD.Detail)
                 .WithOne(b => b.Blogs)
                 .HasForeignKey<BlogDetail>(bD => bD.BlogsId);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
