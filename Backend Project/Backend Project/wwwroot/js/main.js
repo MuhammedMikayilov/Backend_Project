@@ -159,6 +159,31 @@ $(document).ready(function () {
         }
         console.log("window location", controller)
     }
+
+    const ajaxHeaderSearch = (action) => {
+        let path = window.location.pathname;
+        let controller = path.substring(1, path.length)
+
+        let inputVal = $('#search-header').val().trim();
+        if (inputVal !== "") {
+            $(`#search-list-${action} div`).css("display", "none");
+        }
+        if (inputVal === "") {
+            $(`#search-list-${action} div`).css("display", "block");
+            $(`#search-list-${action} .searching`).remove();
+            console.log("Action", action, "Class", $(`#search-list-${action}`))
+        }
+        console.log("test", inputVal)
+        if (inputVal.length >= 0) {
+            $.ajax({
+                url: `/${controller}/Search?search=` + inputVal,
+                type: "GET",
+                success: function (res) {
+                    $(`#search-list-${action}`).append(res)
+                }
+            })
+        }
+    }
     //---- Ajax function end----\\
     
     $(document).on('keyup', '#search-blg', function () {
@@ -172,28 +197,35 @@ $(document).ready(function () {
     $(document).on('keyup', '#search-event', function () {
         ajaxFunction('event')
     })
-    $(document).on('click', '#search-list-header', function (e) {
-        e.preventDefault();
+    $(document).on('keyup', '#search-header', function () {
         let path = window.location.pathname;
         let pathname = path.substring(1, path.length)
         console.log("ppp", pathname)
         switch (pathname) {
             case 'Blog':
-                ajaxFunction('blg')
+                ajaxHeaderSearch('blg')
                 console.log("blg");
                 break;
             case 'Course':
-                ajaxFunction('crs')
+                ajaxHeaderSearch('crs')
                 console.log("crs");
                 break;
             case 'Event':
-                ajaxFunction('event')
+                ajaxHeaderSearch('event')
                 console.log("event");
                 break;
             default:
                 "not found"
                 break;
         }
+    })
+
+    //e.prevetDefault()
+    $(document).on('click', '.disabled a', function (e) {
+        e.preventDefault();
+    })
+    $(document).on('click', '#search-list-header', function (e) {
+        e.preventDefault();
     })
 })
 //----Searching end----\\

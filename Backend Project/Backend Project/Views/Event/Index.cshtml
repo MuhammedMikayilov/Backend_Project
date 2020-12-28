@@ -39,7 +39,7 @@
         <div class="row" id="search-list-event">
             @foreach (Event events in Model)
             {
-                <div class="col-md-4 col-sm-6 col-xs-12 my">
+                <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="single-event mb-60">
                         <div class="event-img">
                             <a asp-action="Detail" asp-route-id="@events.Id">
@@ -66,19 +66,28 @@
                 </div>
             }
 
-            <div class="col-md-12">
-                <div class="pagination">
-                    <ul>
-                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+        <div class="col-md-12">
+            <div class="pagination pages">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ViewBag.PageCount; i++)
+                    {
+                        if (i == ViewBag.Page)
                         {
-                            <li><a asp-controller="Event" asp-action="Index" asp-route-page="@i" asp-route-take="6">@i</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">@i</a>
+                            </li>
                         }
-                        @*<li><a href="#">@ViewBag.PageCount</a></li>
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Event" asp-action="Index" asp-route-page="@i">@i</a>
+                            </li>
+                        }
 
-                    <li><a href="#">3</a></li>*@
-                    </ul>
-                </div>
+                    }
+                </ul>
             </div>
+        </div>
         </div>
     </div>
 </div>

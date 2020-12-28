@@ -24,10 +24,22 @@
 
 <div class="col-md-12">
     <div class="pagination">
-        <ul>
+        <ul class="pagination">
             @for (int i = 1; i <= ViewBag.PageCount; i++)
             {
-                <li><a asp-controller="Blog" asp-action="Index" asp-route-page="@i">@i</a></li>
+                if (i == ViewBag.Page)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Blog" asp-action="Index" asp-route-page="@i">@i</a>
+                    </li>
+                }
+
             }
         </ul>
     </div>

@@ -18,7 +18,7 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? page = 1)
         {
             ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Courses
                .Where(blg => blg.isDelete == false).Count() / 6);

@@ -17,7 +17,7 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? page = 1)
         {
             //if (page == null) return View();
 

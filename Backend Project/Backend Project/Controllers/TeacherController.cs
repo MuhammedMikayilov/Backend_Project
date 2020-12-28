@@ -16,8 +16,11 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? page = 1)
         {
+            ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Teachers
+               .Where(blg => blg.IsDelete == false).Count() / 12);
+            ViewBag.Page = page;
             return View();
         }
 
