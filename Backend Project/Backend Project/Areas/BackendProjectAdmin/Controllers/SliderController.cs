@@ -1,12 +1,11 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
-using Fiorello.Extentions;
+using Eduhome.Extentions;
+using Eduhome.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -66,7 +65,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                     return View();
                 }
                 Slider newSlider = new Slider();
-                newSlider.Image = await photo.SaveImageAsync(_env.WebRootPath, "img");
+
+                string path = Path.Combine("img", "slider");
+                newSlider.Image = await photo.SaveImageAsync(_env.WebRootPath, path);
                 await _context.Sliders.AddAsync(newSlider);
 
             }
@@ -74,8 +75,76 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             #endregion
 
             return RedirectToAction(nameof(Index));
+
         }
 
+        public async Task<IActionResult> Detail(int? id)
+        {
+            //GetMainCategory();
+            if (id == null) return NotFound();
+            Slider slider = _context.Sliders
+                .FirstOrDefault(c => c.Id == id);
+            if (slider == null) return NotFound();
+            await _context.SaveChangesAsync();
+            return View(slider);
+        }
+
+        public async Task<IActionResult> Update(int? id)
+        {
+            //GetMainCategory();
+            if (id == null) return NotFound();
+            Slider slider = _context.Sliders
+                .FirstOrDefault(c => c.Id == id);
+            if (slider == null) return NotFound();
+            await _context.SaveChangesAsync();
+            return View(slider);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Slider slider, int? id)
+        {
+            
+            if (id == null) return NotFound();
+            if (slider == null) return NotFound();
+
+            Slider slide = await _context.Sliders.FindAsync(id);
+
+            
+
+            if (!slider.Photo.IsImage())
+            {
+                ModelState.AddModelError("Photos", $"{slider.Photo.FileName} - not image type");
+                return View(slide);
+            }
+            if (!slider.Photo.MaxSize(200))
+            {
+                ModelState.AddModelError("Photos", $"{slider.Photo.FileName} - Max image length must be less than 200kb");
+                return View(slide);
+            }
+
+
+            string folder = Path.Combine("img", "slider");
+            //Helper.DeleteImage(_env.WebRootPath, folder, slider.Image);
+            //_context.Sliders.Remove(slider);
+            string fileName = await slider.Photo.SaveImageAsync(_env.WebRootPath, folder);
+            if (fileName == null)
+            {
+                return Content("Error");
+            }
+            slide.Image = fileName;
+            //await _context.Sliders.AddAsync(slide);
+            //string fileName = await slider.Photos.SaveImageAsync(_env.WebRootPath, folder);
+            //foreach (IFormFile item in slider.Photos)
+            //{
+            //    fileName  = await item.SaveImageAsync(_env.WebRootPath, folder);
+            //    slider.Image = fileName;
+            //    await _context.SaveChangesAsync();
+            //}
+
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+    }
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -98,13 +167,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             Slider slider = _context.Sliders.FirstOrDefault(c => c.Id == id);
             if (slider == null) return NotFound();
 
+            string path = Path.Combine("img", "slider");
+            Helper.DeleteImage(_env.WebRootPath, path, slider.Image);
             _context.Sliders.Remove(slider);
             await _context.SaveChangesAsync();
-
-            //category.IsDeleted = true;
-            //category.DeletedTime = DateTime.Now;
-            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

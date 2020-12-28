@@ -17,6 +17,8 @@ namespace Backend_Project.Models
         public string Title { get; set; }
         public string Description { get; set; }
         [NotMapped, Required]
+        public IFormFile Photo { get; set; }
+        [NotMapped, Required]
         public IFormFile[] Photos { get; set; }
 
     }

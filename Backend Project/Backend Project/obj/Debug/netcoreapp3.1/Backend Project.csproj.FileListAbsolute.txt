@@ -353,3 +353,5 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Create.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Delete.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Update.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Detail.cshtml.g.cs
