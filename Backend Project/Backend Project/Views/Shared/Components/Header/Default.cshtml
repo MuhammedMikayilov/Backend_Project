@@ -14,13 +14,13 @@
                         <ul>
                             @if (!User.Identity.IsAuthenticated)
                             {
-                                <li><a asp-controller="Login" asp-action="Login">login</a></li>
-                                <li><a asp-controller="Login" asp-action="Signup">signup</a></li>
+                                <li><a asp-controller="Account" asp-action="Login">login</a></li>
+                                <li><a asp-controller="Account" asp-action="Signup">signup</a></li>
                             }
                             else
                             {
-                                <li><a asp-area="AdminPagePrjct" asp-controller="Admin" asp-action="Dashboard">@User.Identity.Name</a></li>
-                                <li><a asp-controller="Login" asp-action="Logout">Logout</a></li>
+                                <li><a asp-area="BackendProjectAdmin" asp-controller="Dashboard" asp-action="Index">@User.Identity.Name</a></li>
+                                <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
                             }
                         </ul>
                     </div>

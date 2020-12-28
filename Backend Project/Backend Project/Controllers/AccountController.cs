@@ -10,18 +10,25 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.Controllers
 {
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
 
-        public LoginController(AppDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+
+        public AccountController(
+                                AppDbContext context,
+                                UserManager<AppUser> userManager, 
+                                SignInManager<AppUser> signInManager,
+                                RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public IActionResult Login()
         {

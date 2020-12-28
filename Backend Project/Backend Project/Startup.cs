@@ -70,6 +70,12 @@ namespace Backend_Project
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute(
+                    "areas",
+                    "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

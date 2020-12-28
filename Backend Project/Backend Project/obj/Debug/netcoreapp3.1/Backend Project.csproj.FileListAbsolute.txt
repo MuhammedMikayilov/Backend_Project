@@ -175,6 +175,9 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Backend Project.pdb
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Backend Project.Views.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Backend Project.Views.pdb
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -196,6 +199,8 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
@@ -216,6 +221,7 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\RazorEngine.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
@@ -287,7 +293,6 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.csprojAssemblyReference.cache
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.AssemblyInfoInputs.cache
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.AssemblyInfo.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.csproj.CoreCompileInputs.cache
@@ -300,7 +305,13 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.TagHelpers.input.cache
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.TagHelpers.output.cache
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.RazorCoreGenerate.cache
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Dashboard\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\_ViewImports.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\_ViewStart.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signup.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Detail.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
@@ -316,12 +327,18 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Events\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LatestBlog\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Notice\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Teachers\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Testimonial\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchCoursePartial.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchEventPartial.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchLayoutPartial.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchPartial.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Detail.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
@@ -332,17 +349,7 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.dll
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.pdb
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.genruntimeconfig.cache
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LatestBlog\Default.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Detail.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Login\Signup.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchCoursePartial.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchPartial.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchEventPartial.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchLayoutPartial.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\RazorEngine.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.csprojAssemblyReference.cache
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Create.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Slider\Delete.cshtml.g.cs
