@@ -1,4 +1,5 @@
 ﻿using Backend_Project.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 //using Backend_Project.Models.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.DAL
 {
-    public partial class AppDbContext:DbContext
+    public partial class AppDbContext:IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {

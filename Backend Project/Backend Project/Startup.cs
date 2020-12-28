@@ -1,15 +1,13 @@
 using Backend_Project.DAL;
+using Backend_Project.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Backend_Project
 {
@@ -27,9 +25,26 @@ namespace Backend_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
+            {
+                identityOptions.Password.RequiredLength = 8;
+                identityOptions.Password.RequireNonAlphanumeric = true;
+                identityOptions.Password.RequireDigit = true;
+                identityOptions.Password.RequireLowercase = true;
+                identityOptions.Password.RequireUppercase = true;
+
+                //Emails
+                identityOptions.User.RequireUniqueEmail = true;
+
+                //Lockout
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                identityOptions.Lockout.MaxFailedAccessAttempts = 5;
+                identityOptions.Lockout.AllowedForNewUsers = true;
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
             services.AddDbContext<AppDbContext>(options=>{
                 options.UseSqlServer(_config["ConnectionString:Default"]);
                 });
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
