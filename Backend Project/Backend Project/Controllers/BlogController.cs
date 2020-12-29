@@ -1,5 +1,6 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
+using Backend_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -32,9 +33,15 @@ namespace Backend_Project.Controllers
             if (id == null) return NotFound();
             //Blogs blogs = _context.Blogs.Include(blg => blg.Detail).FirstOrDefault(blg => blg.Id == id);
 
-            Blogs blogs = _context.Blogs.Where(blg => blg.isDelete == false).Include(blg => blg.Detail).Include(blg => blg.TagToBlogs)
-                .ThenInclude(blg => blg.Tags).FirstOrDefault(blg => blg.Id == id);
-            return View(blogs);
+            //Blogs blogs = _context.Blogs.Where(blg => blg.isDelete == false).Include(blg => blg.Detail).Include(blg => blg.TagToBlogs)
+            //    .ThenInclude(blg => blg.Tags).FirstOrDefault(blg => blg.Id == id);
+            BlogVM blogVM = new BlogVM()
+            {
+                Blog = _context.Blogs.Where(blg => blg.isDelete == false).Include(blg => blg.Detail).Include(blg => blg.TagToBlogs)
+                .ThenInclude(blg => blg.Tags).FirstOrDefault(blg => blg.Id == id),
+                Categories = _context.Categories.ToList()
+            };
+            return View(blogVM);
         }
 
         public IActionResult Search(string search)

@@ -25,11 +25,42 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Titles.Where(t=>t.IsDelete == false).ToList());
+            return View(_context.Titles.ToList());
         }
 
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null) return NotFound();
+            Titles title = _context.Titles.Where(t => t.IsDelete == false).FirstOrDefault(t => t.Id == id);
+            if (title == null) return NotFound();
+            await _context.SaveChangesAsync();
+            return View(title);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Titles titles, int? id)
+        {
+            Titles t = await _context.Titles.FindAsync(id);
 
+            if (!ModelState.IsValid) return RedirectToAction("ErrorPage","Home");
+
+            Titles isExist = _context.Titles.Where(t => t.IsDelete == false)
+                .FirstOrDefault(t => t.Title.ToLower().Trim() == titles.Title.ToLower().Trim());
+
+            if(isExist != null)
+            {
+                if(isExist.Id != t.Id)
+                {
+                    ModelState.AddModelError("Title", "This name already has. Please write another name");
+                    return View(t);
+                }
+            }
+
+            t.Title = titles.Title;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -48,7 +79,11 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             Titles title = _context.Titles.FirstOrDefault(c => c.Id == id);
             if (title == null) return NotFound();
 
-            title.IsDelete = true;
+            if (!title.IsDelete)
+                title.IsDelete = true;
+            else
+                title.IsDelete = false;
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

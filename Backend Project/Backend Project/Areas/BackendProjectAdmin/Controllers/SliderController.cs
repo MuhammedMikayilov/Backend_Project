@@ -124,24 +124,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
 
             string folder = Path.Combine("img", "slider");
-            //Helper.DeleteImage(_env.WebRootPath, folder, slider.Image);
-            //_context.Sliders.Remove(slider);
             string fileName = await slider.Photo.SaveImageAsync(_env.WebRootPath, folder);
             if (fileName == null)
             {
                 return Content("Error");
             }
             slide.Image = fileName;
-            //await _context.Sliders.AddAsync(slide);
-            //string fileName = await slider.Photos.SaveImageAsync(_env.WebRootPath, folder);
-            //foreach (IFormFile item in slider.Photos)
-            //{
-            //    fileName  = await item.SaveImageAsync(_env.WebRootPath, folder);
-            //    slider.Image = fileName;
-            //    await _context.SaveChangesAsync();
-            //}
-
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
     }

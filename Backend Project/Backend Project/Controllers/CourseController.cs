@@ -30,13 +30,22 @@ namespace Backend_Project.Controllers
         {
             if (id == null) return NotFound();
 
-            Course course = _context.Courses.Where(c => c.isDelete == false).Include(c => c.CourseDetail)
+            //Course course = _context.Courses.Where(c => c.isDelete == false).Include(c => c.CourseDetail)
+            //    .Include(c => c.CategoryCourses).ThenInclude(c => c.Categories)
+            //    .Include(c => c.TagCourses).ThenInclude(c => c.Tags)
+            //    .FirstOrDefault(c => c.Id == id);
+            
+            //if (course == null) NotFound();
+
+            CourseVM courseVM = new CourseVM()
+            {
+                Categories = _context.Categories.ToList(),
+                Course = _context.Courses.Where(c => c.isDelete == false).Include(c => c.CourseDetail)
                 .Include(c => c.CategoryCourses).ThenInclude(c => c.Categories)
                 .Include(c => c.TagCourses).ThenInclude(c => c.Tags)
-                .FirstOrDefault(c => c.Id == id);
-            
-            if (course == null) NotFound();
-            return View(course);
+                .FirstOrDefault(c => c.Id == id)
+            };
+            return View(courseVM);
         }
 
         public IActionResult Search(string search)

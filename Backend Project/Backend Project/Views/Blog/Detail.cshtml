@@ -1,5 +1,5 @@
-﻿@model Blogs
-@*@model BlogsVM*@
+﻿@*@Model.Blog Blogs*@
+@model BlogVM
 @{
     ViewData["Title"] = "Detail";
 }
@@ -28,12 +28,12 @@
             <div class="col-md-8">
                 <div class="blog-details">
                     <div class="blog-details-img">
-                        <img width="750" src="~/img/blog/@Model.Image" alt="blog-details">
+                        <img width="750" src="~/img/blog/@Model.Blog.Image" alt="blog-details">
                     </div>
                     <div class="blog-details-content">
-                        <h2>@Model.Title </h2>
-                        <h6>By @Model.Author  /  @Model.DateWrite.ToString("MMMM dd, yyyy")  /  <i class="fa fa-comments-o"></i> @Model..CommentCount</h6>
-                        <p>@Html.Raw(Model.Detail.Description)</p>
+                        <h2>@Model.Blog.Title </h2>
+                        <h6>By @Model.Blog.Author  /  @Model.Blog.DateWrite.ToString("MMMM dd, yyyy")  /  <i class="fa fa-comments-o"></i> @Model.Blog.CommentCount</h6>
+                        <p>@Html.Raw(Model.Blog.Detail.Description)</p>
                     </div>
                     <div class="reply-area">
                         <h3>LEAVE A REPLY</h3>
@@ -77,17 +77,15 @@
                     <div class="single-blog-widget mb-47">
                         <h3>categories</h3>
                         <ul>
-                            <li><a href="#">CSS Engineering (10)</a></li>
-                            <li><a href="#">Political Science (12)</a></li>
-                            <li><a href="#">Micro Biology (08)</a></li>
-                            <li><a href="#">HTML5 &amp; CSS3 (15)</a></li>
-                            <li><a href="#">Web Design (20)</a></li>
-                            <li><a href="#">PHP (23)</a></li>
+                            @foreach (Categories ctr in Model.Categories)
+                            {
+                                <li><a href="#">@ctr.NameCategory (0) <!--will be blog's count--></a></li>
+                            }
                         </ul>
                     </div>
                     <div class="single-blog-widget mb-47">
                         <div class="single-blog-banner">
-                            <a asp-action="Detail" asp-route-id="@Model.Id" id="blog"><img src="~/img/blog/@Model.Image" alt="blog"></a>
+                            <a asp-action="Detail" asp-route-id="@Model.Blog.Id" id="blog"><img src="~/img/blog/@Model.Blog.Image" alt="blog"></a>
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
@@ -98,7 +96,7 @@
                     <div class="single-blog-widget">
                         <h3>tags</h3>
                         <div class="single-tag">
-                            @foreach (TagToBlog tag in Model.TagToBlogs)
+                            @foreach (TagToBlog tag in Model.Blog.TagToBlogs)
                             {
                                 <a asp-action="Index" class="mr-10 mb-10">@tag.Tags.TagName</a>
                             }

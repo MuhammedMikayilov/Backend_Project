@@ -9,7 +9,6 @@ namespace Backend_Project.Models
     {
         public int Id { get; set; }
         public string NameCategory { get; set; }
-        public int Count { get; set; }
         public ICollection<CategoryCourse> CategoryCourses { get; set; }
 
     }

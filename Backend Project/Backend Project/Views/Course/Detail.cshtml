@@ -1,5 +1,5 @@
-﻿@Model Course
-@*@model CourseVM*@
+﻿@*@Model.Course Course*@
+@model CourseVM
 @{
     ViewData["Title"] = "Detail";
 }
@@ -28,38 +28,38 @@
             <div class="col-md-8">
                 <div class="courses-details">
                     <div class="courses-details-img">
-                        <img width="750" src="~/img/course/@Model.Image" alt="courses-details">
+                        <img width="750" src="~/img/course/@Model.Course.Image" alt="courses-details">
                     </div>
                     <div class="course-details-content">
-                        <h2>@Model.CourseName</h2>
-                        <p>@Model.CourseDescription </p>
+                        <h2>@Model.Course.CourseName</h2>
+                        <p>@Model.Course.CourseDescription </p>
                         <div class="course-details-left">
                             <div class="single-course-left">
                                 <h3>about course</h3>
-                                <p>@Model.CourseDetail.AboutCourseDescription</p>
+                                <p>@Model.Course.CourseDetail.AboutCourseDescription</p>
                             </div>
                             <div class="single-course-left">
                                 <h3>how to apply</h3>
-                                <p>@Model.CourseDetail.HowToApplyExplaining</p>
+                                <p>@Model.Course.CourseDetail.HowToApplyExplaining</p>
                             </div>
                             <div class="single-course-left">
                                 <h3>certification</h3>
-                                <p class="margin">@Model.CourseDetail.CertificationExplain</p>
+                                <p class="margin">@Model.Course.CourseDetail.CertificationExplain</p>
                                 <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human</p>
                             </div>
                         </div>
                         <div class="course-details-right">
                             <h3>COURSE FEATURES</h3>
                             <ul>
-                                <li>starts <span>@Model.CourseDetail.Starts.ToString("dd MMMM yyyy")</span></li>
-                                <li>duration <span>@Model.CourseDetail.Duration Month</span></li>
-                                <li>class duration <span>@Model.CourseDetail.ClassDuration hours</span></li>
-                                <li>skill level <span>@Model.CourseDetail.SkillLevel</span></li>
-                                <li>language <span>@Model.CourseDetail.Language</span></li>
-                                <li>students <span>@Model.CourseDetail.StudentsCount</span></li>
-                                <li>assesments <span>@Model.CourseDetail.Assesments</span></li>
+                                <li>starts <span>@Model.Course.CourseDetail.Starts.ToString("dd MMMM yyyy")</span></li>
+                                <li>duration <span>@Model.Course.CourseDetail.Duration Month</span></li>
+                                <li>class duration <span>@Model.Course.CourseDetail.ClassDuration hours</span></li>
+                                <li>skill level <span>@Model.Course.CourseDetail.SkillLevel</span></li>
+                                <li>language <span>@Model.Course.CourseDetail.Language</span></li>
+                                <li>students <span>@Model.Course.CourseDetail.StudentsCount</span></li>
+                                <li>assesments <span>@Model.Course.CourseDetail.Assesments</span></li>
                             </ul>
-                            <h3 class="red">course fee $@Model.CourseDetail.CoursePrice</h3>
+                            <h3 class="red">course fee $@Model.Course.CourseDetail.CoursePrice</h3>
                         </div>
                     </div>
                     <div class="reply-area">
@@ -104,9 +104,9 @@
                     <div class="single-blog-widget mb-50">
                         <h3>categories</h3>
                         <ul>
-                            @foreach (CategoryCourse categories in Model.CategoryCourses)
+                            @foreach (Categories ctr in Model.Categories)
                             {
-                                <li><a asp-action="Index">@categories.Categories.NameCategory (@categories.Categories.Count)</a></li>
+                                <li><a href="#">@ctr.NameCategory (0) <!--will be course's count--></a></li>
                             }
                         </ul>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="single-blog-widget">
                         <h3>tags</h3>
                         <div class="single-tag">
-                            @foreach (TagCourse tag in Model.TagCourses)
+                            @foreach (TagCourse tag in Model.Course.TagCourses)
                             {
                                 <a asp-action="Index" class="mr-10 mb-10">@tag.Tags.TagName</a>
                             }

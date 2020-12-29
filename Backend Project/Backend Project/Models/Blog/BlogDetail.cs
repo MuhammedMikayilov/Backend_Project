@@ -9,6 +9,7 @@ namespace Backend_Project.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
+        public int Count { get; set; }
         public virtual Blogs Blogs { get; set; }
         public int BlogsId { get; set; }
 

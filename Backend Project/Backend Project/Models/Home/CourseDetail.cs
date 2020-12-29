@@ -11,7 +11,7 @@ namespace Backend_Project.Models
         public string AboutCourseDescription { get; set; }
         public string HowToApplyExplaining { get; set; }
         public string CertificationExplain { get; set; }
-        public string Reply { get; set; }
+        public int Count { get; set; }
         public Course Course { get; set; }
         public int CourseId { get; set; }
         public DateTime Starts { get; set; }
@@ -20,7 +20,6 @@ namespace Backend_Project.Models
         public string SkillLevel { get; set; }
         public string Language { get; set; }
         public int StudentsCount { get; set; }
-
         public string Assesments { get; set; }
         public double CoursePrice { get; set; }
 
