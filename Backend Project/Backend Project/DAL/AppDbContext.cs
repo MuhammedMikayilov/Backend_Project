@@ -57,6 +57,7 @@ namespace Backend_Project.DAL
         #endregion
         #region Contact
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<EmailSubs> EmailSubs { get; set; }
         #endregion
     }
 

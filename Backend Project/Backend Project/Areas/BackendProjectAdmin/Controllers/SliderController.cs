@@ -153,7 +153,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             int count = _context.Sliders.Count();
             if (count == 1)
             {
-                return Content("Get cehenem ol eee");
+                return Content("You cannot delete!!!");
             }
             return View(slider);
         }

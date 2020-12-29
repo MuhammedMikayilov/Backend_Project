@@ -16,7 +16,7 @@ namespace Backend_Project.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Titles.Where(title=>title.IsDelete==false).ToList());
+            return View(_context.Titles.ToList());
         }
     }
 }

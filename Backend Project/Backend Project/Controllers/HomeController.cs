@@ -27,10 +27,15 @@ namespace Backend_Project.Controllers
             {
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.ToList(),
-                Titles = _context.Titles.Where(title=>title.IsDelete==false).ToList(),
+                Titles = _context.Titles.ToList(),
                 Testimonials = _context.Testimonials.ToList()
             };
             return View(homeVM);
+        }
+
+        public IActionResult ErrorPage()
+        {
+            return View();
         }
 
        
