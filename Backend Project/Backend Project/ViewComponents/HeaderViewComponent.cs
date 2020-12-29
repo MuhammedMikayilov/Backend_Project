@@ -1,4 +1,6 @@
 ﻿using Backend_Project.DAL;
+using Backend_Project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,11 @@ namespace Backend_Project.ViewComponents
     public class HeaderViewComponent:ViewComponent
     {
         private readonly AppDbContext _context;
-        public HeaderViewComponent(AppDbContext context)
+        private readonly UserManager<AppUser> _userManager;
+        public HeaderViewComponent(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

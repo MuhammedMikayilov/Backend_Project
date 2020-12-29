@@ -31,7 +31,7 @@
     </table>
     <div class="mt-4 text-center">
         <form method="post" class="text-center">
-            @if (!Model.isDelete)
+            @if (Model.isDelete)
             {
                 <button type="submit" class="btn btn-success">Active</button>
             }
