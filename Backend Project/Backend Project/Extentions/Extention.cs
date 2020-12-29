@@ -49,9 +49,12 @@ namespace Eduhome.Extentions
         }
     }
 
-    //public enum Roles
-    //{
-    //    Admin,
-    //    Member
-    //}
+    public enum Roles
+    {
+        Admin,
+        CourseModerator,
+        TeacherModerator,
+        EventModerator,
+        Member
+    }
 }

@@ -2,6 +2,7 @@
 using Backend_Project.Models;
 using Eduhome.Extentions;
 using Eduhome.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 {
     [Area("BackendProjectAdmin")]
+    [Authorize(Roles = "Admin")]
     public class SliderController : Controller
     {
         private readonly AppDbContext _context;

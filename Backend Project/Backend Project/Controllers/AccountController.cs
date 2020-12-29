@@ -1,6 +1,7 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
 using Backend_Project.ViewModels;
+using Eduhome.Extentions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -94,6 +95,8 @@ namespace Backend_Project.Controllers
                 return View();
             }
 
+            //await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
+            await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
             await _signInManager.SignInAsync(newUser, true);
             return RedirectToAction("Index", "Home");
         }
@@ -103,5 +106,36 @@ namespace Backend_Project.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        #region Roles
+        //public async Task CreateUserRole()
+        //{
+        //    if (!await _roleManager.RoleExistsAsync("Admin"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
+        //    }
+        //    if (!await _roleManager.RoleExistsAsync("CourseModerator"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = "CourseModerator" });
+        //    }
+        //    if (!await _roleManager.RoleExistsAsync("TeacherModerator"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = "TeacherModerator" });
+
+        //    }
+        //    if (!await _roleManager.RoleExistsAsync("EventModerator"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = "EventModerator" });
+
+        //    }
+        //    if (!await _roleManager.RoleExistsAsync("Member"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = "Member" });
+
+        //    }
+
+
+        //}
+        #endregion
     }
 }
