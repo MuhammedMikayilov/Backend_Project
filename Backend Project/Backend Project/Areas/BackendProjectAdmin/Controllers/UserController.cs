@@ -1,6 +1,7 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
 using Backend_Project.ViewModels;
+using Eduhome.Extentions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -97,13 +98,61 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
         public async Task<IActionResult> ChangeRole(string id)
         {
+            if (id == null) return NotFound();
             AppUser user = await _userManager.FindByIdAsync(id);
-            return View(user);
+            if (user == null) return NotFound();
+            UserVM userVM = await GetUserVMAsync(user);
+            return View(userVM);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeRole(string id, string role)
+        {
+            if (id == null || role == null) return NotFound();
+
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+            string oldRole = (await _userManager.GetRolesAsync(user))[0];
+
+            IdentityResult identityResult = await _userManager.AddToRoleAsync(user, role);
+
+            if (!identityResult.Succeeded)
+            {
+                ModelState.AddModelError("", "Some problem is exist");
+                UserVM userVM = await GetUserVMAsync(user);
+                return View(userVM);
+            }
+            IdentityResult removeResult = await _userManager.RemoveFromRoleAsync(user, oldRole);
+            if (!removeResult.Succeeded)
+            {
+                ModelState.AddModelError("", "Some problem is exist");
+                UserVM userVM = await GetUserVMAsync(user);
+                return View(userVM);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         public async Task<IActionResult> Detail(string id)
         {
             AppUser user = await _userManager.FindByIdAsync(id);
             return View(user);
+        }
+
+        private async Task<UserVM> GetUserVMAsync(AppUser user)
+        {
+            List<string> roles = new List<string> { Roles.Admin.ToString(), Roles.CourseModerator.ToString(), 
+                Roles.EventModerator.ToString(), Roles.TeacherModerator.ToString(), Roles.Member.ToString() };
+            UserVM userVM = new UserVM
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Username = user.UserName,
+                Name = user.Firstname,
+                Role = (await _userManager.GetRolesAsync(user))[0],
+                Roles = roles,
+            };
+            return userVM;
         }
     }
 }

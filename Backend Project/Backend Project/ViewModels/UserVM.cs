@@ -14,6 +14,7 @@ namespace Backend_Project.ViewModels
         public string Email { get; set; }
         public bool IsDelete { get; set; }
         public string Role { get; set; }
+        public List<string> Roles { get; set; }
 
 
     }
