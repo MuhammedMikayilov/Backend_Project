@@ -33,5 +33,14 @@ namespace Backend_Project.Controllers
 
             return View(teachers);
         }
+
+        public IActionResult Search(string search)
+        {
+            if (search == null) return View(_context.Teachers.Where(blg => blg.IsDelete == false).ToList());
+            IEnumerable<Teachers> teach = _context.Teachers
+                .Where(blg => blg.IsDelete == false && blg.Fullname.Contains(search))
+                .OrderByDescending(blg => blg.Id).Take(8);
+            return PartialView("_SearchTeacherPartial", teach);
+        }
     }
 }

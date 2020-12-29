@@ -180,6 +180,8 @@ $(document).ready(function () {
                 type: "GET",
                 success: function (res) {
                     $(`#search-list-${action}`).append(res)
+                    console.log("action", action)
+                    console.log("input:", inputVal);
                 }
             })
         }
@@ -213,6 +215,10 @@ $(document).ready(function () {
             case 'Event':
                 ajaxHeaderSearch('event')
                 console.log("event");
+                break;
+            case 'Teacher':
+                ajaxHeaderSearch('teacher')
+                console.log("teacher");
                 break;
             default:
                 "not found"
