@@ -87,14 +87,12 @@ namespace Backend_Project.Controllers
                 UserName = register.Username,
                 Email = register.Email
             };
-
             IdentityResult identityResult =  await _userManager.CreateAsync(newUser, register.Password);
 
             if (!identityResult.Succeeded)
             {
                 return View();
             }
-
             //await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
             await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
             await _signInManager.SignInAsync(newUser, true);
