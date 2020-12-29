@@ -44,12 +44,12 @@ namespace Backend_Project.Controllers
             AppUser user = await _userManager.FindByEmailAsync(login.Email);
             if (user == null)
             {
-                ModelState.AddModelError("", "Email or Password wrong!");
+                ModelState.AddModelError("Email", "Email or Password wrong!");
                 return View();
             }
             if (user.isDelete)
             {
-                ModelState.AddModelError("", "This account blocked!");
+                ModelState.AddModelError("Email", "This account blocked!");
                 return View();
             }
 
@@ -58,13 +58,13 @@ namespace Backend_Project.Controllers
 
             if (inResult.IsLockedOut)
             {
-                ModelState.AddModelError("", "Try after a few minutes");
+                ModelState.AddModelError("Email", "Try after a few minutes");
                 return View(login);
             }
 
             if (!inResult.Succeeded)
             {
-                ModelState.AddModelError("", "Email or password wrong!!!");
+                ModelState.AddModelError("Password", "Email or password wrong!!!");
                 return View(login);
             }
             return RedirectToAction("Index", "Home");

@@ -72,9 +72,37 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Detail(string id)
+
+        public IActionResult ChangePassword(string id)
         {
-            AppUser user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string id, ChangePassVM changePass)
+        {
+            if (!ModelState.IsValid) return Content("Some Problem");
+
+            AppUser appUser = await _userManager.FindByIdAsync(id);
+            if (appUser == null)
+            {
+                ModelState.AddModelError("Password", "User is undefined");
+                return View();
+            }
+
+            String getPassToken = await _userManager.GeneratePasswordResetTokenAsync(appUser);
+            await _userManager.ResetPasswordAsync(appUser, getPassToken, changePass.Password);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> ChangeRole(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
+            return View(user);
+        }
+        public async Task<IActionResult> Detail(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
             return View(user);
         }
     }

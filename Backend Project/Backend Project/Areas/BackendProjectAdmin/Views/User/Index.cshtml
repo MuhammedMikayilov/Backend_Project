@@ -12,8 +12,8 @@
                     <thead>
                         <tr>
                             @*<th>
-                                Title Icon
-                            </th>*@
+                                    Title Icon
+                                </th>*@
                             <th>
                                 Fullname
                             </th>
@@ -34,44 +34,57 @@
                     <tbody>
                         @foreach (UserVM user in Model)
                         {
-                        <tr>
-                            <td>@user.Name @user.Lastname</td>
-                            <td>@user.Username</td>
-                            <td>@user.Role</td>
-                            @if (user.IsDelete)
-                            {
-                                <td style="color:red">
-                                    Deactivate
+                            <tr>
+                                <td>@user.Name @user.Lastname</td>
+                                <td>@user.Username</td>
+                                <td>@user.Role</td>
+                                @if (user.IsDelete)
+                                {
+                                    <td style="color:red">
+                                        Deactivate
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="color:green">
+                                        Active
+                                    </td>
+                                }
+                            <td>
+                                @if (user.Username != User.Identity.Name)
+                                {
+                                    @if (user.IsDelete)
+                                    {
+                                        <a asp-controller="User" asp-action="Activation" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-danger mb-2">
+                                            Deactivate
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="User" asp-action="Activation" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-success mb-2">
+                                            Activate
+                                        </a>
+                                    }
+                                }
+
+                                @if (user.Username == User.Identity.Name)
+                                {
+                                    <br />
+                                    <a asp-controller="User" asp-action="ChangePassword" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-warning mb-2">
+                                        Change Pass
+                                    </a>
+                                }
+                                    @if (user.Username != User.Identity.Name)
+                                    {
+                                        <a asp-controller="User" asp-action="ChangeRole" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-info mb-2">
+                                            Change Role
+                                        </a>
+                                        <a asp-controller="User" asp-action="Detail" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-warning mb-2">
+                                           Detail
+                                        </a>
+                                    }
                                 </td>
-                            }
-                            else
-                            {
-                                <td style="color:green">
-                                    Active
-                                </td>
-                            }
-                        <td>
-                            @if (user.IsDelete)
-                            {
-                                <a asp-controller="User" asp-action="Activation" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-danger mb-2">
-                                    Deactivate
-                                </a>
-                            }
-                            else
-                            {
-                                <a asp-controller="User" asp-action="Activation" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-success mb-2">
-                                    Activate
-                                </a>
-                            }
-                            <br />
-                            <a asp-controller="User" asp-action="ChangePass" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-warning mb-2">
-                                Change Pass
-                            </a>
-                            <a asp-controller="User" asp-action="ChangeRole" asp-route-id="@Model.ElementAt(0).Id" class="btn btn-outline-info mb-2">
-                                Change Role
-                            </a>
-                        </td>
-                        </tr>
+                            </tr>
                         }
                     </tbody>
                 </table>
