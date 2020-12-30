@@ -366,3 +366,4 @@ C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backe
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\User\Activation.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\User\ChangeRole.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\User\ChangePassword.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Backend Project\NewBackend\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\User\UpdateUser.cshtml.g.cs

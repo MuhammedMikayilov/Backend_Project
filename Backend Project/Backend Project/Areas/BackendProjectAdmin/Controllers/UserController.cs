@@ -26,6 +26,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             _userManager = userManager;
             _env = env;
         }
+        #region Index
         public async Task<IActionResult> Index()
         {
             List<AppUser> users = _userManager.Users.ToList();
@@ -47,6 +48,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             }
             return View(usersVM);
         }
+        #endregion
+
+        #region Activation
 
         public async Task<IActionResult> Activation(string id)
         {
@@ -72,8 +76,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _userManager.UpdateAsync(user);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
-
+        #region Change Passwoar
         public IActionResult ChangePassword(string id)
         {
             return View();
@@ -95,6 +100,52 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _userManager.ResetPasswordAsync(appUser, getPassToken, changePass.Password);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
+
+        #region Update User
+        public IActionResult UpdateUser(string id)
+        {
+            if (id == null) return NotFound();
+            AppUser user = _userManager.Users.FirstOrDefault(c => c.Id == id);
+            if (user == null) return NotFound();
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUser(string id, AppUser userNewParam)
+        {
+            if (id == null) return NotFound();
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+            AppUser isExistEmail = _userManager.Users
+                .FirstOrDefault(u => u.Email == userNewParam.Email);
+            AppUser isExistUserName = _userManager.Users
+                .FirstOrDefault(u => u.UserName == userNewParam.UserName);
+
+            if (isExistEmail != null || isExistUserName != null)
+            {
+                //if (isExistEmail.Id != user.Id)
+                //{
+                //    ModelState.AddModelError("Email", "This email already exist");
+                //    return View(user);
+                //}
+                //if (isExistUserName.Id != user.Id)
+                //{
+                //    ModelState.AddModelError("UserName", "This username already exist");
+                //    return View(user);
+                //}
+            }
+
+            user.Firstname = userNewParam.Firstname;
+            user.Lastname = userNewParam.Lastname;
+            user.Email = userNewParam.Email;
+            user.UserName = userNewParam.UserName;
+
+            await _userManager.UpdateAsync(user);
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
 
         public async Task<IActionResult> ChangeRole(string id)
         {
