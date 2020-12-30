@@ -32,6 +32,83 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 .Include(cr => cr.CourseDetail).ToList();
             return View(courses);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Course course)
+        {
+
+            Course isExist = _context.Courses.Where(cr => cr.isDelete == false)
+                .FirstOrDefault(cr => cr.CourseName.ToLower() == course.CourseName.ToLower());
+
+            //if (isExist.Id == course.)
+            //{
+            //    if (cour)
+            //    {
+
+            //    }
+            //    return Content("SaneName");
+            //}
+            Course newCourse = new Course();
+            CourseDetail newCourseDetail = new CourseDetail();
+
+            if(course.Photo == null)
+            {
+                ModelState.AddModelError("Photo","Image cannot be empty");
+                return View();
+            }
+
+            if (course.CourseDetail.CoursePrice == null)
+            {
+                ModelState.AddModelError("CourseDetail_CoursePrice", "Price cannot be empty");
+                return View(newCourse);
+            }
+
+            if (!course.Photo.IsImage())
+            {
+                ModelState.AddModelError("Photos", $"{course.Photo.FileName} - not image type");
+                return View(newCourse);
+            }
+
+            string folder = Path.Combine("img", "course");
+            string fileName = await course.Photo.SaveImageAsync(_env.WebRootPath, folder);
+            if (fileName == null)
+            {
+                return Content("Error");
+            }
+
+            newCourse.Image = fileName;
+            newCourse.CourseName = course.CourseName;
+            newCourse.CourseDescription = course.CourseDescription;
+            await _context.AddAsync(newCourse);
+            await _context.SaveChangesAsync();
+
+            newCourseDetail.AboutCourseDescription = course.CourseDetail.AboutCourseDescription;
+            newCourseDetail.HowToApplyExplaining = course.CourseDetail.HowToApplyExplaining;
+            newCourseDetail.CertificationExplain = course.CourseDetail.CertificationExplain;
+            newCourseDetail.Starts = course.CourseDetail.Starts;
+            newCourseDetail.Duration = course.CourseDetail.Duration;
+            newCourseDetail.ClassDuration = course.CourseDetail.ClassDuration;
+            newCourseDetail.SkillLevel = course.CourseDetail.SkillLevel;
+            newCourseDetail.Language = course.CourseDetail.Language;
+            newCourseDetail.StudentsCount = course.CourseDetail.StudentsCount;
+            newCourseDetail.StudentsCount = course.CourseDetail.StudentsCount;
+            newCourseDetail.Assesments = course.CourseDetail.Assesments;
+            newCourseDetail.CoursePrice = course.CourseDetail.CoursePrice;
+            newCourseDetail.CourseId = newCourse.Id;
+            await _context.AddAsync(newCourseDetail);
+            await _context.SaveChangesAsync();
+
+            //
+
+            return RedirectToAction(nameof(Index));
+            //return Content(newCourseDetail.Id.ToString());
+        }
         public IActionResult Update(int? id)
         {
             Course course = _context.Courses.Where(cr => cr.isDelete == false)

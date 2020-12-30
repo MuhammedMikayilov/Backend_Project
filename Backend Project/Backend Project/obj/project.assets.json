@@ -8655,11 +8655,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maham\\OneDrive\\Desktop\\Backend Project\\NewBackend\\Backend_Project\\Backend Project\\Backend Project\\Backend Project.csproj",
+      "projectUniqueName": "C:\\Users\\maham\\OneDrive\\Desktop\\Project\\Backend_Project\\Backend Project\\Backend Project\\Backend Project.csproj",
       "projectName": "Backend Project",
-      "projectPath": "C:\\Users\\maham\\OneDrive\\Desktop\\Backend Project\\NewBackend\\Backend_Project\\Backend Project\\Backend Project\\Backend Project.csproj",
+      "projectPath": "C:\\Users\\maham\\OneDrive\\Desktop\\Project\\Backend_Project\\Backend Project\\Backend Project\\Backend Project.csproj",
       "packagesPath": "C:\\Users\\maham\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maham\\OneDrive\\Desktop\\Backend Project\\NewBackend\\Backend_Project\\Backend Project\\Backend Project\\obj\\",
+      "outputPath": "C:\\Users\\maham\\OneDrive\\Desktop\\Project\\Backend_Project\\Backend Project\\Backend Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maham\\AppData\\Roaming\\NuGet\\NuGet.Config",
