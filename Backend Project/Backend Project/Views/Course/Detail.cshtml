@@ -32,20 +32,19 @@
                     </div>
                     <div class="course-details-content">
                         <h2>@Model.Course.CourseName</h2>
-                        <p>@Model.Course.CourseDescription </p>
+                        <p>@Html.Raw(Model.Course.CourseDescription)</p>
                         <div class="course-details-left">
                             <div class="single-course-left">
                                 <h3>about course</h3>
-                                <p>@Model.Course.CourseDetail.AboutCourseDescription</p>
+                                <p>@Html.Raw(Model.Course.CourseDetail.AboutCourseDescription)</p>
                             </div>
                             <div class="single-course-left">
                                 <h3>how to apply</h3>
-                                <p>@Model.Course.CourseDetail.HowToApplyExplaining</p>
+                                <p>@Html.Raw(Model.Course.CourseDetail.HowToApplyExplaining)</p>
                             </div>
                             <div class="single-course-left">
                                 <h3>certification</h3>
-                                <p class="margin">@Model.Course.CourseDetail.CertificationExplain</p>
-                                <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human</p>
+                                <p class="margin">@Html.Raw(Model.Course.CourseDetail.CertificationExplain)</p>
                             </div>
                         </div>
                         <div class="course-details-right">

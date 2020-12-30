@@ -111,8 +111,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             Slider slide = await _context.Sliders.FindAsync(id);
 
-            
-
             if (!slider.Photo.IsImage())
             {
                 ModelState.AddModelError("Photos", $"{slider.Photo.FileName} - not image type");
@@ -131,6 +129,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             {
                 return Content("Error");
             }
+            Helper.DeleteImage(_env.WebRootPath, folder, slider.Image);
             slide.Image = fileName;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

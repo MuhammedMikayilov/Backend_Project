@@ -2,11 +2,10 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Active Users</h4>
+            <h4 class="card-title">Blocked Users</h4>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -35,16 +34,13 @@
                                 <td>@user.Name @user.Lastname</td>
                                 <td>@user.Username</td>
                                 <td>@user.Role</td>
-                                <td style="color:green">
-                                    Active
+                                <td style="color:red">
+                                    Deactivate
                                 </td>
                                 <td>
-                                    @if (user.Username != User.Identity.Name)
-                                    {
-                                        <a asp-controller="User" asp-action="Activation" asp-route-id="@user.Id" class="btn btn-outline-danger mb-2">
-                                            Deactivate
-                                        </a>
-                                    }
+                                    <a asp-controller="User" asp-action="Activation" asp-route-id="@user.Id" class="btn btn-outline-success mb-2">
+                                        Activate
+                                    </a>
 
                                     @if (user.Username == User.Identity.Name)
                                     {
@@ -74,4 +70,3 @@
         </div>
     </div>
 </div>
-

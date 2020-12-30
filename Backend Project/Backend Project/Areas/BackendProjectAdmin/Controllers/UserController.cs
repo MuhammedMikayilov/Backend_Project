@@ -14,23 +14,26 @@ using System.Threading.Tasks;
 namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 {
     [Area("BackendProjectAdmin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, CourseModerator")]
     public class UserController : Controller
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly IWebHostEnvironment _env;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public UserController(UserManager<AppUser> userManager, IWebHostEnvironment env, AppDbContext context)
+
+        public UserController(UserManager<AppUser> userManager, IWebHostEnvironment env, AppDbContext context, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _env = env;
             _context = context;
+            _signInManager = signInManager;
         }
          #region Index
         public async Task<IActionResult> Index()
         {
-            List<AppUser> users = _userManager.Users.ToList();
+            List<AppUser> users = _userManager.Users.Where(u=>u.isDelete==false).ToList();
             List<UserVM> usersVM = new List<UserVM>();
             foreach (AppUser user in users)
             {
@@ -145,6 +148,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             user.Lastname = userNewParam.Lastname;
             user.Email = userNewParam.Email;
             user.UserName = userNewParam.UserName;
+            await _signInManager.SignOutAsync();
+            await _signInManager.SignInAsync(user, true);
+
 
             await _userManager.UpdateAsync(user);
             await _context.SaveChangesAsync();

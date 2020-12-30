@@ -189,7 +189,6 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">Course</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="User" asp-action="Index">Users</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Title" asp-action="Index">Titles</a></li>
                             </ul>
@@ -204,6 +203,19 @@
                         <div class="collapse" id="ui-basic-moderator">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="CourseModerator" asp-action="Index">Course Moderator</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="mdi mdi-circle-outline menu-icon"></i>
+                            <span class="menu-title">Users</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic-users">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="User" asp-action="Index">Active Users</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="DeactivatedUsers" asp-action="Index"> Blocked Users</a></li>
                             </ul>
                         </div>
                     </li>
