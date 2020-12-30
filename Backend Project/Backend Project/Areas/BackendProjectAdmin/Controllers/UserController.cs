@@ -17,16 +17,17 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
-        //private readonly AppDbContext _context;
+        private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly IWebHostEnvironment _env;
 
-        public UserController(UserManager<AppUser> userManager, IWebHostEnvironment env)
+        public UserController(UserManager<AppUser> userManager, IWebHostEnvironment env, AppDbContext context)
         {
             _userManager = userManager;
             _env = env;
+            _context = context;
         }
-        #region Index
+         #region Index
         public async Task<IActionResult> Index()
         {
             List<AppUser> users = _userManager.Users.ToList();
@@ -108,6 +109,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             AppUser user = _userManager.Users.FirstOrDefault(c => c.Id == id);
             if (user == null) return NotFound();
+            //UserVM userVM = await GetUserVMAsync(user);
             return View(user);
         }
 
@@ -118,24 +120,26 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             AppUser user = await _userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
-            AppUser isExistEmail = _userManager.Users
-                .FirstOrDefault(u => u.Email == userNewParam.Email);
-            AppUser isExistUserName = _userManager.Users
-                .FirstOrDefault(u => u.UserName == userNewParam.UserName);
+            //AppUser isExistEmail = _userManager.Users
+            //    .FirstOrDefault(u => u.Email == userNewParam.Email);
+            //AppUser isExistUserName = _userManager.Users
+            //    .FirstOrDefault(u => u.UserName == userNewParam.UserName);
 
-            if (isExistEmail != null || isExistUserName != null)
-            {
-                //if (isExistEmail.Id != user.Id)
-                //{
-                //    ModelState.AddModelError("Email", "This email already exist");
-                //    return View(user);
-                //}
-                //if (isExistUserName.Id != user.Id)
-                //{
-                //    ModelState.AddModelError("UserName", "This username already exist");
-                //    return View(user);
-                //}
-            }
+            UserVM userVM = await GetUserVMAsync(user);
+
+            //if (isExistEmail != null || isExistUserName != null)
+            //{
+            //    //if (isExistEmail.Id != user.Id)
+            //    //{
+            //    //    ModelState.AddModelError("Email", "This email already exist");
+            //    //    return View(user);
+            //    //}
+            //    //if (isExistUserName.Id != user.Id)
+            //    //{
+            //    //    ModelState.AddModelError("UserName", "This username already exist");
+            //    //    return View(user);
+            //    //}
+            //}
 
             user.Firstname = userNewParam.Firstname;
             user.Lastname = userNewParam.Lastname;
@@ -143,10 +147,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             user.UserName = userNewParam.UserName;
 
             await _userManager.UpdateAsync(user);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
         #endregion
 
+        #region Change Role
         public async Task<IActionResult> ChangeRole(string id)
         {
             if (id == null) return NotFound();
@@ -183,6 +189,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
         public async Task<IActionResult> Detail(string id)
         {
@@ -200,6 +207,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 Email = user.Email,
                 Username = user.UserName,
                 Name = user.Firstname,
+                Lastname = user.Lastname,
                 Role = (await _userManager.GetRolesAsync(user))[0],
                 Roles = roles,
             };

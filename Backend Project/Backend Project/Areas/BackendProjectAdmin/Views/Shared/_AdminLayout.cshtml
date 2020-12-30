@@ -196,6 +196,18 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic-moderator" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="mdi mdi-circle-outline menu-icon"></i>
+                            <span class="menu-title">Moderator Users</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic-moderator">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="CourseModerator" asp-action="Index">Course Moderator</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <a asp-area="" asp-controller="Account" asp-action="Logout" class="nav-link text-primary">Log Out</a>
                     </li>
                 </ul>

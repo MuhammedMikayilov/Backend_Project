@@ -69,7 +69,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             Titles title = await _context.Titles.FindAsync(id);
             if (title == null) return NotFound();
-            int count = _context.Sliders.Count();
             return View(title);
         }
 
