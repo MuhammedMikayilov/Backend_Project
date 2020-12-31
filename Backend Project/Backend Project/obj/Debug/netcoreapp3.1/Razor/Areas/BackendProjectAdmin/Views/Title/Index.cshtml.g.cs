@@ -33,8 +33,15 @@ using Backend_Project.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\Areas\BackendProjectAdmin\Views\_ViewImports.cshtml"
+using Backend_Project.Areas.BackendProjectAdmin.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"26e56f6b02b6609418dd61c9c3335dec69204a2b", @"/Areas/BackendProjectAdmin/Views/Title/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ebd36ab31475117c68c3805e80b4781216f64e17", @"/Areas/BackendProjectAdmin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cacefd90d69dbe23071a50f2ad97991d157d92f6", @"/Areas/BackendProjectAdmin/Views/_ViewImports.cshtml")]
     public class Areas_BackendProjectAdmin_Views_Title_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Titles>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:60px!important"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -108,7 +115,7 @@ using Backend_Project.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("                            <tr>\r\n                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "26e56f6b02b6609418dd61c9c3335dec69204a2b7616", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "26e56f6b02b6609418dd61c9c3335dec69204a2b7897", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -184,7 +191,7 @@ AddHtmlAttributeValue("", 1011, title.Icon, 1011, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b11584", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b11865", async() => {
                 WriteLiteral("\r\n                                            <i class=\"mdi mdi-table-edit\"></i>\r\n                                        ");
             }
             );
@@ -219,7 +226,7 @@ AddHtmlAttributeValue("", 1011, title.Icon, 1011, 11, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
             WriteLiteral("                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b14325", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b14606", async() => {
                 WriteLiteral("\r\n                                            <i class=\"fas fa-eye\"></i>\r\n                                        ");
             }
             );
@@ -263,7 +270,7 @@ AddHtmlAttributeValue("", 1011, title.Icon, 1011, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b17398", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b17679", async() => {
                 WriteLiteral("\r\n                                            <i class=\"mdi mdi-table-edit\"></i>\r\n                                        ");
             }
             );
@@ -298,7 +305,7 @@ AddHtmlAttributeValue("", 1011, title.Icon, 1011, 11, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
             WriteLiteral("                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b20139", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26e56f6b02b6609418dd61c9c3335dec69204a2b20420", async() => {
                 WriteLiteral("\r\n                                            <i class=\"fas fa-eye-slash\"></i>\r\n                                        ");
             }
             );

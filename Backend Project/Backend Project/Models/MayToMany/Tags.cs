@@ -9,6 +9,8 @@ namespace Backend_Project.Models
     {
         public int Id { get; set; }
         public string TagName { get; set; }
+        public bool hasTags { get; set; }
+
         public ICollection<TagCourse> TagCourses { get; set; }
 
     }

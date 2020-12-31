@@ -1,4 +1,5 @@
-﻿using Backend_Project.DAL;
+﻿using Backend_Project.Areas.BackendProjectAdmin.ViewModels;
+using Backend_Project.DAL;
 using Backend_Project.Models;
 using Eduhome.Extentions;
 using Eduhome.Helpers;
@@ -29,7 +30,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         public IActionResult Index()
         {
             List<Course> courses = _context.Courses.Where(cr => cr.isDelete == false)
-                .Include(cr => cr.CourseDetail).ToList();
+                .Include(cr => cr.CourseDetail).OrderByDescending(cr=>cr.CreatedTime).ToList();
             return View(courses);
         }
 
@@ -37,7 +38,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Create
         public IActionResult Create()
         {
-            return View();
+            CreateCourseVM courseVM = new CreateCourseVM()
+            {
+                Tags = _context.Tags.ToList(),
+                Categories = _context.Categories.ToList()
+            };
+            return View(courseVM);
         }
 
         [HttpPost]
@@ -80,6 +86,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             newCourse.Image = fileName;
             newCourse.CourseName = course.CourseName;
             newCourse.CourseDescription = course.CourseDescription;
+            course.CreatedTime = DateTime.Now;
+            newCourse.CreatedTime = course.CreatedTime;
             await _context.AddAsync(newCourse);
             await _context.SaveChangesAsync();
 

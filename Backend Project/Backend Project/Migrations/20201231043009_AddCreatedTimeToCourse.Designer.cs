@@ -4,14 +4,16 @@ using Backend_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201231043009_AddCreatedTimeToCourse")]
+    partial class AddCreatedTimeToCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,9 +214,6 @@ namespace Backend_Project.Migrations
 
                     b.Property<string>("NameCategory")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("hasCategory")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -647,9 +646,6 @@ namespace Backend_Project.Migrations
 
                     b.Property<string>("TagName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("hasTags")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

@@ -22,6 +22,7 @@ namespace Backend_Project.Models
 
         public bool isDelete { get; set; }
         public DateTime? DeletedTime { get; set; }
+        public DateTime? CreatedTime { get; set; }
         public virtual CourseDetail CourseDetail { get; set; }
         public int CourseDetailId { get; set; }
         public ICollection<CategoryCourse> CategoryCourses { get; set; }

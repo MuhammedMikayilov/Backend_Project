@@ -1,4 +1,5 @@
-﻿@model Course
+﻿@*@Model.Coursesd Course*@
+@model CreateCourseVM
 @{
     ViewData["Title"] = "Create";
 }
@@ -9,37 +10,37 @@
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group col-md-8 offset-md-2">
-                        <label asp-for="@Model.CourseName">Name</label>
-                        <input asp-for="@Model.CourseName" class="form-control" placeholder="Name">
-                        <span asp-validation-for="CourseName"></span>
+                        <label asp-for="@Model.Course.CourseName">Name</label>
+                        <input asp-for="@Model.Course.CourseName" class="form-control" placeholder="Name">
+                        <span asp-validation-for="@Model.Course.CourseName"></span>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-8 offset-md-2">
-                        <label asp-for="@Model.CourseDescription">Aboute Description</label>
-                        <textarea asp-for="@Model.CourseDescription"> </textarea>
+                        <label asp-for="@Model.Course.CourseDescription">Aboute Description</label>
+                        <textarea asp-for="@Model.Course.CourseDescription"> </textarea>
                     </div>
                     <div class="form-group col-md-6">
-                        <label asp-for="@Model.CourseDetail.AboutCourseDescription">Aboute Description</label>
-                        <textarea asp-for="@Model.CourseDetail.AboutCourseDescription"> </textarea>
+                        <label asp-for="@Model.Course.CourseDetail.AboutCourseDescription">Aboute Description</label>
+                        <textarea asp-for="@Model.Course.CourseDetail.AboutCourseDescription"> </textarea>
                     </div>
                     <div class="form-group col-md-6">
-                        <label asp-for="@Model.CourseDetail.HowToApplyExplaining">How to Apply Description</label>
-                        <textarea asp-for="@Model.CourseDetail.HowToApplyExplaining"> </textarea>
+                        <label asp-for="@Model.Course.CourseDetail.HowToApplyExplaining">How to Apply Description</label>
+                        <textarea asp-for="@Model.Course.CourseDetail.HowToApplyExplaining"> </textarea>
                     </div>
                     <div class="form-group col-md-8 offset-md-2">
-                        <label asp-for="@Model.CourseDetail.CertificationExplain">Certification Description</label>
-                        <textarea asp-for="@Model.CourseDetail.CertificationExplain"> </textarea>
+                        <label asp-for="@Model.Course.CourseDetail.CertificationExplain">Certification Description</label>
+                        <textarea asp-for="@Model.Course.CourseDetail.CertificationExplain"> </textarea>
                     </div>
                 </div>
 
                 <div class="text-center">
                     <h3>Change Image</h3>
                     <div class="form-group">
-                        <label asp-for="@Model.Photo"></label>
-                        <input asp-for="@Model.Photo" accept="image/*" class="form-control">
-                        <span class="text-danger" asp-validation-for="@Model.Photo"></span>
+                        <label asp-for="@Model.Course.Photo"></label>
+                        <input asp-for="@Model.Course.Photo" accept="image/*" class="form-control">
+                        <span class="text-danger" asp-validation-for="@Model.Course.Photo"></span>
                     </div>
                 </div>
 
@@ -47,53 +48,79 @@
                     <h3>Course Features</h3>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label asp-for="@Model.CourseDetail.Starts"></label>
-                            <input asp-for="@Model.CourseDetail.Starts" class="form-control">
-                            <span class="text-danger" asp-validation-for="@Model.CourseDetail.Starts"></span>
+                            <label asp-for="@Model.Course.CourseDetail.Starts"></label>
+                            <input asp-for="@Model.Course.CourseDetail.Starts" class="form-control">
+                            <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Starts"></span>
                         </div>
                         <div class="col-md-6 form-row">
 
                             <div class="form-group col-md-6">
-                                <label asp-for="@Model.CourseDetail.Duration"></label>
-                                <input asp-for="@Model.CourseDetail.Duration" class="form-control">
-                                <span class="text-danger" asp-validation-for="@Model.CourseDetail.Duration"></span>
+                                <label asp-for="@Model.Course.CourseDetail.Duration"></label>
+                                <input asp-for="@Model.Course.CourseDetail.Duration" class="form-control">
+                                <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Duration"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <label asp-for="@Model.CourseDetail.ClassDuration"></label>
-                                <input asp-for="@Model.CourseDetail.ClassDuration" class="form-control">
-                                <span class="text-danger" asp-validation-for="@Model.CourseDetail.ClassDuration"></span>
+                                <label asp-for="@Model.Course.CourseDetail.ClassDuration"></label>
+                                <input asp-for="@Model.Course.CourseDetail.ClassDuration" class="form-control">
+                                <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.ClassDuration"></span>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label asp-for="@Model.CourseDetail.SkillLevel"></label>
-                            <input asp-for="@Model.CourseDetail.SkillLevel" class="form-control">
-                            <span class="text-danger" asp-validation-for="@Model.CourseDetail.SkillLevel"></span>
+                            <label asp-for="@Model.Course.CourseDetail.SkillLevel"></label>
+                            <input asp-for="@Model.Course.CourseDetail.SkillLevel" class="form-control">
+                            <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.SkillLevel"></span>
                         </div>
                         <div class="form-group col-md-3">
-                            <label asp-for="@Model.CourseDetail.Language"></label>
-                            <input asp-for="@Model.CourseDetail.Language" class="form-control">
-                            <span class="text-danger" asp-validation-for="@Model.CourseDetail.Language"></span>
+                            <label asp-for="@Model.Course.CourseDetail.Language"></label>
+                            <input asp-for="@Model.Course.CourseDetail.Language" class="form-control">
+                            <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Language"></span>
                         </div>
                         <div class="form-group col-md-3">
-                            <label asp-for="@Model.CourseDetail.StudentsCount"></label>
-                            <input asp-for="@Model.CourseDetail.StudentsCount" class="form-control">
-                            <span class="text-danger" asp-validation-for="@Model.CourseDetail.StudentsCount"></span>
+                            <label asp-for="@Model.Course.CourseDetail.StudentsCount"></label>
+                            <input asp-for="@Model.Course.CourseDetail.StudentsCount" class="form-control">
+                            <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.StudentsCount"></span>
                         </div>
                         <div class="form-group col-md-3">
-                            <label asp-for="@Model.CourseDetail.Assesments"></label>
-                            <input asp-for="@Model.CourseDetail.Assesments" class="form-control">
-                            <span class="text-danger" asp-validation-for="@Model.CourseDetail.Assesments"></span>
+                            <label asp-for="@Model.Course.CourseDetail.Assesments"></label>
+                            <input asp-for="@Model.Course.CourseDetail.Assesments" class="form-control">
+                            <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.Assesments"></span>
                         </div>
                         <div class="form-group col-md-6 offset-md-3">
-                            <label asp-for="@Model.CourseDetail.CoursePrice"></label>
-                            <input asp-for="@Model.CourseDetail.CoursePrice" class="form-control">
-                            <span class="text-danger" asp-validation-for="@Model.CourseDetail.CoursePrice"></span>
+                            <label asp-for="@Model.Course.CourseDetail.CoursePrice"></label>
+                            <input asp-for="@Model.Course.CourseDetail.CoursePrice" class="form-control">
+                            <span class="text-danger" asp-validation-for="@Model.Course.CourseDetail.CoursePrice"></span>
                         </div>
                     </div>
                 </div>
 
+                <div class="row" style="margin-left:20%">
+                    <div class="col-md-6">
+                        <h4 class="text-info">Tags</h4>
+                        @foreach (Tags tag in Model.Tags)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck">
+                                <label class="form-check-label">
+                                    @tag.TagName
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-info">Catefories</h4>
+                        @foreach (Categories categories in Model.Categories)
+                        {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox">
+                        <label class="form-check-label">
+                            @categories.NameCategory
+                        </label>
+                    </div>
+                        }
+                    </div>
+                </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success">Create</button>
                     <a asp-action="Index" class="btn btn-info">Close</a>
                 </div>
             </form>
@@ -105,25 +132,24 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create(document.querySelector('#CourseDescription'))
+        .create(document.querySelector('#Course_CourseDescription'))
         .catch(error => {
             console.error(error);
         });
     ClassicEditor
-        .create(document.querySelector('#CourseDetail_AboutCourseDescription'))
+        .create(document.querySelector('#Course_CourseDetail_AboutCourseDescription'))
         .catch(error => {
             console.error(error);
         });
     ClassicEditor
-        .create(document.querySelector('#CourseDetail_HowToApplyExplaining'))
+        .create(document.querySelector('#Course_CourseDetail_HowToApplyExplaining'))
         .catch(error => {
             console.error(error);
         });
     ClassicEditor
-        .create(document.querySelector('#CourseDetail_CertificationExplain'))
+        .create(document.querySelector('#Course_CourseDetail_CertificationExplain'))
         .catch(error => {
             console.error(error);
         });
-
 </script>
 

@@ -39,12 +39,18 @@
                                 @Html.Raw(Model.Course.CourseDetail.AboutCourseDescription)
                             </div>
                             <div class="single-course-left">
-                                <h3>how to apply</h3>
-                                @Html.Raw(Model.Course.CourseDetail.HowToApplyExplaining)
+                                @if (Model.Course.CourseDetail.HowToApplyExplaining != null)
+                                {
+                                    <h3>how to apply</h3>
+                                    @Html.Raw(Model.Course.CourseDetail.HowToApplyExplaining)
+                                }
                             </div>
                             <div class="single-course-left">
-                                <h3>certification</h3>
-                                @Html.Raw(Model.Course.CourseDetail.CertificationExplain)
+                                @if (Model.Course.CourseDetail.CertificationExplain != null)
+                                {
+                                    <h3>certification</h3>
+                                    @Html.Raw(Model.Course.CourseDetail.CertificationExplain)
+                                }
                             </div>
                         </div>
                         <div class="course-details-right">
