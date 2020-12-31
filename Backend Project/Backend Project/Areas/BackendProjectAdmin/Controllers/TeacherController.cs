@@ -1,6 +1,7 @@
 ﻿using Backend_Project.DAL;
 using Backend_Project.Models;
 using Eduhome.Extentions;
+using Eduhome.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         }
 
         #region CRUD
-        #region Create
+          #region Create
         public IActionResult Create()
         {
             return View();
@@ -117,113 +118,123 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #endregion
 
         #region Update
-        //public IActionResult Update(int? id)
-        //{
-        //    Course course = _context.Courses.Where(cr => cr.isDelete == false)
-        //        .Include(cr => cr.CourseDetail).Include(cr => cr.TagCourses).ThenInclude(cr => cr.Tags)
-        //        .FirstOrDefault(cr => cr.Id == id);
-        //    return View(course);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Update(int? id, Course course)
-        //{
-        //    if (id == null) return NotFound();
+        public IActionResult Update(int? id)
+        {
+            Teachers teachers = _context.Teachers.Where(cr => cr.IsDelete == false)
+                .Include(cr => cr.TeachersDetail)
+                .FirstOrDefault(cr => cr.Id == id);
+            return View(teachers);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Teachers teachers)
+        {
+            if (id == null) return NotFound();
 
-        //    Course courseOld = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
+            Teachers oldTeacher = await _context.Teachers.Include(c => c.TeachersDetail).FirstOrDefaultAsync(c => c.Id == id);
 
-        //    Course isExist = _context.Courses.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
+            Course isExist = _context.Courses.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
 
-        //    if (isExist != null)
-        //    {
-        //        if (isExist.Id != courseOld.Id)
-        //        {
-        //            ModelState.AddModelError("", "This name already has. Please write another name");
-        //            return Content("e");
-        //        }
-        //    }
+            if (isExist != null)
+            {
+                if (isExist.Id != oldTeacher.Id)
+                {
+                    ModelState.AddModelError("", "This name already has. Please write another name");
+                    return Content("e");
+                }
+            }
 
-        //    if (course == null) return Content("Null");
-        //    if (course.Photo != null)
-        //    {
-        //        if (!course.Photo.IsImage())
-        //        {
-        //            ModelState.AddModelError("Photos", $"{course.Photo.FileName} - not image type");
-        //            return View(courseOld);
-        //        }
+            if (teachers == null) return Content("Null");
+            if (teachers.Photo != null)
+            {
+                if (!teachers.Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photos", $"{teachers.Photo.FileName} - not image type");
+                    return View(teachers);
+                }
 
-        //        string folder = Path.Combine("img", "course");
-        //        string fileName = await course.Photo.SaveImageAsync(_env.WebRootPath, folder);
-        //        //string fileName = await course.Photo.SaveImageAsync(_env.)
-        //        if (fileName == null)
-        //        {
-        //            return Content("Error");
-        //        }
+                string folder = Path.Combine("img", "course");
+                string fileName = await teachers.Photo.SaveImageAsync(_env.WebRootPath, folder);
+                //string fileName = await course.Photo.SaveImageAsync(_env.)
+                if (fileName == null)
+                {
+                    return Content("Error");
+                }
 
-        //        Helper.DeleteImage(_env.WebRootPath, folder, courseOld.Image);
-        //        courseOld.Image = fileName;
-        //    }
+                Helper.DeleteImage(_env.WebRootPath, folder, oldTeacher.Image);
+                oldTeacher.Image = fileName;
+            }
 
-        //    #region Update line
-        //    courseOld.CourseName = course.CourseName;
-        //    courseOld.CourseDescription = course.CourseDescription;
-        //    courseOld.CourseDetail.AboutCourseDescription = course.CourseDetail.AboutCourseDescription;
-        //    courseOld.CourseDetail.HowToApplyExplaining = course.CourseDetail.HowToApplyExplaining;
-        //    courseOld.CourseDetail.CertificationExplain = course.CourseDetail.CertificationExplain;
-        //    courseOld.CourseDetail.Starts = course.CourseDetail.Starts;
-        //    courseOld.CourseDetail.Duration = course.CourseDetail.Duration;
-        //    courseOld.CourseDetail.ClassDuration = course.CourseDetail.ClassDuration;
-        //    courseOld.CourseDetail.SkillLevel = course.CourseDetail.SkillLevel;
-        //    courseOld.CourseDetail.Language = course.CourseDetail.Language;
-        //    courseOld.CourseDetail.StudentsCount = course.CourseDetail.StudentsCount;
-        //    courseOld.CourseDetail.StudentsCount = course.CourseDetail.StudentsCount;
-        //    courseOld.CourseDetail.Assesments = course.CourseDetail.Assesments;
-        //    courseOld.CourseDetail.CoursePrice = course.CourseDetail.CoursePrice;
-        //    #endregion
+            #region Update line
+            oldTeacher.Fullname = teachers.Fullname;
+            oldTeacher.Speciality = teachers.Speciality;
+            //About part start
+            oldTeacher.TeachersDetail.AboutMe = teachers.TeachersDetail.AboutMe;
+            oldTeacher.TeachersDetail.Degree = teachers.TeachersDetail.Degree;
+            oldTeacher.TeachersDetail.Experience = teachers.TeachersDetail.Experience;
+            oldTeacher.TeachersDetail.Hobbies = teachers.TeachersDetail.Hobbies;
+            oldTeacher.TeachersDetail.Faculty = teachers.TeachersDetail.Faculty;
+            //About part end
+
+            //Information part start
+            oldTeacher.TeachersDetail.Email = teachers.TeachersDetail.Email;
+            oldTeacher.TeachersDetail.PhoneNumber = teachers.TeachersDetail.PhoneNumber;
+            oldTeacher.TeachersDetail.Skype = teachers.TeachersDetail.Skype;
+            oldTeacher.TeachersDetail.Facebook = teachers.TeachersDetail.Facebook;
+            oldTeacher.TeachersDetail.Pinterest = teachers.TeachersDetail.Pinterest;
+            oldTeacher.TeachersDetail.Vimeo = teachers.TeachersDetail.Vimeo;
+            oldTeacher.TeachersDetail.Twitter = teachers.TeachersDetail.Twitter;
+            //Information part end
+
+            //Skills part start
+            oldTeacher.TeachersDetail.Language = teachers.TeachersDetail.Language;
+            oldTeacher.TeachersDetail.Design = teachers.TeachersDetail.Design;
+            oldTeacher.TeachersDetail.TeamLeader = teachers.TeachersDetail.TeamLeader;
+            oldTeacher.TeachersDetail.Innovation = teachers.TeachersDetail.Innovation;
+            oldTeacher.TeachersDetail.Development = teachers.TeachersDetail.Development;
+            oldTeacher.TeachersDetail.Communication = teachers.TeachersDetail.Communication;
+            //Skills part end
+            #endregion
 
 
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         #endregion
 
         #region Delete and Detail
 
-        //public async Task<IActionResult> Detail(int? id)
-        //{
-        //    if (id == null) return NotFound();
-        //    Course course = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
-        //    if (course == null) return NotFound();
-        //    return View(course);
-        //}
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null) return NotFound();
-        //    Course course = await _context.Courses.FindAsync(id);
-        //    if (course == null) return NotFound();
-        //    return View(course);
-        //}
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null) return NotFound();
+            Teachers teachers = await _context.Teachers
+                .Include(c => c.TeachersDetail).FirstOrDefaultAsync(c => c.Id == id);
+            if (teachers == null) return NotFound();
+            return View(teachers);
+        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return NotFound();
+            Teachers teachers = await _context.Teachers.Include(t=>t.TeachersDetail).FirstOrDefaultAsync(t=>t.Id==id);
+            if (teachers == null) return NotFound();
+            return View(teachers);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[ActionName("Delete")]
-        //public async Task<IActionResult> DeletePost(int? id)
-        //{
-        //    if (id == null) return NotFound();
-        //    Course course = _context.Courses.FirstOrDefault(c => c.Id == id);
-        //    if (course == null) return NotFound();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            if (id == null) return NotFound();
+            Teachers teachers = _context.Teachers.FirstOrDefault(c => c.Id == id);
+            if (teachers == null) return NotFound();
 
-        //    if (!course.isDelete)
-        //    {
-        //        course.isDelete = true;
-        //        course.DeletedTime = DateTime.Now;
-        //    }
-        //    else
-        //        course.isDelete = false;
+            teachers.IsDelete = true;
+            teachers.DeletedTime = DateTime.Now;
 
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         #endregion
         #endregion
     }

@@ -1,0 +1,32 @@
+﻿@model Teachers
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container">
+    <table class="table table-striped table-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Teacher Fullname</th>
+                <th scope="col">About</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Degree</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img style="width:150px!important; height:150px!important; border-radius:8px!important" src="~/img/teacher/@Model.Image" alt="@Model.Image" /></td>
+                <td>@Model.Fullname</td>
+                <td>@Html.Raw(Model.TeachersDetail.AboutMe)</td>
+                <td>@Model.TeachersDetail.Experience</td>
+                <td>@Model.TeachersDetail.Degree</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-success">Go back</a>
+    </div>
+</div>
+
