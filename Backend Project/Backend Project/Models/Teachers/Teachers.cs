@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +17,9 @@ namespace Backend_Project.Models
         public string Speciality { get; set; }
         public bool IsDelete { get; set; }
         public DateTime? DeletedTime { get; set; }
-
+        public DateTime? CreatedTime { get; set; }
+        [NotMapped]
+        public IFormFile Photo { get; set; }
         public TeachersDetail TeachersDetail { get; set; }
 
     }

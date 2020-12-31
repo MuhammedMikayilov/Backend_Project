@@ -33,6 +33,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             return View(courses);
         }
 
+        #region CRUD
+        #region Create
         public IActionResult Create()
         {
             return View();
@@ -46,13 +48,13 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             Course isExist = _context.Courses.Where(cr => cr.isDelete == false)
                 .FirstOrDefault(cr => cr.CourseName.ToLower() == course.CourseName.ToLower());
 
-            
+
             Course newCourse = new Course();
             CourseDetail newCourseDetail = new CourseDetail();
 
-            if(course.Photo == null)
+            if (course.Photo == null)
             {
-                ModelState.AddModelError("Photo","Image cannot be empty");
+                ModelState.AddModelError("Photo", "Image cannot be empty");
                 return View();
             }
 
@@ -102,6 +104,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             return RedirectToAction(nameof(Index));
             //return Content(newCourseDetail.Id.ToString());
         }
+        #endregion
+
+        #region Update
         public IActionResult Update(int? id)
         {
             Course course = _context.Courses.Where(cr => cr.isDelete == false)
@@ -115,10 +120,10 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         {
             if (id == null) return NotFound();
 
-            Course courseOld = await _context.Courses.Include(c=>c.CourseDetail).FirstOrDefaultAsync(c=>c.Id==id);
+            Course courseOld = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
 
             Course isExist = _context.Courses.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
-            
+
             if (isExist != null)
             {
                 if (isExist.Id != courseOld.Id)
@@ -170,13 +175,14 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
         #region Delete and Detail
 
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null) return NotFound();
-            Course course = await _context.Courses.Include(c=>c.CourseDetail).FirstOrDefaultAsync(c=>c.Id==id);
+            Course course = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
             if (course == null) return NotFound();
             return View(course);
         }
@@ -208,6 +214,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
         #endregion
 
 
