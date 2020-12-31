@@ -60,12 +60,19 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 return View();
             }
 
+            bool isExist = _context.Courses.Where(cr => cr.isDelete == false)
+                .Any(cr => cr.CourseName == course.CourseName);
+
+            if (isExist)
+            {
+                ModelState.AddModelError("", "This name already exist");
+                return View();
+            }
 
             Course newCourse = new Course
             {
                 CourseName = course.CourseName,
-                CourseDescription = course.CourseDescription,
-                
+                CourseDescription = course.CourseDescription
             };
 
             CourseDetail newCourseDetail = new CourseDetail();
@@ -84,29 +91,29 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             }
             newCourse.Image = fileName;
 
+            #region Many to Many
             List<CategoryCourse> categoryCourses = new List<CategoryCourse>();
             List<TagCourse> tagCourses = new List<TagCourse>();
 
             if (CategId.Count == 0)
             {
-                ModelState.AddModelError("", "Kateqory");
+                ModelState.AddModelError("", "Category cannot be empty");
                 return View();
             }
 
             foreach (var item in CategId)
             {
-                CategoryCourse categoryCourse = new CategoryCourse() 
+                CategoryCourse categoryCourse = new CategoryCourse()
                 {
                     CourseId = newCourse.Id,
                     CategoriesId = item
                 };
-                
                 categoryCourses.Add(categoryCourse);
             }
 
             if (TagId.Count == 0)
             {
-                ModelState.AddModelError("", "Kateqory");
+                ModelState.AddModelError("", "Tag cannot be empty");
                 return View();
             }
 
@@ -119,15 +126,19 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 };
                 tagCourses.Add(tagCourse);
             }
+            #endregion
 
+            #region Courses
             newCourse.CategoryCourses = categoryCourses;
             newCourse.TagCourses = tagCourses;
             course.CreatedTime = DateTime.Now;
             newCourse.CreatedTime = course.CreatedTime;
             await _context.Courses.AddAsync(newCourse);
             await _context.SaveChangesAsync();
+            #endregion
 
 
+            #region CourseDetail
             newCourseDetail.AboutCourseDescription = course.CourseDetail.AboutCourseDescription;
             newCourseDetail.HowToApplyExplaining = course.CourseDetail.HowToApplyExplaining;
             newCourseDetail.CertificationExplain = course.CourseDetail.CertificationExplain;
@@ -143,6 +154,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             newCourseDetail.CourseId = newCourse.Id;
             await _context.AddAsync(newCourseDetail);
             await _context.SaveChangesAsync();
+            #endregion
 
             return RedirectToAction(nameof(Index));
         }
