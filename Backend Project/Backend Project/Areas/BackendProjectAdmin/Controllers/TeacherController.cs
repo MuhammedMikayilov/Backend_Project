@@ -44,19 +44,60 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Teachers teachers)
         {
-
-            Teachers isExist = _context.Teachers.Where(cr => cr.IsDelete == false)
-                .FirstOrDefault(cr => cr.Fullname.ToLower() == teachers.Fullname.ToLower());
-
-
             Teachers newTeacher = new Teachers();
             TeachersDetail newTeachersDetail = new TeachersDetail();
+
+            if(teachers.Fullname == null)
+            {
+                ModelState.AddModelError("Fullname", "Fullname cannot be empty");
+                return View();
+            }
 
             if (teachers.Photo == null)
             {
                 ModelState.AddModelError("Photo", "Image cannot be empty");
                 return View();
             }
+
+            if (teachers.TeachersDetail.AboutMe == null)
+            {
+                ModelState.AddModelError("", "About Cannot be empty");
+                return View();
+            }
+
+            if (teachers.TeachersDetail.Degree == null)
+            {
+                ModelState.AddModelError("", "TeachersDetail Degree Cannot be empty");
+                return View();
+            }
+
+            if (teachers.TeachersDetail.Email == null)
+            {
+                ModelState.AddModelError("", "Email Cannot be empty");
+                return View();
+            }
+
+            if (teachers.TeachersDetail.Experience == null)
+            {
+                ModelState.AddModelError("", "Experience Cannot be empty");
+                return View();
+            }
+
+            if (teachers.TeachersDetail.Hobbies == null)
+            {
+                ModelState.AddModelError("", "Hobbies Cannot be empty");
+                return View();
+            }
+
+            if (teachers.TeachersDetail.Faculty == null)
+            {
+                ModelState.AddModelError("", "Faculty Cannot be empty");
+                return View();
+            }
+
+            if (newTeacher == null) return NotFound();
+            if (newTeachersDetail == null) return NotFound();
+
 
 
             if (!teachers.Photo.IsImage())
@@ -74,6 +115,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             newTeacher.Image = fileName;
             newTeacher.Fullname = teachers.Fullname;
+            newTeacher.Speciality = teachers.Speciality;
             teachers.CreatedTime = DateTime.Now;
             newTeacher.CreatedTime = teachers.CreatedTime;
             await _context.AddAsync(newTeacher);
