@@ -32,19 +32,19 @@
                     </div>
                     <div class="course-details-content">
                         <h2>@Model.Course.CourseName</h2>
-                        <p>@Html.Raw(Model.Course.CourseDescription)</p>
+                        @Html.Raw(Model.Course.CourseDescription)
                         <div class="course-details-left">
                             <div class="single-course-left">
                                 <h3>about course</h3>
-                                <p>@Html.Raw(Model.Course.CourseDetail.AboutCourseDescription)</p>
+                                @Html.Raw(Model.Course.CourseDetail.AboutCourseDescription)
                             </div>
                             <div class="single-course-left">
                                 <h3>how to apply</h3>
-                                <p>@Html.Raw(Model.Course.CourseDetail.HowToApplyExplaining)</p>
+                                @Html.Raw(Model.Course.CourseDetail.HowToApplyExplaining)
                             </div>
                             <div class="single-course-left">
                                 <h3>certification</h3>
-                                <p class="margin">@Html.Raw(Model.Course.CourseDetail.CertificationExplain)</p>
+                                @Html.Raw(Model.Course.CourseDetail.CertificationExplain)
                             </div>
                         </div>
                         <div class="course-details-right">

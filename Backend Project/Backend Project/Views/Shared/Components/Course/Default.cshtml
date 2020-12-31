@@ -2,8 +2,8 @@
 
 @foreach (Course course in Model)
 {
-    <div data-id="@course.CourseName" class="col-md-4 col-sm-6 col-xs-12 my">
-        <div class="single-course">
+    <div data-id="@course.CourseName" class="col-md-4 col-sm-6 col-xs-12 my" style="min-height:550px">
+        <div class="single-course h-100">
             <div class="course-img">
                 <a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">
                     <img src="~/img/course/@course.Image" alt="course">
@@ -12,9 +12,9 @@
                     </div>
                 </a>
             </div>
-            <div class="course-content">
+            <div class="course-content h-100" style="max-height: 220px!important">
                 <h3><a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">@course.CourseName</a></h3>
-                <p>@Html.Raw(course.CourseDescription)</p>
+                @Html.Raw(course.CourseDescription)
                 <a class="default-btn" asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id">read more</a>
             </div>
         </div>

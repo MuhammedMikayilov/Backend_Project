@@ -46,14 +46,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             Course isExist = _context.Courses.Where(cr => cr.isDelete == false)
                 .FirstOrDefault(cr => cr.CourseName.ToLower() == course.CourseName.ToLower());
 
-            //if (isExist.Id == course.)
-            //{
-            //    if (cour)
-            //    {
-
-            //    }
-            //    return Content("SaneName");
-            //}
+            
             Course newCourse = new Course();
             CourseDetail newCourseDetail = new CourseDetail();
 
@@ -66,7 +59,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (course.CourseDetail.CoursePrice == null)
             {
                 ModelState.AddModelError("CourseDetail_CoursePrice", "Price cannot be empty");
-                return View(newCourse);
+                return View();
             }
 
             if (!course.Photo.IsImage())
@@ -143,12 +136,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                     ModelState.AddModelError("Photos", $"{course.Photo.FileName} - not image type");
                     return View(courseOld);
                 }
-                //if (!course.Photo.MaxSize(200))
-                //{
-                //    ModelState.AddModelError("Photos", $"{course.Photo.FileName} - Max image length must be less than 200kb");
-                //    return View(courseOld);
-                //}
-
 
                 string folder = Path.Combine("img", "course");
                 string fileName = await course.Photo.SaveImageAsync(_env.WebRootPath, folder);
@@ -159,10 +146,10 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 }
 
                 Helper.DeleteImage(_env.WebRootPath, folder, courseOld.Image);
-                //_context.Courses.Remove(courseOld);
                 courseOld.Image = fileName;
             }
 
+            #region Update line
             courseOld.CourseName = course.CourseName;
             courseOld.CourseDescription = course.CourseDescription;
             courseOld.CourseDetail.AboutCourseDescription = course.CourseDetail.AboutCourseDescription;
@@ -177,13 +164,22 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             courseOld.CourseDetail.StudentsCount = course.CourseDetail.StudentsCount;
             courseOld.CourseDetail.Assesments = course.CourseDetail.Assesments;
             courseOld.CourseDetail.CoursePrice = course.CourseDetail.CoursePrice;
+            #endregion
 
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        #region Delete
+        #region Delete and Detail
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null) return NotFound();
+            Course course = await _context.Courses.Include(c=>c.CourseDetail).FirstOrDefaultAsync(c=>c.Id==id);
+            if (course == null) return NotFound();
+            return View(course);
+        }
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();

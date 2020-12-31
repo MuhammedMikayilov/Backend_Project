@@ -10,7 +10,7 @@
                 <img class="card-img-top" src="~/img/course/@Model.Image" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@Model.CourseName</h5>
-                    <p class="card-text">@Model.CourseDescription</p>
+                    @Html.Raw(Model.CourseDescription)
                     <form method="post">
                         <button type="submit" class="btn btn-outline-danger">Delete</button>
                         <a asp-action="Index" class="btn btn-outline-warning">Close</a>
