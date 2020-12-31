@@ -173,7 +173,6 @@ $(document).ready(function () {
             $(`#search-list-${action} .searching`).remove();
             console.log("Action", action, "Class", $(`#search-list-${action}`))
         }
-        console.log("test", inputVal)
         if (inputVal.length >= 0) {
             $.ajax({
                 url: `/${controller}/Search?search=` + inputVal,
@@ -247,5 +246,7 @@ $(document).ready(function () {
             }
         })
     })
+
+
 })
 //----Searching end----\\

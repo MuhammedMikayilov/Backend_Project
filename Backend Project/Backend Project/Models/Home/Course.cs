@@ -11,7 +11,7 @@ namespace Backend_Project.Models
     public class Course
     {
         public int Id { get; set; }
-        [Required]
+        //[Required]
         public string Image { get; set; }
         [Required, MaxLength(80)]
         public string CourseName { get; set; }

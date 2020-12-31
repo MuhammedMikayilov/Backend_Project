@@ -103,37 +103,37 @@
                     <div class="form-row">
                         <div class="form-group col-md-2">
                             <label asp-for="@Model.TeachersDetail.Language"><strong>Language - %</strong></label>
-                            <input required asp-for="@Model.TeachersDetail.Language" class="form-control">
+                            <input min="0" max="100" required asp-for="@Model.TeachersDetail.Language" class="form-control">
                             <span class="text-danger" asp-validation-for="@Model.TeachersDetail.Language"></span>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label asp-for="@Model.TeachersDetail.Design"><strong>Design - %</strong></label>
-                            <input required asp-for="@Model.TeachersDetail.Design" class="form-control">
+                            <input min="0" max="100" required asp-for="@Model.TeachersDetail.Design" class="form-control">
                             <span class="text-danger" asp-validation-for="@Model.TeachersDetail.Design"></span>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label asp-for="@Model.TeachersDetail.TeamLeader"><strong>Team Leader - %</strong></label>
-                            <input required asp-for="@Model.TeachersDetail.TeamLeader" class="form-control">
+                            <input min="0" max="100" required asp-for="@Model.TeachersDetail.TeamLeader" class="form-control">
                             <span class="text-danger" asp-validation-for="@Model.TeachersDetail.TeamLeader"></span>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label asp-for="@Model.TeachersDetail.Innovation"><strong>Innovation - %</strong></label>
-                            <input required asp-for="@Model.TeachersDetail.Innovation" class="form-control">
+                            <input min="0" max="100" required asp-for="@Model.TeachersDetail.Innovation" class="form-control">
                             <span class="text-danger" asp-validation-for="@Model.TeachersDetail.Innovation"></span>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label asp-for="@Model.TeachersDetail.Development"><strong>Development - %</strong></label>
-                            <input required asp-for="@Model.TeachersDetail.Development" class="form-control">
+                            <input min="0" max="100" required asp-for="@Model.TeachersDetail.Development" class="form-control">
                             <span class="text-danger" asp-validation-for="@Model.TeachersDetail.Development"></span>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label asp-for="@Model.TeachersDetail.Communication"><strong>Communication - %</strong></label>
-                            <input required asp-for="@Model.TeachersDetail.Communication" class="form-control">
+                            <input min="0" max="100" required asp-for="@Model.TeachersDetail.Communication" class="form-control">
                             <span class="text-danger" asp-validation-for="@Model.TeachersDetail.Communication"></span>
                         </div>
                     </div>
