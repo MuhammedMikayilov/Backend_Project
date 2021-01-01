@@ -16,13 +16,18 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(string val)
+        public IActionResult Subscribe(string val)
         {
-            if (val == null) RedirectToAction("NotFound", "Home");
+            //if (val == null) RedirectToAction("NotFound", "Home");
 
-            EmailSubs newEmailSub = new EmailSubs();
+            //EmailSubs newEmailSub = new EmailSubs() 
+            //{ 
+            //    Email = 
+            //};
 
-            return Json(val);
+            string t = "selam";
+
+            return Content(t);
         }
     }
 }

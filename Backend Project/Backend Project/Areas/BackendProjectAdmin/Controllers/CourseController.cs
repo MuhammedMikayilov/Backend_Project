@@ -39,11 +39,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Create
         public IActionResult Create()
         {
-            //CreateCourseVM courseVM = new CreateCourseVM()
-            //{
-            //    Tags = _context.Tags.ToList(),
-            //    Categories = _context.Categories.ToList()
-            //};
             ViewBag.Categ = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
             return View();
@@ -163,19 +158,26 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Update
         public IActionResult Update(int? id)
         {
-            Course course = _context.Courses.Where(cr => cr.isDelete == false)
+            ViewBag.Categ = _context.Categories.ToList();
+            ViewBag.Tags = _context.Tags.ToList();
+            CreateCourseVM createCourseVM = new CreateCourseVM
+            {
+                Course = _context.Courses.Where(cr => cr.isDelete == false)
                 .Include(cr => cr.CourseDetail).Include(cr => cr.TagCourses).ThenInclude(cr => cr.Tags)
-                .FirstOrDefault(cr => cr.Id == id);
-            return View(course);
+                .FirstOrDefault(cr => cr.Id == id)
+        
+            };
+            return View(createCourseVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, Course course)
+        public async Task<IActionResult> Update(int? id, Course course, List<int> CategId, List<int> TagId)
         {
+            ViewBag.Categ = _context.Categories.ToList();
+            ViewBag.Tags = _context.Tags.ToList();
             if (id == null) return NotFound();
 
             Course courseOld = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
-
             Course isExist = _context.Courses.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
 
             if (isExist != null)
@@ -183,7 +185,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 if (isExist.Id != courseOld.Id)
                 {
                     ModelState.AddModelError("", "This name already has. Please write another name");
-                    return Content("e");
+                    return View();
                 }
             }
 
@@ -198,7 +200,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
                 string folder = Path.Combine("img", "course");
                 string fileName = await course.Photo.SaveImageAsync(_env.WebRootPath, folder);
-                //string fileName = await course.Photo.SaveImageAsync(_env.)
                 if (fileName == null)
                 {
                     return Content("Error");
@@ -207,6 +208,43 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 Helper.DeleteImage(_env.WebRootPath, folder, courseOld.Image);
                 courseOld.Image = fileName;
             }
+
+            #region Many to Many
+            //List<CategoryCourse> categoryCourses = new List<CategoryCourse>();
+            //List<TagCourse> tagCourses = new List<TagCourse>();
+
+            //if (CategId.Count == 0)
+            //{
+            //    ModelState.AddModelError("", "Category cannot be empty");
+            //    return View();
+            //}
+
+            //foreach (var item in CategId)
+            //{
+            //    CategoryCourse categoryCourse = new CategoryCourse()
+            //    {
+            //        CourseId = course.Id,
+            //        CategoriesId = item
+            //    };
+            //    categoryCourses.Add(categoryCourse);
+            //}
+
+            //if (TagId.Count == 0)
+            //{
+            //    ModelState.AddModelError("", "Tag cannot be empty");
+            //    return View();
+            //}
+
+            //foreach (var item in TagId)
+            //{
+            //    TagCourse tagCourse = new TagCourse()
+            //    {
+            //        CourseId = newCourse.Id,
+            //        TagsId = item
+            //    };
+            //    tagCourses.Add(tagCourse);
+            //}
+            #endregion
 
             #region Update line
             courseOld.CourseName = course.CourseName;

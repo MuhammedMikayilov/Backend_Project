@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 {
     [Area("BackendProjectAdmin")]
-    [Authorize(Roles = "Admin, CourseModerator")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly AppDbContext _context;

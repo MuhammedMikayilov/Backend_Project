@@ -1,0 +1,55 @@
+﻿@model List<EmailSubs>
+<!-- Subscribe Start -->
+<div class="subscribe-area pt-58 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="subscribe-content section-title text-center">
+                    <h2>subscribe our newsletter</h2>
+                    <p>I must explain to you how all this mistaken idea </p>
+                </div>
+                <div class="newsletter-form mc_embed_signup">
+                    <form method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+                        <div class="row">
+                            <div id="mc_embed_signup_scroll" class="mc-form ml-2 col-md-8 offset-md-4" style="margin-left:11%!important">
+                                <input type="email" value="" name="EmailSubscribe" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address" required>
+
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div class="mc-news" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
+                                @*<button id="mc-embedded-subscribe"
+                                            >
+                                        <span>subscribe</span>
+                                    </button>*@
+                            </div>
+                            <a asp-controller="Subscribe" asp-action="Subscribe"  class="default-btn col-md-2">Subscribe</a>
+
+                        </div>
+                    </form>
+                    <!-- mailchimp-alerts Start -->
+                    <div class="mailchimp-alerts">
+                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                    </div>
+                    <!-- mailchimp-alerts end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Subscribe End -->
+@*<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#mc-embedded-subscribe', function () {
+                let val = $('#mce-EMAIL').val();
+
+                console.log("Value", val)
+
+                if (!val.has('@@')) {
+                    console.log(val)
+                }
+                else { console.log(val) }
+            })
+        })
+    </script>*@
