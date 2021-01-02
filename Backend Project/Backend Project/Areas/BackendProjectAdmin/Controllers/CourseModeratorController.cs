@@ -56,6 +56,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             return View(usersVM);
         }
 
+        #region Create User
         public IActionResult Create()
         {
             return View();
@@ -73,7 +74,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 Email = register.Email
             };
             #region check username
-            bool isExistUserName = _userManager.Users.Where(us=>us.isDelete==false).Any(us => us.UserName == newUser.UserName);
+            bool isExistUserName = _userManager.Users.Where(us => us.isDelete == false|| User.IsInRole("CourseModerator")).Any(us => us.UserName == newUser.UserName);
             if (isExistUserName)
             {
                 ModelState.AddModelError("Username", "This username already exist. Please use another username");
@@ -99,6 +100,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _userManager.AddToRoleAsync(newUser, Roles.CourseModerator.ToString());
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
         #region Activation
 
@@ -169,12 +171,34 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             AppUser user = await _userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
-            //AppUser isExistEmail = _userManager.Users
-            //    .FirstOrDefault(u => u.Email == userNewParam.Email);
-            //AppUser isExistUserName = _userManager.Users
-            //    .FirstOrDefault(u => u.UserName == userNewParam.UserName);
 
             UserVM userVM = await GetUserVMAsync(user);
+
+            #region check username
+            bool isExistUserName = _userManager.Users.Where(us => us.isDelete == false|| User.IsInRole("TCourseModerator")).Any(us => us.UserName == userNewParam.UserName);
+            AppUser hasUserName = _userManager.Users.Where(us => us.isDelete == false|| User.IsInRole("CourseModerator")).FirstOrDefault(us => us.Id == id);
+            if (isExistUserName)
+            {
+                if (hasUserName.UserName != userNewParam.UserName)
+                {
+                    ModelState.AddModelError("UserName", "This username already exist. Please use another username");
+                    return View();
+                }
+
+            }
+            #endregion
+            #region Check email
+            bool isExistEmail = _userManager.Users.Any(us => us.Email == userNewParam.Email);
+            AppUser hasEmail = _userManager.Users.Where(us => us.isDelete == false).FirstOrDefault(us => us.Id == id);
+            if (isExistEmail)
+            {
+                if (hasEmail.Email != userNewParam.Email)
+                {
+                    ModelState.AddModelError("Email", "This Email already exist. Please use another username");
+                    return View();
+                }
+            }
+            #endregion
 
             user.Firstname = userNewParam.Firstname;
             user.Lastname = userNewParam.Lastname;

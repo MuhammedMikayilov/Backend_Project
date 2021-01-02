@@ -47,7 +47,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             Teachers newTeacher = new Teachers();
             TeachersDetail newTeachersDetail = new TeachersDetail();
 
-            if(teachers.Fullname == null)
+
+            if (teachers.Fullname == null)
             {
                 ModelState.AddModelError("Fullname", "Fullname cannot be empty");
                 return View();
