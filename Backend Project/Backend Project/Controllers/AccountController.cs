@@ -18,8 +18,6 @@ namespace Backend_Project.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-
-
         public AccountController(
                                 AppDbContext context,
                                 UserManager<AppUser> userManager, 
@@ -87,6 +85,23 @@ namespace Backend_Project.Controllers
                 UserName = register.Username,
                 Email = register.Email
             };
+
+            #region check username
+            bool isExistUserName = _userManager.Users.Any(us => us.UserName == newUser.UserName);
+            if (isExistUserName)
+            {
+                ModelState.AddModelError("", "This username already exist. Please use another username");
+                return View();
+            }
+            #endregion
+            #region Check email
+            bool isExistEmail = _userManager.Users.Any(us => us.Email == newUser.Email);
+            if (isExistEmail)
+            {
+                ModelState.AddModelError("", "This Email already exist. Please use another username");
+                return View();
+            }
+            #endregion
             IdentityResult identityResult =  await _userManager.CreateAsync(newUser, register.Password);
 
             if (!identityResult.Succeeded)

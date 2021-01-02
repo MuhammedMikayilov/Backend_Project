@@ -62,7 +62,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             if (isExist)
             {
-                ModelState.AddModelError("", "This name already exist");
+                ModelState.AddModelError("Course.CourseName", "This name already exist");
                 return View();
             }
 
@@ -204,15 +204,23 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             ViewBag.Tags = _context.Tags.ToList();
             if (id == null) return NotFound();
 
+            CreateCourseVM createCourseVM = new CreateCourseVM
+            {
+                Course = _context.Courses.Where(cr => cr.isDelete == false)
+               .Include(cr => cr.CourseDetail).Include(cr => cr.TagCourses).ThenInclude(cr => cr.Tags)
+               .FirstOrDefault(cr => cr.Id == id)
+
+            };
             Course courseOld = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
             Course isExist = _context.Courses.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
+            bool exist = _context.Courses.Where(cr => cr.isDelete == false).Any(cr => cr.CourseName == course.CourseName);
 
-            if (isExist != null)
+            if (exist)
             {
-                if (isExist.Id != courseOld.Id)
+                if (isExist.CourseName != course.CourseName)
                 {
-                    ModelState.AddModelError("", "This name already has. Please write another name");
-                    return View();
+                    ModelState.AddModelError("Course.CourseName", "This name already has. Please write another name");
+                    return View(createCourseVM);
                 }
             }
 

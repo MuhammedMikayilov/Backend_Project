@@ -188,11 +188,14 @@
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
-                                @if (User.Identity.Name.ToLower().Contains("moderator") || User.Identity.Name.ToLower().Contains("admin"))
+                                @if (User.IsInRole("CourseModerator") || User.IsInRole("Admin"))
                                 {
                                     <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">Course</a></li>
                                 }
-                                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
+                                @if (User.IsInRole("CourseModerator"))
+                                {
+                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
+                                }
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Title" asp-action="Index">Titles</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Teacher" asp-action="Index">Teachers</a></li>
                             </ul>

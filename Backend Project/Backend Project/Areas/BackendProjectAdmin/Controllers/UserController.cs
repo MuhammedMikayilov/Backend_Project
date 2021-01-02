@@ -30,10 +30,10 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             _context = context;
             _signInManager = signInManager;
         }
-         #region Index
+        #region Index
         public async Task<IActionResult> Index()
         {
-            List<AppUser> users = _userManager.Users.Where(u=>u.isDelete==false).ToList();
+            List<AppUser> users = _userManager.Users.Where(u => u.isDelete == false).ToList();
             List<UserVM> usersVM = new List<UserVM>();
             foreach (AppUser user in users)
             {
@@ -123,26 +123,34 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             AppUser user = await _userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
-            //AppUser isExistEmail = _userManager.Users
-            //    .FirstOrDefault(u => u.Email == userNewParam.Email);
-            //AppUser isExistUserName = _userManager.Users
-            //    .FirstOrDefault(u => u.UserName == userNewParam.UserName);
 
             UserVM userVM = await GetUserVMAsync(user);
 
-            //if (isExistEmail != null || isExistUserName != null)
-            //{
-            //    //if (isExistEmail.Id != user.Id)
-            //    //{
-            //    //    ModelState.AddModelError("Email", "This email already exist");
-            //    //    return View(user);
-            //    //}
-            //    //if (isExistUserName.Id != user.Id)
-            //    //{
-            //    //    ModelState.AddModelError("UserName", "This username already exist");
-            //    //    return View(user);
-            //    //}
-            //}
+            #region check username
+            bool isExistUserName = _userManager.Users.Where(us=>us.isDelete==false).Any(us => us.UserName == userNewParam.UserName);
+            AppUser hasUserName = _userManager.Users.Where(us => us.isDelete == false).FirstOrDefault(us=>us.Id== id);
+            if (isExistUserName)
+            {
+                if (hasUserName.UserName != userNewParam.UserName)
+                {
+                    ModelState.AddModelError("UserName", "This username already exist. Please use another username");
+                    return View();
+                }
+                
+            }
+            #endregion
+            #region Check email
+            bool isExistEmail = _userManager.Users.Any(us => us.Email == userNewParam.Email);
+            AppUser hasEmail = _userManager.Users.Where(us => us.isDelete == false).FirstOrDefault(us => us.Id == id);
+            if (isExistEmail)
+            {
+                if (hasEmail.Email != userNewParam.Email)
+                {
+                    ModelState.AddModelError("Email", "This Email already exist. Please use another username");
+                    return View();
+                }
+            }
+            #endregion
 
             user.Firstname = userNewParam.Firstname;
             user.Lastname = userNewParam.Lastname;
@@ -178,7 +186,26 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (user == null) return NotFound();
             string oldRole = (await _userManager.GetRolesAsync(user))[0];
 
+            switch (role)
+            {
+                case "Admin":
+                    if (!user.UserName.ToLower().Contains("admin"))
+                    {
+                        user.UserName = user.UserName + "Admin";
+                    }
+                    break;
+                default:
+                    if (user.UserName.Contains("Admin"))
+                    {
+                        user.UserName = user.UserName.Replace("Admin", "");
+                    }
+                    break;
+            }
+
+
+
             IdentityResult identityResult = await _userManager.AddToRoleAsync(user, role);
+
 
             if (!identityResult.Succeeded)
             {
@@ -205,7 +232,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
         private async Task<UserVM> GetUserVMAsync(AppUser user)
         {
-            List<string> roles = new List<string> { Roles.Admin.ToString(), Roles.CourseModerator.ToString(), 
+            List<string> roles = new List<string> { Roles.Admin.ToString(), Roles.CourseModerator.ToString(),
                 Roles.EventModerator.ToString(), Roles.TeacherModerator.ToString(), Roles.Member.ToString() };
             UserVM userVM = new UserVM
             {
