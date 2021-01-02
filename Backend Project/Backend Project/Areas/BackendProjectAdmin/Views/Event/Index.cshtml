@@ -1,0 +1,95 @@
+﻿@model List<Event>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>event</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Event Start -->
+<div class="event-area three text-center pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
+                </div>
+                <div class="course-form">
+                    <form id="search">
+                        <input type="search" id="search-event" placeholder="Search Event..." name="searchEvent" />
+                        <button type="submit" id="search-ev">search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="search-list-event">
+            @foreach (Event events in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-event mb-60">
+                        <div class="event-img">
+                            <a asp-action="Detail" asp-route-id="@events.Id">
+                                <img style="height:240px" class="img-fluid" src="~/img/event/@events.Image" alt="event">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                            <div class="event-date">
+                                <h3>@events.EventDate.ToString("dd MMM")</h3>
+                            </div>
+                        </div>
+                        <div class="event-content text-left">
+                            <h4><a asp-action="Detail" asp-route-id="@events.Id">@events.Title</a></h4>
+                            <ul>
+                                <li><span>time:</span> @events.EventTimeLine</li>
+                                <li><span>venue</span> @events.EventPlace</li>
+                            </ul>
+                            <div class="event-content-right">
+                                <a class="default-btn" asp-action="Detail" asp-route-id="@events.Id">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        <div class="col-md-12">
+            <div class="pagination pages">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ViewBag.PageCount; i++)
+                    {
+                        if (i == ViewBag.Page)
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Event" asp-action="Index" asp-route-page="@i">@i</a>
+                            </li>
+                        }
+
+                    }
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Event End -->
+

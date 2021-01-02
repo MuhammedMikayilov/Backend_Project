@@ -19,7 +19,26 @@
                             }
                             else
                             {
-                                <li><a asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">@User.Identity.Name</a></li>
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <li><a asp-area="BackendProjectAdmin" asp-controller="User" asp-action="Index">@User.Identity.Name</a></li>
+                                }
+                                else if (User.IsInRole("CourseModerator"))
+                                {
+                                    <li><a asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">@User.Identity.Name</a></li>
+                                }
+                                else if (User.IsInRole("TeacherModerator"))
+                                {
+                                    <li><a asp-area="BackendProjectAdmin" asp-controller="Teacher" asp-action="Index">@User.Identity.Name</a></li>
+                                }
+                                else if (User.IsInRole("EventModerator"))
+                                {
+                                    <li><a asp-area="BackendProjectAdmin" asp-controller="Event" asp-action="Index">@User.Identity.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-area="BackendProjectAdmin" asp-controller="SimpleUser" asp-action="Index">@User.Identity.Name</a></li>
+                                }
                                 <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
                             }
                         </ul>
