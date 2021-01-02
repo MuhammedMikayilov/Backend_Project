@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
@@ -30,7 +32,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         public IActionResult Index()
         {
             List<Course> courses = _context.Courses.Where(cr => cr.isDelete == false)
-                .Include(cr => cr.CourseDetail).Include(cr=>cr.CategoryCourses).ThenInclude(cr=>cr.Categories)
+                .Include(cr => cr.CourseDetail).Include(cr => cr.CategoryCourses).ThenInclude(cr => cr.Categories)
                 .OrderByDescending(cr => cr.CreatedTime).ToList();
             return View(courses);
         }
@@ -46,7 +48,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Course course, List<int> CategId, List<int> TagId)
+        public async Task<IActionResult> Create(Course course, List<int> CategId, List<int> TagId, string subject, string message)
         {
             ViewBag.Categ = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
@@ -122,7 +124,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 tagCourses.Add(tagCourse);
             }
             #endregion
-
             #region Courses
             newCourse.CategoryCourses = categoryCourses;
             newCourse.TagCourses = tagCourses;
@@ -131,8 +132,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.Courses.AddAsync(newCourse);
             await _context.SaveChangesAsync();
             #endregion
-
-
             #region CourseDetail
             newCourseDetail.AboutCourseDescription = course.CourseDetail.AboutCourseDescription;
             newCourseDetail.HowToApplyExplaining = course.CourseDetail.HowToApplyExplaining;
@@ -150,6 +149,34 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.AddAsync(newCourseDetail);
             await _context.SaveChangesAsync();
             #endregion
+            #region EmailSender
+
+
+            //var senderEmail = new MailAddress("mahammadsm@code.edu.az", "Muhammed");
+            //var receiverEmail = new MailAddress("muhammedmikayilov@gmail.com", "Receiver");
+            //var password = "Your Email Password here";
+            //string sub = "Hello World";
+            //var body = "This is test";
+            //var smtp = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(senderEmail.Address, password)
+            //};
+            //using (var mess = new MailMessage(senderEmail, receiverEmail)
+            //{
+            //    Subject = subject,
+            //    Body = body
+            //})
+            //{
+            //    smtp.Send(mess);
+            //}
+            ////return View();
+
+            #endregion
 
             return RedirectToAction(nameof(Index));
         }
@@ -165,7 +192,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 Course = _context.Courses.Where(cr => cr.isDelete == false)
                 .Include(cr => cr.CourseDetail).Include(cr => cr.TagCourses).ThenInclude(cr => cr.Tags)
                 .FirstOrDefault(cr => cr.Id == id)
-        
+
             };
             return View(createCourseVM);
         }
@@ -263,8 +290,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             courseOld.CourseDetail.CoursePrice = course.CourseDetail.CoursePrice;
             #endregion
 
-
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
         #endregion

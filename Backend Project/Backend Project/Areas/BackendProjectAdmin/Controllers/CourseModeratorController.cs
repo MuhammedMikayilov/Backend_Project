@@ -56,9 +56,35 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             return View(usersVM);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(RegisterVM register)
+        {
+            if (!ModelState.IsValid) return View();
+            AppUser newUser = new AppUser()
+            {
+                Firstname = register.Firstname,
+                Lastname = register.Lastname,
+                UserName = register.Username,
+                Email = register.Email
+            };
+            if (!newUser.UserName.ToLower().Contains("moderator"))
+            {
+                ModelState.AddModelError("Username", "Username must contains 'Moderator' word!");
+                return View();
+            }
+            IdentityResult identityResult = await _userManager.CreateAsync(newUser, register.Password);
+
+            if (!identityResult.Succeeded)
+            {
+                return View();
+            }
+            await _userManager.AddToRoleAsync(newUser, Roles.CourseModerator.ToString());
+            return RedirectToAction(nameof(Index));
         }
 
         #region Activation

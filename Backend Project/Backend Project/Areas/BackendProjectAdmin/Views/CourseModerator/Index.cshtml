@@ -7,7 +7,10 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Active Users</h4>
+            <h4 class="card-title">Course Moderators</h4>
+            <div class="">
+                <a asp-area="BackendProjectAdmin" asp-controller="CourseModerator" asp-action="Create" class="btn btn-success">Create Moderator</a>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -51,10 +54,11 @@
                                             <a asp-controller="CourseModerator" asp-action="ChangePassword" asp-route-id="@user.Id" class="btn btn-outline-warning mb-2">
                                                 Change Pass
                                             </a>
+                                            <a asp-controller="CourseModerator" asp-action="UpdateUser" asp-route-id="@user.Id" class="btn btn-outline-pinterest mb-2">
+                                                Update
+                                            </a>
                                         }
-                                        <a asp-controller="CourseModerator" asp-action="UpdateUser" asp-route-id="@user.Id" class="btn btn-outline-pinterest mb-2">
-                                            Update
-                                        </a>
+
                                         @if (user.Username != User.Identity.Name)
                                         {
                                             <a asp-controller="CourseModerator" asp-action="ChangeRole" asp-route-id="@user.Id" class="btn btn-outline-info mb-2">

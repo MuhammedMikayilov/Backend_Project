@@ -24,6 +24,9 @@ namespace Backend_Project
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>;
+
             services.AddControllersWithViews();
             services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
             {

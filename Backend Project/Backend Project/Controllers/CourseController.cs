@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Backend_Project.Controllers
@@ -49,6 +51,49 @@ namespace Backend_Project.Controllers
                 .OrderByDescending(blg => blg.Id).Take(8);
             return PartialView("_SearchCoursePartial", course);
         }
+
+      
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ActionName("Detail")]
+        //public ActionResult SendEmail(string receiver, string subject, string message)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            var senderEmail = new MailAddress("mahammadsm@code.edu.az", "Mahammad");
+        //            var receiverEmail = new MailAddress(receiver, "Receiver");
+        //            var password = "M34269594152875d";
+        //            var sub = subject;
+        //            var body = message;
+        //            var smtp = new SmtpClient
+        //            {
+        //                Host = "smtp.gmail.com",
+        //                Port = 587,
+        //                EnableSsl = true,
+        //                DeliveryMethod = SmtpDeliveryMethod.Network,
+        //                UseDefaultCredentials = false,
+        //                Credentials = new NetworkCredential(senderEmail.Address, password)
+        //            };
+        //            using (var mess = new MailMessage(senderEmail, receiverEmail)
+        //            {
+        //                Subject = subject,
+        //                Body = body
+        //            })
+        //            {
+        //                smtp.Send(mess);
+        //            }
+        //            return RedirectToAction(nameof(Detail));
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        ViewBag.Error = "Some Error";
+        //    }
+        //    return View();
+        //}
 
     }
 }
