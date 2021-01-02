@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MimeKit;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,11 +27,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
-
-        public CourseController(AppDbContext context, IWebHostEnvironment env)
+        private readonly IConfiguration _configuration;
+        public CourseController(AppDbContext context, IWebHostEnvironment env, IConfiguration configuration)
         {
             _context = context;
             _env = env;
+            _configuration = configuration;
         }
         public IActionResult Index()
         {
@@ -48,7 +53,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Course course, List<int> CategId, List<int> TagId, string subject, string message)
+        public async Task<IActionResult> Create(Course course, List<int> CategId, List<int> TagId)
         {
             ViewBag.Categ = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
@@ -149,34 +154,11 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.AddAsync(newCourseDetail);
             await _context.SaveChangesAsync();
             #endregion
-            #region EmailSender
 
+            string message = "Hello dear client. We have a new Course for you. You can look that." +
+               "Kind Regard, Eduhome ";
 
-            //var senderEmail = new MailAddress("mahammadsm@code.edu.az", "Muhammed");
-            //var receiverEmail = new MailAddress("muhammedmikayilov@gmail.com", "Receiver");
-            //var password = "Your Email Password here";
-            //string sub = "Hello World";
-            //var body = "This is test";
-            //var smtp = new SmtpClient
-            //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network,
-            //    UseDefaultCredentials = false,
-            //    Credentials = new NetworkCredential(senderEmail.Address, password)
-            //};
-            //using (var mess = new MailMessage(senderEmail, receiverEmail)
-            //{
-            //    Subject = subject,
-            //    Body = body
-            //})
-            //{
-            //    smtp.Send(mess);
-            //}
-            ////return View();
-
-            #endregion
+            await SenderEmail("mahammadsm@code.edu.az", "New Course", message);
 
             return RedirectToAction(nameof(Index));
         }
@@ -298,6 +280,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             courseOld.CourseDetail.CoursePrice = course.CourseDetail.CoursePrice;
             #endregion
 
+           
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -344,7 +327,35 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #endregion
         #endregion
 
+        public async Task SenderEmail(string toEmail, string sub, string messageBody)
+        {
+            #region EmailSender
+            var senderEmail = new MailAddress("mikayilov.muhammed.2021@gmail.com", "Muhammed");
+            var receiverEmail = new MailAddress(toEmail, "");
+            var password = "!23456789Mm";
+            string subject = sub;
+            var body = messageBody;
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail.Address, password)
+            };
+            using (var mess = new MailMessage(senderEmail, receiverEmail)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(mess);
+            }
+            //return View();
 
+            #endregion
+        }
 
 
     }

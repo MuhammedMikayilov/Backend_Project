@@ -1,5 +1,6 @@
 using Backend_Project.DAL;
 using Backend_Project.Models;
+using MailKit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -27,6 +28,8 @@ namespace Backend_Project
 
             //var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>;
 
+            //services.AddTransient<IMailService, SendGridMailService>
+
             services.AddControllersWithViews();
             services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
             {
@@ -48,6 +51,7 @@ namespace Backend_Project
             services.AddDbContext<AppDbContext>(options=>{
                 options.UseSqlServer(_config["ConnectionString:Default"]);
                 });
+
             
         }
 

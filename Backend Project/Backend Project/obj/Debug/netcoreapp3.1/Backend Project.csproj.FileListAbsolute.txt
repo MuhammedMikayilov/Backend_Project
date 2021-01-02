@@ -1,3 +1,10 @@
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.csprojAssemblyReference.cache
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.AssemblyInfoInputs.cache
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.AssemblyInfo.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.csproj.CoreCompileInputs.cache
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.RazorAssemblyInfo.cache
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.RazorAssemblyInfo.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Backend Project.exe
@@ -126,12 +133,6 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.AssemblyInfoInputs.cache
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.AssemblyInfo.cs
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.csproj.CoreCompileInputs.cache
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.RazorAssemblyInfo.cache
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.RazorAssemblyInfo.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\staticwebassets\Backend Project.StaticWebAssets.Manifest.cache
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\staticwebassets\Backend Project.StaticWebAssets.xml
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\scopedcss\bundle\Backend Project.styles.css
@@ -153,6 +154,7 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Course\Update.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Dashboard\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\DeactivatedUsers\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Events\Create.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Events\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Event\Detail.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Event\Index.cshtml.g.cs
@@ -227,3 +229,10 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.dll
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.pdb
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.genruntimeconfig.cache
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\SendGrid.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Xamarin.Essentials.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Essential.Interfaces.dll
