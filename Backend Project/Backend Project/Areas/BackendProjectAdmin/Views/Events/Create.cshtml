@@ -62,36 +62,6 @@
                     </div>
                 </div>
 
-                @foreach (Speakers speakers in Model.Event.EventDetails.Speakers)
-                {
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label asp-for="@speakers.SpeakerName">Speaker name</label>
-                            <input asp-for="@speakers.SpeakerName" class="form-control" placeholder="Name">
-                            <span class="text-danger" asp-validation-for="@speakers.SpeakerName"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label asp-for="@speakers.Position">Speaker name</label>
-                            <input asp-for="@speakers.Position" class="form-control" placeholder="Name">
-                            <span class="text-danger" asp-validation-for="@speakers.Position"></span>
-                        </div>
-                        @*<div class="text-center my-5">
-                            <h3 class="mb-3">Add Speaker Image</h3>
-                            <div class="row align-items-center bg-dark">
-                                <div class="col-md-8">
-                                    <div class="custom-file my-3">
-                                        <input asp-for="@speakers.Photo" class="custom-file-input">
-                                        <label asp-for="@speakers.Photo" class="custom-file-label">Choose file</label>
-                                        <span asp-validation-for="@speakers.Photo" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <img height="200" width="200" class="image-preview img-fluid my-4" />
-                                </div>
-                            </div>
-                        </div>*@
-                    </div>
-                }
 
                 <div class="row" style="margin-left:20%">
                     <div class="col-md-6">

@@ -16,18 +16,21 @@ namespace Backend_Project.Controllers
         {
             _context = context;
         }
-        public IActionResult Subscribe(string val)
+        public async Task<IActionResult> Subscribe(string EmailSubscribe)
         {
-            //if (val == null) RedirectToAction("NotFound", "Home");
 
-            //EmailSubs newEmailSub = new EmailSubs() 
-            //{ 
-            //    Email = 
-            //};
+            if (!EmailSubscribe.Contains("@"))
+            {
+                return RedirectToAction("ErrorPage", "Home");
+            }
 
-            string t = "selam";
-
-            return Content(t);
+            EmailSubs email = new EmailSubs()
+            {
+                Email = EmailSubscribe
+            };
+            await _context.EmailSubs.AddAsync(email);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

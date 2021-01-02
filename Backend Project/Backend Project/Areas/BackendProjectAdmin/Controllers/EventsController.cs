@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
@@ -39,30 +41,18 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Create
         public IActionResult Create()
         {
-            //ViewBag.Categ = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Event events, List<int> TagId, List<int> SpeakerId, string subject, string message)
+        public async Task<IActionResult> Create(Event events, List<int> TagId, List<int> SpeakerId)
         {
-            //ViewBag.Categ = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
 
             bool isExist = _context.Events.Where(cr => cr.isDelete == false)
                 .Any(cr => cr.Title == events.Title);
-
-            if (isExist)
-            {
-                ModelState.AddModelError("", "This name already exist");
-                return View();
-            }
 
             Event newEvent = new Event
             {
@@ -122,37 +112,50 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.SaveChangesAsync();
             #endregion
             #region EmailSender
-
-
-            //var senderEmail = new MailAddress("mahammadsm@code.edu.az", "Muhammed");
-            //var receiverEmail = new MailAddress("muhammedmikayilov@gmail.com", "Receiver");
-            //var password = "Your Email Password here";
-            //string sub = "Hello World";
-            //var body = "This is test";
-            //var smtp = new SmtpClient
-            //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network,
-            //    UseDefaultCredentials = false,
-            //    Credentials = new NetworkCredential(senderEmail.Address, password)
-            //};
-            //using (var mess = new MailMessage(senderEmail, receiverEmail)
-            //{
-            //    Subject = subject,
-            //    Body = body
-            //})
-            //{
-            //    smtp.Send(mess);
-            //}
-            ////return View();
-
+            List<EmailSubs> emails = _context.EmailSubs.ToList();
+            foreach (EmailSubs email in emails)
+            {
+                string message = "Hello dear client. We have a new Event for you. You can look that." +
+               "Kind Regard, Eduhome ";
+                await SenderEmail(email.Email, "New Event at Eduhome", message);
+            }
             #endregion
 
             return RedirectToAction(nameof(Index));
         }
         #endregion
+        #endregion
+
+        #region SenderEmail
+        public async Task SenderEmail(string toEmail, string sub, string messageBody)
+        {
+            #region EmailSender
+            var senderEmail = new MailAddress("mikayilov.muhammed.2021@gmail.com", "Muhammed");
+            var receiverEmail = new MailAddress(toEmail, "");
+            var password = "!23456789Mm";
+            string subject = sub;
+            var body = messageBody;
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail.Address, password)
+            };
+            using (var mess = new MailMessage(senderEmail, receiverEmail)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(mess);
+            }
+            //return View();
+
+            #endregion
+        }
         #endregion
     }
 }

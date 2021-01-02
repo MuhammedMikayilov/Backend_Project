@@ -108,7 +108,11 @@ namespace Backend_Project.Controllers
             {
                 return View();
             }
-            //await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
+            EmailSubs emails = new EmailSubs()
+            {
+                Email = newUser.Email
+            };
+            await _context.EmailSubs.AddAsync(emails);
             await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
             await _signInManager.SignInAsync(newUser, true);
             return RedirectToAction("Index", "Home");

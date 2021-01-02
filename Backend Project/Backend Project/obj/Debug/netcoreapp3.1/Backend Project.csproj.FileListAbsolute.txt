@@ -202,7 +202,6 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Blogs\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Course\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Eduhome\Default.cshtml.g.cs
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\EmailSub\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Events\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs
@@ -236,3 +235,5 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Xamarin.Essentials.dll
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Essential.Interfaces.dll
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\EmailSub\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\ErrorPage.cshtml.g.cs

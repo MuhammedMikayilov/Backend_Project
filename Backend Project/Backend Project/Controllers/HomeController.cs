@@ -33,6 +33,23 @@ namespace Backend_Project.Controllers
             return View(homeVM);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Subscribe([FromForm] string email)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            bool subscription = _context.EmailSubs.Any(e => e.Email == email);
+            ViewBag.exist = subscription;
+
+            var subscribe = new EmailSubs 
+            {
+                Email = email 
+            };
+            await _context.EmailSubs.AddAsync(subscribe);
+            await _context.SaveChangesAsync();
+
+            return Ok(subscribe.Id);
+        }
+
         public IActionResult ErrorPage()
         {
             return View();

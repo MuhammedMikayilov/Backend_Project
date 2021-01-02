@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Backend_Project.ViewComponents
 {
-    public class EmailSubViewComponent:ViewComponent
+    public class EmailSubViewComponent : ViewComponent
     {
         private readonly AppDbContext _context;
 

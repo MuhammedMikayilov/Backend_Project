@@ -155,11 +155,15 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             await _context.SaveChangesAsync();
             #endregion
 
-            string message = "Hello dear client. We have a new Course for you. You can look that." +
+            #region SenderEmail
+            List<EmailSubs> emails = _context.EmailSubs.ToList();
+            foreach (EmailSubs email in emails)
+            {
+                string message = "Hello dear client. We have a new Course for you. You can look that." +
                "Kind Regard, Eduhome ";
-
-            await SenderEmail("mahammadsm@code.edu.az", "New Course", message);
-
+                await SenderEmail(email.Email, "New Course", message);
+            }
+            #endregion
             return RedirectToAction(nameof(Index));
         }
         #endregion
@@ -309,9 +313,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> DeletePost(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction("ErrorPage", "Home"); ;
             Course course = _context.Courses.FirstOrDefault(c => c.Id == id);
-            if (course == null) return NotFound();
+            if (course == null) return RedirectToAction("ErrorPage", "Home"); ;
 
             if (!course.isDelete)
             {
@@ -327,10 +331,11 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #endregion
         #endregion
 
+        #region EmailSender
         public async Task SenderEmail(string toEmail, string sub, string messageBody)
         {
             #region EmailSender
-            var senderEmail = new MailAddress("mikayilov.muhammed.2021@gmail.com", "Muhammed");
+            var senderEmail = new MailAddress("mikayilov.muhammed.2021@gmail.com", "EduhomeAdmin Muhammed");
             var receiverEmail = new MailAddress(toEmail, "");
             var password = "!23456789Mm";
             string subject = sub;
@@ -356,6 +361,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             #endregion
         }
+        #endregion
 
 
     }

@@ -30,7 +30,7 @@ namespace Backend_Project.Controllers
 
         public IActionResult Detail(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction("ErrorPage", "Home"); ;
 
             CourseVM courseVM = new CourseVM()
             {
