@@ -50,7 +50,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             ViewBag.Tags = _context.Tags.ToList();
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Event events, List<int> TagsId, List<int> SpeakerId)
@@ -78,7 +77,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 return View(newEvent);
             }
 
-            string folder = Path.Combine("img", "course");
+            string folder = Path.Combine("img", "event");
             string fileName = await events.Photo.SaveImageAsync(_env.WebRootPath, folder);
             if (fileName == null)
             {
@@ -135,122 +134,103 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         }
         #endregion
         #region Update
-        //public IActionResult Update(int? id)
-        //{
-        //    ViewBag.Categ = _context.Categories.ToList();
-        //    ViewBag.Tags = _context.Tags.ToList();
-        //    CreateCourseVM createCourseVM = new CreateCourseVM
-        //    {
-        //        Course = _context.Courses.Where(cr => cr.isDelete == false)
-        //        .Include(cr => cr.CourseDetail).Include(cr => cr.TagCourses).ThenInclude(cr => cr.Tags)
-        //        .FirstOrDefault(cr => cr.Id == id)
+        public IActionResult Update(int? id)
+        {
+            ViewBag.Categ = _context.Categories.ToList();
+            ViewBag.Tags = _context.Tags.ToList();
 
-        //    };
-        //    return View(createCourseVM);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Update(int? id, Event course, List<int> CategId, List<int> TagId)
-        //{
-        //    ViewBag.Categ = _context.Categories.ToList();
-        //    ViewBag.Tags = _context.Tags.ToList();
-        //    if (id == null) return NotFound();
+            Event blogs = _context.Events.Include(blg => blg.EventDetails).FirstOrDefault(blg => blg.Id == id);
+            return View(blogs);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Event events)
+        {
+            ViewBag.Tags = _context.Tags.ToList();
+            if (id == null) return NotFound();
 
-        //    CreateCourseVM createCourseVM = new CreateCourseVM
-        //    {
-        //        Event = _context.Events.Where(cr => cr.isDelete == false)
-        //       .Include(cr => cr.EventDetails).Include(cr => cr.TagsToEvents).ThenInclude(cr => cr.Tags)
-        //       .FirstOrDefault(cr => cr.Id == id)
+            Event eventOld = await _context.Events.Include(c => c.EventDetails).FirstOrDefaultAsync(c => c.Id == id);
+            Event isExist = _context.Events.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
+            bool exist = _context.Events.Where(cr => cr.isDelete == false).Any(cr => cr.Title == events.Title);
 
-        //    };
-        //    Event oldEvent = await _context.Events.Include(c => c.EventDetails).FirstOrDefaultAsync(c => c.Id == id);
-        //    Event isExist = _context.Events.Where(cr => cr.isDelete == false).FirstOrDefault(cr => cr.Id == id);
-        //    bool exist = _context.Events.Where(cr => cr.isDelete == false).Any(cr => cr.Title == course.Title);
+            if (exist)
+            {
+                if (isExist.Title != events.Title)
+                {
+                    ModelState.AddModelError("Title", "This name already has. Please write another name");
+                    return View(eventOld);
+                }
+            }
 
-        //    if (exist)
-        //    {
-        //        if (isExist.Title != course.Title)
-        //        {
-        //            ModelState.AddModelError("Course.CourseName", "This name already has. Please write another name");
-        //            return View(createCourseVM);
-        //        }
-        //    }
+            if (events == null) return Content("Null");
+            if (events.Photo != null)
+            {
+                if (!events.Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photo", $"{events.Photo.FileName} - not image type");
+                    return View(eventOld);
+                }
 
-        //    if (course == null) return Content("Null");
-        //    if (course.Photo != null)
-        //    {
-        //        if (!course.Photo.IsImage())
-        //        {
-        //            ModelState.AddModelError("Photos", $"{course.Photo.FileName} - not image type");
-        //            return View(oldEvent);
-        //        }
+                string folder = Path.Combine("img", "event");
+                string fileName = await events.Photo.SaveImageAsync(_env.WebRootPath, folder);
+                if (fileName == null)
+                {
+                    return RedirectToAction("ErrorPage", "Home");
+                }
 
-        //        string folder = Path.Combine("img", "course");
-        //        string fileName = await course.Photo.SaveImageAsync(_env.WebRootPath, folder);
-        //        if (fileName == null)
-        //        {
-        //            return Content("Error");
-        //        }
+                Helper.DeleteImage(_env.WebRootPath, folder, eventOld.Image);   
+                eventOld.Image = fileName;
+            }
 
-        //        Helper.DeleteImage(_env.WebRootPath, folder, oldEvent.Image);
-        //        oldEvent.Image = fileName;
-        //    }
 
-        //    #region Many to Many
-        //    //List<CategoryCourse> categoryCourses = new List<CategoryCourse>();
-        //    //List<TagCourse> tagCourses = new List<TagCourse>();
+            #region Update line
+            eventOld.Title = events.Title;
+            eventOld.EventDetails.EventDescription = events.EventDetails.EventDescription;
+            eventOld.EventDate = events.EventDate;
+            eventOld.EventPlace = events.EventPlace;
+            eventOld.StartTime = events.StartTime;
+            eventOld.EndTime = events.EndTime;
 
-        //    //if (CategId.Count == 0)
-        //    //{
-        //    //    ModelState.AddModelError("", "Category cannot be empty");
-        //    //    return View();
-        //    //}
+            //eventOld.EventDetails.Description = events.BlogDetail.Description;
+            //eventOld.Author = events.Author;
 
-        //    //foreach (var item in CategId)
-        //    //{
-        //    //    CategoryCourse categoryCourse = new CategoryCourse()
-        //    //    {
-        //    //        CourseId = course.Id,
-        //    //        CategoriesId = item
-        //    //    };
-        //    //    categoryCourses.Add(categoryCourse);
-        //    //}
+            #endregion
 
-        //    //if (TagId.Count == 0)
-        //    //{
-        //    //    ModelState.AddModelError("", "Tag cannot be empty");
-        //    //    return View();
-        //    //}
+            await _context.SaveChangesAsync();
 
-        //    //foreach (var item in TagId)
-        //    //{
-        //    //    TagCourse tagCourse = new TagCourse()
-        //    //    {
-        //    //        CourseId = newCourse.Id,
-        //    //        TagsId = item
-        //    //    };
-        //    //    tagCourses.Add(tagCourse);
-        //    //}
-        //    #endregion
-
-        //    #region Update line
-        //    #region Courses
-        //    //oldEvent.TagsToEvents = ta;
-        //    //events.CreatedTime = DateTime.Now;
-        //    //newEvent.CreatedTime = events.CreatedTime;
-        //    //await _context.Events.AddAsync(newEvent);
-        //    await _context.SaveChangesAsync();
-        //    #endregion
-        //    #region CourseDetail
-        //    await _context.SaveChangesAsync();
-        //    #endregion
-        //    #endregion
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction(nameof(Index));
-        //}
+            return RedirectToAction(nameof(Index));
+        }
         #endregion
         #endregion
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return NotFound();
+            Event @event = await _context.Events.FindAsync(id);
+            if (@event == null) return NotFound();
+            return View(@event);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            if (id == null) return RedirectToAction("ErrorPage", "Home"); ;
+            Event @event = _context.Events.FirstOrDefault(c => c.Id == id);
+            if (@event == null) return RedirectToAction("ErrorPage", "Home"); ;
+
+            if (!@event.isDelete)
+            {
+                @event.isDelete = true;
+                @event.DeletedTime = DateTime.Now;
+            }
+            else
+                @event.isDelete = false;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
         #region SenderEmail
         public async Task SenderEmail(string toEmail, string sub, string messageBody)
