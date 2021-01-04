@@ -1,5 +1,4 @@
-﻿@*@Model.Blog Blogs*@
-@model BlogVM
+﻿@model BlogVM
 @{
     ViewData["Title"] = "Detail";
 }
@@ -33,7 +32,7 @@
                     <div class="blog-details-content">
                         <h2>@Model.Blog.Title </h2>
                         <h6>By @Model.Blog.Author  /  @Model.Blog.DateWrite.ToString("MMMM dd, yyyy")  /  <i class="fa fa-comments-o"></i> @Model.Blog.CommentCount</h6>
-                        <p>@Html.Raw(Model.Blog.Detail.Description)</p>
+                        <p>@Html.Raw(Model.Blog.BlogDetail.Description)</p>
                     </div>
                     <div class="reply-area">
                         <h3>LEAVE A REPLY</h3>

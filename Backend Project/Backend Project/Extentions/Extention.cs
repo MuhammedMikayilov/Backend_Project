@@ -55,6 +55,7 @@ namespace Eduhome.Extentions
         CourseModerator,
         TeacherModerator,
         EventModerator,
+        BlogsWriter,
         Member
     }
 }

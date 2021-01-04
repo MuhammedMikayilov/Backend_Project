@@ -22,7 +22,7 @@ namespace Backend_Project.DAL
                 .HasForeignKey<EventDetails>(eD => eD.EventId);
 
             modelBuilder.Entity<Blogs>()
-                .HasOne(bD => bD.Detail)
+                .HasOne(bD => bD.BlogDetail)
                 .WithOne(b => b.Blogs)
                 .HasForeignKey<BlogDetail>(bD => bD.BlogsId);
 

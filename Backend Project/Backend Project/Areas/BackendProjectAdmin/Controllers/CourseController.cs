@@ -79,6 +79,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             CourseDetail newCourseDetail = new CourseDetail();
 
+            #region Images
             if (!course.Photo.IsImage())
             {
                 ModelState.AddModelError("Photos", $"{course.Photo.FileName} - not image type");
@@ -92,6 +93,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 return Content("Error");
             }
             newCourse.Image = fileName;
+            #endregion
 
             #region Many to Many
             List<CategoryCourse> categoryCourses = new List<CategoryCourse>();
@@ -164,6 +166,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 await SenderEmail(email.Email, "New Course", message);
             }
             #endregion
+
+            //return Json(newCourse);
             return RedirectToAction(nameof(Index));
         }
         #endregion

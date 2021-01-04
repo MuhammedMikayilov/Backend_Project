@@ -22,8 +22,8 @@ namespace Backend_Project.Models
         public DateTime? DeletedTime { get; set; }
         public DateTime? CreatedTime { get; set; }
         public string Title { get; set; }
-        public BlogDetail Detail { get; set; }
-        public int DetailId { get; set; }
+        public BlogDetail BlogDetail { get; set; }
+        public int BlogDetailId { get; set; }
         //public ICollection<CategoryCourse> CategoryCourses { get; set; }
         public ICollection<TagToBlog> TagToBlogs { get; set; }
 
