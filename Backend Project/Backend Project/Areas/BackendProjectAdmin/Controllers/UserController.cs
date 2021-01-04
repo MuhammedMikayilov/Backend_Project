@@ -33,7 +33,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Index
         public async Task<IActionResult> Index()
         {
-            List<AppUser> users = _userManager.Users.Where(u => u.isDelete == false).ToList();
+            List<AppUser> users = _userManager.Users.Where(u => u.isDelete == false)
+                .OrderByDescending(us=>us.Firstname).ToList();
             List<UserVM> usersVM = new List<UserVM>();
             foreach (AppUser user in users)
             {

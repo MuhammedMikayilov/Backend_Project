@@ -1,7 +1,44 @@
-﻿
+﻿@model AppUser
 @{
     ViewData["Title"] = "Index";
 }
+<div class="container">
+    <div class="text-center">
+        <h4>Welcome @User.Identity.Name</h4>
+    </div>
+</div>
 
-<h2>Index</h2>
+<div class="container">
+    <div class="text-center">
+        <h6>Pages</h6>
+        <ul class="nav flex-column sub-menu">
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
+            }
+            @if (User.IsInRole("CourseModerator") || User.IsInRole("Admin"))
+            {
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">Courses</a></li>
+            }
+            @if (User.IsInRole("EventModerator") || User.IsInRole("Admin"))
+            {
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Events" asp-action="Index">Events</a></li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Title" asp-action="Index">Titles</a></li>
+            }
+            @if (User.IsInRole("TeacherModerator") || User.IsInRole("Admin"))
+            {
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Teacher" asp-action="Index">Teachers</a></li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Testimonials" asp-action="Index">Testimonial</a></li>
+            }
+
+        </ul>
+    </div>
+</div>
 

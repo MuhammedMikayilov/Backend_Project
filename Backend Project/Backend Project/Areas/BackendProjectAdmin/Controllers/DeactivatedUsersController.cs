@@ -31,7 +31,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<AppUser> users = _userManager.Users.Where(u=>u.isDelete==true).ToList();
+            List<AppUser> users = _userManager.Users.Where(u=>u.isDelete==true)
+                .OrderByDescending(us=>us.Firstname).ToList();
             List<UserVM> usersVM = new List<UserVM>();
             foreach (AppUser user in users)
             {

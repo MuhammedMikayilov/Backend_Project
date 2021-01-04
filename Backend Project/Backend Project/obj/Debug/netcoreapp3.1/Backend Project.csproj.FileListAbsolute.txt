@@ -238,3 +238,8 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\ErrorPage.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\About\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\About\Update.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Testimonials\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Testimonials\Update.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\SimpleUser\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\SimpleUser\ChangePassword.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\SimpleUser\UpdateUser.cshtml.g.cs

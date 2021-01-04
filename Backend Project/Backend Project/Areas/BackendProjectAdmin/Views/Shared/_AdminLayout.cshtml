@@ -175,72 +175,88 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Dashboard" asp-action="Index">
                             <i class="mdi mdi-home menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="mdi mdi-circle-outline menu-icon"></i>
-                            <span class="menu-title">Controllers</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                @if ( User.IsInRole("Admin"))
-                                {
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
-                                }
-                                @if (User.IsInRole("CourseModerator") || User.IsInRole("Admin"))
-                                {
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">Courses</a></li>
-                                }
-                                @if (User.IsInRole("EventModerator") || User.IsInRole("Admin"))
-                                {
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Events" asp-action="Index">Events</a></li>
-                                }
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Title" asp-action="Index">Titles</a></li>
-                                }
-                                @if (User.IsInRole("TeacherModerator") || User.IsInRole("Admin"))
-                                {
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Teacher" asp-action="Index">Teachers</a></li>
-                                }
-
-                            </ul>
-                        </div>
-                    </li>
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Member"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#ui-basic-moderator" aria-expanded="false" aria-controls="ui-basic">
-                                <i class="mdi mdi-circle-outline menu-icon"></i>
-                                <span class="menu-title">User Moderators</span>
-                                <i class="menu-arrow"></i>
+                            <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="SimpleUser" asp-action="Index">
+                                <i class="mdi mdi-home menu-icon"></i>
+                                <span class="menu-title">Your Profile</span>
                             </a>
-                            <div class="collapse" id="ui-basic-moderator">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"><a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="CourseModerator" asp-action="Index">Course Moderator</a></li>
-                                    <li class="nav-item"><a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="TeacherModerator" asp-action="Index">Teacher Moderator</a></li>
-                                </ul>
-                            </div>
                         </li>
+                    }
+                    else
+                    {
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                                 <i class="mdi mdi-circle-outline menu-icon"></i>
-                                <span class="menu-title">Users</span>
+                                <span class="menu-title">Controllers</span>
                                 <i class="menu-arrow"></i>
                             </a>
-                            <div class="collapse" id="ui-basic-users">
+                            <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="User" asp-action="Index">Active Users</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="DeactivatedUsers" asp-action="Index"> Blocked Users</a></li>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
+                                    }
+                                    @if (User.IsInRole("CourseModerator") || User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">Courses</a></li>
+                                    }
+                                    @if (User.IsInRole("EventModerator") || User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Events" asp-action="Index">Events</a></li>
+                                    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Title" asp-action="Index">Titles</a></li>
+                                    }
+                                    @if (User.IsInRole("TeacherModerator") || User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Teacher" asp-action="Index">Teachers</a></li>
+                                    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Testimonials" asp-action="Index">Testimonial</a></li>
+                                    }
+
                                 </ul>
                             </div>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#ui-basic-moderator" aria-expanded="false" aria-controls="ui-basic">
+                                    <i class="mdi mdi-circle-outline menu-icon"></i>
+                                    <span class="menu-title">User Moderators</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="collapse" id="ui-basic-moderator">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item"><a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="CourseModerator" asp-action="Index">Course Moderator</a></li>
+                                        <li class="nav-item"><a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="TeacherModerator" asp-action="Index">Teacher Moderator</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#ui-basic-users" aria-expanded="false" aria-controls="ui-basic">
+                                    <i class="mdi mdi-circle-outline menu-icon"></i>
+                                    <span class="menu-title">Users</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="collapse" id="ui-basic-users">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="User" asp-action="Index">Active Users</a></li>
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="DeactivatedUsers" asp-action="Index"> Blocked Users</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
                     }
 
                     <li class="nav-item">
