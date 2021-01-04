@@ -20,9 +20,9 @@
                             <th>
                                 Event Name
                             </th>
-                            <th>
+                            @*<th>
                                 Event Speakers
-                            </th>
+                            </th>*@
                             <th>
                                 Time
                             </th>
@@ -37,14 +37,14 @@
                             <tr>
                                 <td><img style="width: 150px; height: 150px; border-radius: 8px!important" src="~/img/event/@events.Image" /></td>
                                 <td>@events.Title</td>
-                                <td>
+                                @*<td>
                                     <ol>
                                         @foreach (Speakers speaker in events.EventDetails.Speakers)
                                         {
                                             <li>@speaker.SpeakerName</li>
                                         }
                                     </ol>
-                                </td>
+                                </td>*@
                                 <td>@events.EventDate.ToString("MM/dd/yyyy - HH:mm tt")</td>
                                 <td>
                                     <a asp-area="BackendProjectAdmin" asp-controller="Events" asp-action="Detail" asp-route-id="@events.Id" class="btn btn-success mb-2">

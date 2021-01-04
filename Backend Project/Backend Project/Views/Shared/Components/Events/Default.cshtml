@@ -17,7 +17,7 @@
                 <h3>@events.EventDate.ToString("dd MMMM yyyy")</h3>
                 <h4><a href="event-details.html">@events.Title</a></h4>
                 <ul>
-                    <li><i class="fa fa-clock-o"></i>@events.EventTimeLine</li>
+                    <li><i class="fa fa-clock-o"></i>@events.StartTime.ToString("hh:mm") - @events.EndTime.ToString("hh:mm")</li>
                     <li><i class="fa fa-map-marker"></i>@events.EventPlace</li>
                 </ul>
                 <div class="event-content-right">

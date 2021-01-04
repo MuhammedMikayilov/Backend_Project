@@ -139,7 +139,6 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.TagHelpers.input.cache
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.TagHelpers.output.cache
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Backend Project.RazorCoreGenerate.cache
-C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\About\Index.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\CourseModerator\Activation.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\CourseModerator\ChangePassword.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\CourseModerator\ChangeRole.cshtml.g.cs
@@ -237,3 +236,5 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\bin\Debug\netcoreapp3.1\Essential.Interfaces.dll
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\EmailSub\Default.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\ErrorPage.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\About\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\About\Update.cshtml.g.cs

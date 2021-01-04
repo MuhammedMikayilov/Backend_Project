@@ -17,7 +17,11 @@ namespace Backend_Project.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
         public DateTime EventDate { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
-        public string EventTimeLine { get; set; }
+        //public string EventTimeLine { get; set; }
+
+        public DateTime StartTime { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
+        public DateTime EndTime { get; set; }
         public string EventPlace { get; set; }
         public bool isDelete { get; set; }
         [NotMapped]

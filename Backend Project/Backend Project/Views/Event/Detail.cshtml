@@ -36,11 +36,11 @@
                     <div class="event-details-content">
                         <h2>@Model.Title</h2>
                         <ul>
-                            <li><span>time : </span>@Model.EventTimeLine</li>
+                            <li><span>time : </span>@Model.StartTime - @Model.EndTime</li>
                             <li><span>venue : </span>@Model.EventPlace</li>
                         </ul>
                         <p>@Html.Raw(Model.EventDetails.EventDescription)</p>
-                        <div class="speakers-area fix">
+                        @*<div class="speakers-area fix">
                             <h4>speakers</h4>
                             <div class="row">
                                 @foreach (Speakers speakers in Model.EventDetails.Speakers)
@@ -58,7 +58,7 @@
                             </div>
 
 
-                        </div>
+                        </div>*@
                     </div>
                     <div class="reply-area">
                         <h3>LEAVE A REPLY</h3>

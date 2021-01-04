@@ -283,8 +283,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             courseOld.CourseDetail.Assesments = course.CourseDetail.Assesments;
             courseOld.CourseDetail.CoursePrice = course.CourseDetail.CoursePrice;
             #endregion
-
-           
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -292,7 +290,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #endregion
 
         #region Delete and Detail
-
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null) return NotFound();
@@ -357,7 +354,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             {
                 smtp.Send(mess);
             }
-            //return View();
 
             #endregion
         }

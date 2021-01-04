@@ -13,6 +13,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.ViewModels
     {
         public Course Course { get; set; }
         public Event Event { get; set; }
+        public Blogs Blogs { get; set; }
+
 
 
     }

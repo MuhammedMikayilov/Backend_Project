@@ -36,7 +36,7 @@
                     <div class="event-details-content">
                         <h2>@Model.Title</h2>
                         <ul>
-                            <li><span>time : </span>@Model.EventTimeLine</li>
+                            <li><span>time : </span>@Model.StartTime - @Model.EndTime</li>
                             <li><span>venue : </span>@Model.EventPlace</li>
                         </ul>
                         <p>@Html.Raw(Model.EventDetails.EventDescription)</p>

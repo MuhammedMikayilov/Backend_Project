@@ -188,7 +188,7 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                @if (User.IsInRole("Admin"))
+                                @if ( User.IsInRole("Admin"))
                                 {
                                     <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
                                 }

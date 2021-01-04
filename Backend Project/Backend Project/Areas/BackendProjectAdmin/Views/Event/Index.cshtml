@@ -55,7 +55,7 @@
                         <div class="event-content text-left">
                             <h4><a asp-action="Detail" asp-route-id="@events.Id">@events.Title</a></h4>
                             <ul>
-                                <li><span>time:</span> @events.EventTimeLine</li>
+                                <li><span>time:</span> @events.StartTime.ToString("hh:mm") - @events.EndTime.ToString("hh:mm")</li>
                                 <li><span>venue</span> @events.EventPlace</li>
                             </ul>
                             <div class="event-content-right">
