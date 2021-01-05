@@ -1,0 +1,31 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="event-details-area blog-area pt-150 pb-140 bg-white p-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="event-details">
+                    <div class="event-details-img text-center">
+                        <img width="450" src="~/img/event/@Model.Image" alt="event-details">
+                        <div class="event-date">
+                            <h3>@Model.EventDate.ToString("dd") <span>@Model.EventDate.ToString("MMM")</span></h3>
+                        </div>
+                    </div>
+                    <div class="event-details-content text-center">
+                        <h2>@Model.Title</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span>time : </span>@Model.StartTime - @Model.EndTime</li>
+                            <li class="list-group-item"><span>venue : </span>@Model.EventPlace</li>
+                        </ul>
+                        <p>@Html.Raw(Model.EventDetails.EventDescription)</p>
+                        <a asp-action="Index" class="btn btn-info">Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Event Details End -->

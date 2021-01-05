@@ -191,9 +191,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             eventOld.StartTime = events.StartTime;
             eventOld.EndTime = events.EndTime;
 
-            //eventOld.EventDetails.Description = events.BlogDetail.Description;
-            //eventOld.Author = events.Author;
-
             #endregion
 
             await _context.SaveChangesAsync();
@@ -230,6 +227,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Detail(int? id)
+        {
+            Event @event = _context.Events.Include(ev=>ev.EventDetails).FirstOrDefault(ev => ev.Id == id);
+            return View(@event);
         }
 
         #region SenderEmail
