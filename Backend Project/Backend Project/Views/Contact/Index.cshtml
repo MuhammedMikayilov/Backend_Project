@@ -1,4 +1,4 @@
-﻿@model Contact
+﻿@model Bios
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,7 +15,7 @@
                         </div>
                         <div class="contact-add">
                             <h3>address</h3>
-                            <p>@Html.Raw(Model.Adress)</p>
+                            <p>@Html.Raw(Model.Address)</p>
                         </div>
                     </div>
                     <div class="single-contact mb-65">
@@ -24,7 +24,7 @@
                         </div>
                         <div class="contact-add">
                             <h3>phones</h3>
-                            <p>@Model.Phones</p>
+                            <p>@Model.Number</p>
                         </div>
                     </div>
                     <div class="single-contact">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="contact-add">
                             <h3>places</h3>
-                            <p>@Model.Places</p>
+                            <p>@Model.Place</p>
                         </div>
                     </div>
                 </div>

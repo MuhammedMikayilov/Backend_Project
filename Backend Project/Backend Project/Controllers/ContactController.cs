@@ -17,7 +17,7 @@ namespace Backend_Project.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Contacts.FirstOrDefault());
+            return View(_context.Bios.FirstOrDefault());
         }
     }
 }

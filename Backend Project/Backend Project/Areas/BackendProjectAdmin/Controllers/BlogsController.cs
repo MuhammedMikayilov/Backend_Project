@@ -34,7 +34,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         public IActionResult Index()
         {
             List<Blogs> blogs = _context.Blogs.Where(blg => blg.isDelete == false)
-                .Include(blg => blg.BlogDetail).ToList();
+                .Include(blg => blg.BlogDetail).OrderByDescending(blg=>blg.CreatedTime).ToList();
             return View(blogs);
         }
 
@@ -66,9 +66,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 ModelState.AddModelError("Blogs.Title", "This name already exist");
                 return View();
             }
-
-
-
             #region Images
             if (!blog.Photo.IsImage())
             {
@@ -90,10 +87,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             {
                 string message = "Hello dear client. We have a new Blog for you. You can look that." +
                "Kind Regard, Eduhome ";
-                await SenderEmail(email.Email, "New Course", message);
+                await SenderEmail(email.Email, "New Blog", message);
             }
             #endregion
-
 
             blogs.Title = blog.Title;
             blogs.Author = blog.Author;
@@ -166,7 +162,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             blogOld.Title = blog.Title;
             blogOld.BlogDetail.Description = blog.BlogDetail.Description;
             blogOld.Author = blog.Author;
-            
             #endregion
 
             await _context.SaveChangesAsync();

@@ -31,6 +31,7 @@ namespace Backend_Project.Models
         //About us
         [Required]
         public string Address { get; set; }
+        public string Place { get; set; }
         public string Phono1 { get; set; }
         public string Phone2 { get; set; }
         public string EmailUs { get; set; }

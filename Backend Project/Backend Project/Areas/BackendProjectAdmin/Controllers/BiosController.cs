@@ -82,6 +82,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 oldBio.Logo = fileName;
             }
 
+            oldBio.Address = bios.Address;
+            oldBio.Place = bios.Place;
             oldBio.Number = bios.Number;
             oldBio.Phono1 = bios.Phono1;
             oldBio.Phone2 = bios.Phone2;

@@ -3,67 +3,69 @@
     ViewData["Title"] = "Index";
 }
 
-<!-- Banner Area Start -->
-<div class="banner-area-wrapper">
-    <div class="banner-area text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="banner-content-wrapper">
-                        <div class="banner-content">
-                            <h2>blog / right side bar</h2>
+<div class="container">
+    <!-- Banner Area Start -->
+    <div class="banner-area-wrapper">
+        <div class="banner-area text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="banner-content-wrapper">
+                            <div class="banner-content">
+                                <h2>blog / right side bar</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Banner Area End -->
-<!-- Blog Start -->
-<div class="blog-area pt-150 pb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="course-title">
-                    <h3>search blogs</h3>
-                </div>
-                <div class="course-form">
-                    <form id="search" action="get">
-                        <input type="search" id="search-blg" placeholder="Search..." name="search" />
-                        <button id="btnSearch" type="submit">search</button>
-                    </form>
+    <!-- Banner Area End -->
+    <!-- Blog Start -->
+    <div class="blog-area pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="course-title">
+                        <h3>search blogs</h3>
+                    </div>
+                    <div class="course-form">
+                        <form id="search" action="get">
+                            <input type="search" id="search-blg" placeholder="Search..." name="search" />
+                            <button id="btnSearch" type="submit">search</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        @*<div class="category">
-            <div class="main-menu">
-                <nav>
+            @*<div class="category">
+                    <div class="main-menu">
+                        <nav>
 
-                    <ul>
-                        <h1>Categories</h1>
-                        <li><a href="#" data-id="all">All</a></li>
-                        @foreach (Categories categories in Model)
-                        {
-                            <li class="text-danger">
-                        <a 
-                           asp-controller="Blog"
-                           asp-action="Filter"
-                           asp-route-name="@categories.NameCategory">
-                                @categories.NameCategory
-                            </a></li>
-                        }
-                    </ul>
-                </nav>
+                            <ul>
+                                <h1>Categories</h1>
+                                <li><a href="#" data-id="all">All</a></li>
+                                @foreach (Categories categories in Model)
+                                {
+                                    <li class="text-danger">
+                                <a
+                                   asp-controller="Blog"
+                                   asp-action="Filter"
+                                   asp-route-name="@categories.NameCategory">
+                                        @categories.NameCategory
+                                    </a></li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>*@
+
+            <div class="row" id="search-list-blg">
+                @await Component.InvokeAsync("Blogs", 6)
             </div>
-        </div>*@
-
-        <div class="row" id="search-list-blg">
-            @await Component.InvokeAsync("Blogs", 6)
         </div>
     </div>
+    <!-- Blog End -->
 </div>
-<!-- Blog End -->
 
 

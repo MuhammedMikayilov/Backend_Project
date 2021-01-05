@@ -8,7 +8,7 @@
                         <div class="footer-logo pb-25">
                             <a asp-controller="Home" asp-action="Index"><img src="~/img/logo/@Model.Logo" alt="eduhome"></a>
                         </div>
-                        <p>@Model.Description </p>
+                        <p>@Html.Raw(Model.Description) </p>
                         <div class="footer-social">
                             <ul>
                                 <li><a href="@Model.Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
