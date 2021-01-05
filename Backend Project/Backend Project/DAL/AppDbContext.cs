@@ -41,8 +41,8 @@ namespace Backend_Project.DAL
         public DbSet<TeachersDetail> TeachersDetails { get; set; }
         #endregion
         #region Layouts
-        public DbSet<Header> Header { get; set; }
-        public DbSet<Footer> Footer { get; set; }
+        //public DbSet<Header> Header { get; set; }
+        public DbSet<Bios> Bios { get; set; }
         #endregion
         #region Categories
         public DbSet<CategoryCourse> CategoryCourses { get; set; }

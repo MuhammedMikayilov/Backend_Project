@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Backend_Project.Models
 {
-    public class Footer
+    public class Bios
     {
         public int Id { get; set; }
         [Required]
@@ -16,6 +18,15 @@ namespace Backend_Project.Models
         public string Pinterest { get; set; }
         public string Vimeo { get; set; }
         public string Twitter { get; set; }
+
+        //Header us
+        [Required]
+        public string HeaderLogo { get; set; }
+        [NotMapped]
+        public IFormFile PhotoHeader { get; set; }
+        [NotMapped]
+        public IFormFile Photo { get; set; }
+        public string Number { get; set; }
 
         //About us
         [Required]

@@ -110,7 +110,7 @@
                         <ul>
                             @foreach (Categories ctr in Model.Categories)
                             {
-                                <li><a href="#">@ctr.NameCategory (0) <!--will be course's count--></a></li>
+                                <li><a asp-controller="Course" asp-action="FilterCategory" asp-route-name="@ctr.NameCategory">@ctr.NameCategory (0) <!--will be course's count--></a></li>
                             }
                         </ul>
                     </div>

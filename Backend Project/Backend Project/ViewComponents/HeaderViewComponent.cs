@@ -21,7 +21,7 @@ namespace Backend_Project.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await Task.FromResult(_context.Header.FirstOrDefault()));
+            return View(await Task.FromResult(_context.Bios.FirstOrDefault()));
         }
 
     }

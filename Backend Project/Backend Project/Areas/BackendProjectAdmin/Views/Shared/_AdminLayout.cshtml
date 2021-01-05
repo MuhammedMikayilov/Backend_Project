@@ -203,6 +203,10 @@
                                     {
                                         <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="About" asp-action="Index">About</a></li>
                                     }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Bios" asp-action="Index">Bios</a></li>
+                                    }
                                     @if (User.IsInRole("Admin") || User.IsInRole("BlogsWriter"))
                                     {
                                         <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Blogs" asp-action="Index">Blogs</a></li>

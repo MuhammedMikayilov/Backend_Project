@@ -1,0 +1,53 @@
+﻿@model List<Course>
+@{
+    ViewData["Title"] = "FilterCategory";
+}
+
+<h2>FilterCategory</h2>
+<div class="course-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
+                </div>
+                <div class="course-form">
+                    <form id="search">
+                        <input type="search" id="search-crs" placeholder="Search..." name="search" />
+                        <button type="submit" id="search-course">search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="search-list-crs">
+            @foreach (Course crs in Model)
+            {
+                foreach (CategoryCourse item in crs.CategoryCourses)
+                {
+                    if (item.Categories.NameCategory == ViewBag.Name)
+                    {
+                        <div data-id="@crs.CourseName" class="col-md-4 col-sm-6 col-xs-12 my" style="min-height:550px">
+                            <div class="single-course h-100">
+                                <div class="course-img">
+                                    <a asp-controller="Course" asp-action="Detail" asp-route-id="@crs.Id">
+                                        <img src="~/img/course/@crs.Image" alt="course">
+                                        <div class="course-hover">
+                                            <i class="fa fa-link"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="course-content h-100" style="max-height: 220px!important">
+                                    <h3><a asp-controller="Course" asp-action="Detail" asp-route-id="@crs.Id">@crs.CourseName</a></h3>
+                                    @Html.Raw(crs.CourseDescription)
+                                    <a class="default-btn" asp-controller="Course" asp-action="Detail" asp-route-id="@crs.Id">read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</div>

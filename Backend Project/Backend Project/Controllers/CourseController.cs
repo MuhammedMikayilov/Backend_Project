@@ -43,6 +43,14 @@ namespace Backend_Project.Controllers
             return View(courseVM);
         }
 
+        public IActionResult FilterCategory(string name)
+        {
+            ViewBag.Name = name;
+            List<Course> course = _context.Courses.Include(crs => crs.CourseDescription)
+                .Include(crs => crs.CategoryCourses).ThenInclude(crs => crs.Categories).ToList();
+            return View();
+        }
+
         public IActionResult Search(string search)
         {
             if (search == null) return View(_context.Courses.Where(blg => blg.isDelete == false).ToList());
