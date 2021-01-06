@@ -36,10 +36,6 @@ namespace Backend_Project.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-         public IActionResult SendMessage()
-        {
-            return View();
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SendMessage(CommentVM comment)

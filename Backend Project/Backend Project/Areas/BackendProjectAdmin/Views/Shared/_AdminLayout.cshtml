@@ -211,6 +211,10 @@
                                     {
                                         <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Blogs" asp-action="Index">Blogs</a></li>
                                     }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Categories" asp-action="Index">Categories</a></li>
+                                    }
                                     @if (User.IsInRole("CourseModerator") || User.IsInRole("Admin"))
                                     {
                                         <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Course" asp-action="Index">Courses</a></li>
@@ -223,6 +227,7 @@
                                     {
                                         <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Slider" asp-action="Index">Slider</a></li>
                                         <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Title" asp-action="Index">Titles</a></li>
+                                        <li class="nav-item"> <a class="nav-link" asp-area="BackendProjectAdmin" asp-controller="Tags" asp-action="Index">Tags</a></li>
                                     }
                                     @if (User.IsInRole("TeacherModerator") || User.IsInRole("Admin"))
                                     {

@@ -1,0 +1,27 @@
+﻿@model Backend_Project.Models.Tags
+
+<body>
+
+<div>
+    <h4>Tags</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TagName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TagName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.hasTags)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.hasTags)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
