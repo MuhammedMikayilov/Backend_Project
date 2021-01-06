@@ -14,27 +14,27 @@ using System.Threading.Tasks;
 namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 {
     [Area("BackendProjectAdmin")]
-    [Authorize(Roles = "Admin")]
-    public class UserController : Controller
+    [Authorize(Roles = "Admin, BlogsWriter")]
+    public class BlogsModeratorController : Controller
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly IWebHostEnvironment _env;
         private readonly SignInManager<AppUser> _signInManager;
 
-
-        public UserController(UserManager<AppUser> userManager, IWebHostEnvironment env, AppDbContext context, SignInManager<AppUser> signInManager)
+        public BlogsModeratorController(UserManager<AppUser> userManager,
+            IWebHostEnvironment env,
+            AppDbContext context,
+            SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _env = env;
             _context = context;
             _signInManager = signInManager;
         }
-        #region Index
         public async Task<IActionResult> Index()
         {
-            List<AppUser> users = _userManager.Users.Where(u => u.isDelete == false)
-                .OrderByDescending(us=>us.Firstname).ToList();
+            List<AppUser> users = _userManager.Users.Where(u => u.isDelete == false).ToList();
             List<UserVM> usersVM = new List<UserVM>();
             foreach (AppUser user in users)
             {
@@ -48,9 +48,60 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                     IsDelete = user.isDelete,
                     Role = (await _userManager.GetRolesAsync(user))[0],
                 };
+
                 usersVM.Add(userVM);
             }
             return View(usersVM);
+        }
+
+        #region CRUD
+        #region Create User
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(RegisterVM register)
+        {
+            if (!ModelState.IsValid) return View();
+            AppUser newUser = new AppUser()
+            {
+                Firstname = register.Firstname,
+                Lastname = register.Lastname,
+                UserName = register.Username,
+                Email = register.Email
+            };
+            #region check username
+            bool isExistUserName = _userManager.Users.Where(us => us.isDelete == false && User.IsInRole("BlogsWriter")).Any(us => us.UserName == newUser.UserName);
+            if (isExistUserName)
+            {
+                ModelState.AddModelError("", "This username already exist. Please use another username");
+                return View();
+            }
+            #endregion
+
+            #region Check email
+            bool isExistEmail = _userManager.Users.Where(us => us.isDelete == false && User.IsInRole("BlogsWriter")).Any(us => us.Email == newUser.Email);
+            if (isExistEmail)
+            {
+                ModelState.AddModelError("", "This Email already exist. Please use another username");
+                return View();
+            }
+            #endregion
+
+            IdentityResult identityResult = await _userManager.CreateAsync(newUser, register.Password);
+
+            if (!identityResult.Succeeded)
+            {
+                foreach (var error in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View();
+            }
+            await _userManager.AddToRoleAsync(newUser, Roles.BlogsWriter.ToString());
+            return RedirectToAction(nameof(Index));
         }
         #endregion
 
@@ -82,7 +133,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         }
         #endregion
 
-        #region Change Passwoar
+        #region Change Passwoard
         public IActionResult ChangePassword(string id)
         {
             return View();
@@ -112,6 +163,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             AppUser user = _userManager.Users.FirstOrDefault(c => c.Id == id);
             if (user == null) return NotFound();
+            //UserVM userVM = await GetUserVMAsync(user);
             return View(user);
         }
 
@@ -126,8 +178,8 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             UserVM userVM = await GetUserVMAsync(user);
 
             #region check username
-            bool isExistUserName = _userManager.Users.Where(us=>us.isDelete==false).Any(us => us.UserName == userNewParam.UserName);
-            AppUser hasUserName = _userManager.Users.Where(us => us.isDelete == false).FirstOrDefault(us=>us.Id== id);
+            bool isExistUserName = _userManager.Users.Where(us => us.isDelete == false || User.IsInRole("BlogsWriter")).Any(us => us.UserName == userNewParam.UserName);
+            AppUser hasUserName = _userManager.Users.Where(us => us.isDelete == false || User.IsInRole("BlogsWriter")).FirstOrDefault(us => us.Id == id);
             if (isExistUserName)
             {
                 if (hasUserName.UserName != userNewParam.UserName)
@@ -135,12 +187,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                     ModelState.AddModelError("UserName", "This username already exist. Please use another username");
                     return View();
                 }
-                
+
             }
             #endregion
             #region Check email
-            bool isExistEmail = _userManager.Users.Any(us => us.Email == userNewParam.Email);
-            AppUser hasEmail = _userManager.Users.Where(us => us.isDelete == false).FirstOrDefault(us => us.Id == id);
+            bool isExistEmail = _userManager.Users.Where(us => us.isDelete == false || User.IsInRole("BlogsWriter")).Any(us => us.Email == userNewParam.Email);
+            AppUser hasEmail = _userManager.Users.Where(us => us.isDelete == false || User.IsInRole("BlogsWriter")).FirstOrDefault(us => us.Id == id);
             if (isExistEmail)
             {
                 if (hasEmail.Email != userNewParam.Email)
@@ -168,7 +220,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Change Role
         public async Task<IActionResult> ChangeRole(string id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction("ErrorPage", "Home");
             AppUser user = await _userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
             UserVM userVM = await GetUserVMAsync(user);
@@ -185,26 +237,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (user == null) return NotFound();
             string oldRole = (await _userManager.GetRolesAsync(user))[0];
 
-            switch (role)
-            {
-                case "Admin":
-                    if (!user.UserName.ToLower().Contains("admin"))
-                    {
-                        user.UserName = user.UserName + "Admin";
-                    }
-                    break;
-                default:
-                    if (user.UserName.Contains("Admin"))
-                    {
-                        user.UserName = user.UserName.Replace("Admin", "");
-                    }
-                    break;
-            }
-
-
-
             IdentityResult identityResult = await _userManager.AddToRoleAsync(user, role);
-
 
             if (!identityResult.Succeeded)
             {
@@ -232,7 +265,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         private async Task<UserVM> GetUserVMAsync(AppUser user)
         {
             List<string> roles = new List<string> { Roles.Admin.ToString(), Roles.CourseModerator.ToString(),
-                Roles.EventModerator.ToString(), Roles.TeacherModerator.ToString(), Roles.Member.ToString() };
+                Roles.EventModerator.ToString(), Roles.BlogsWriter.ToString(), Roles.Member.ToString() };
             UserVM userVM = new UserVM
             {
                 Id = user.Id,
@@ -245,5 +278,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             };
             return userVM;
         }
+
+        #endregion
     }
 }

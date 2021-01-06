@@ -255,3 +255,10 @@ C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend 
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Bios\Update.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\Events\Detail.cshtml.g.cs
 C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Sidebar\Default.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\Index.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\Create.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\Activation.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\ChangePassword.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\UpdateUser.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\ChangeRole.cshtml.g.cs
+C:\Users\maham\OneDrive\Desktop\Project\Backend_Project\Backend Project\Backend Project\obj\Debug\netcoreapp3.1\Razor\Areas\BackendProjectAdmin\Views\BlogsModerator\Detail.cshtml.g.cs

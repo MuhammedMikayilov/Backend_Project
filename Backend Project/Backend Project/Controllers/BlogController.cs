@@ -44,7 +44,6 @@ namespace Backend_Project.Controllers
 
         public IActionResult FilterCategory(int? id)
         {
-
             if (id == null) return NotFound();
             List<CategoryBlogs> categoryBlogs = _context.CategoryBlogs.Include(c => c.Blogs)
                 .Where(c => c.CategoriesId == id).ToList();

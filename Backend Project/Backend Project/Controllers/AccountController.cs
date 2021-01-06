@@ -131,6 +131,10 @@ namespace Backend_Project.Controllers
         //    {
         //        await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
         //    }
+        //    if (!await _roleManager.RoleExistsAsync("BlogsWriter"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = "BlogsWriter" });
+        //    }
         //    if (!await _roleManager.RoleExistsAsync("CourseModerator"))
         //    {
         //        await _roleManager.CreateAsync(new IdentityRole { Name = "CourseModerator" });

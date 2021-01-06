@@ -8,7 +8,7 @@
         <div class="card-body">
             <h4 class="card-title">Course Moderators</h4>
             <div class="">
-                <a asp-area="BackendProjectAdmin" asp-controller="TeacherModerator" asp-action="Create" class="btn btn-success">Create Moderator</a>
+                <a asp-area="BackendProjectAdmin" asp-controller="BlogsModerator" asp-action="Create" class="btn btn-success">Create Moderator</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -31,7 +31,7 @@
                     <tbody>
                         @foreach (UserVM user in Model)
                         {
-                            if (user.Role == "TeacherModerator")
+                            if (user.Role == "BlogsWriter")
                             {
                                 <tr>
                                     <td>@user.Name @user.Lastname</td>
@@ -42,7 +42,7 @@
                                     <td>
                                         @if (user.Username != User.Identity.Name)
                                         {
-                                            <a asp-controller="TeacherModerator" asp-action="Activation" asp-route-id="@user.Id" class="btn btn-outline-danger mb-2">
+                                            <a asp-controller="BlogsModerator" asp-action="Activation" asp-route-id="@user.Id" class="btn btn-outline-danger mb-2">
                                                 Deactivate
                                             </a>
                                         }
@@ -50,20 +50,20 @@
                                         @if (user.Username == User.Identity.Name)
                                         {
                                             <br />
-                                            <a asp-controller="TeacherModerator" asp-action="ChangePassword" asp-route-id="@user.Id" class="btn btn-outline-warning mb-2">
+                                            <a asp-controller="BlogsModerator" asp-action="ChangePassword" asp-route-id="@user.Id" class="btn btn-outline-warning mb-2">
                                                 Change Pass
                                             </a>
-                                            <a asp-controller="TeacherModerator" asp-action="UpdateUser" asp-route-id="@user.Id" class="btn btn-outline-pinterest mb-2">
+                                            <a asp-controller="BlogsModerator" asp-action="UpdateUser" asp-route-id="@user.Id" class="btn btn-outline-pinterest mb-2">
                                                 Update
                                             </a>
                                         }
 
                                         @if (user.Username != User.Identity.Name)
                                         {
-                                            <a asp-controller="TeacherModerator" asp-action="ChangeRole" asp-route-id="@user.Id" class="btn btn-outline-info mb-2">
+                                            <a asp-controller="BlogsModerator" asp-action="ChangeRole" asp-route-id="@user.Id" class="btn btn-outline-info mb-2">
                                                 Change Role
                                             </a>
-                                            <a asp-controller="TeacherModerator" asp-action="Detail" asp-route-id="@user.Id" class="btn btn-outline-warning mb-2">
+                                            <a asp-controller="BlogsModerator" asp-action="Detail" asp-route-id="@user.Id" class="btn btn-outline-warning mb-2">
                                                 Detail
                                             </a>
                                         }
@@ -77,5 +77,3 @@
         </div>
     </div>
 </div>
-
-
