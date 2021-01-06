@@ -48,26 +48,14 @@ namespace Backend_Project.Controllers
             
             if (id == null) return NotFound();
             List<CategoryCourse> categoryCourses = _context.CategoryCourses.Include(c => c.Course)
-                .Where(c => c.CategoriesId == id).ToList();
+                .Where(c => c.CategoriesId == id).ToList(); 
             if (categoryCourses == null) return RedirectToAction("ErrorPage", "Home");
             List<Course> courses = categoryCourses.Select(x => x.Course).Where(c => c.isDelete == false).ToList();
             if (courses == null) return NotFound();
 
             return View("~/Views/Shared/Components/Course/Default.cshtml", courses);
         }
-
-        public IActionResult FilterTags(int? id)
-        {
-
-            if (id == null) return NotFound();
-            List<TagCourse> coursesCategory = _context.TagCourses.Include(c => c.Course)
-                .Where(c => c.TagsId == id).ToList();
-            if (coursesCategory == null) return NotFound();
-            List<Course> courses = coursesCategory.Select(x => x.Course).Where(c => c.isDelete == false).ToList();
-            if (courses == null) return NotFound();
-
-            return View(courses);
-        }
+       
 
         public IActionResult Search(string search)
         {

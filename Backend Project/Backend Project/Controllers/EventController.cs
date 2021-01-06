@@ -38,6 +38,19 @@ namespace Backend_Project.Controllers
             return View(events);
         }
 
+        public IActionResult FilterCategory(int? id)
+        {
+
+            if (id == null) return NotFound();
+            List<CategoryEvents> categoryEvents = _context.CategoryEvents.Include(c => c.Event)
+                .Where(c => c.CategoriesId == id).ToList();
+            if (categoryEvents == null) return RedirectToAction("ErrorPage", "Home");
+            List<Event> events = categoryEvents.Select(x => x.Event).Where(c => c.isDelete == false).ToList();
+            if (events == null) return NotFound();
+
+            return View("~/Views/Shared/Components/Blogs/Default.cshtml", events);
+        }
+
         public IActionResult Search(string search)
         {
             if (search == null) return View(_context.Blogs.Where(blg => blg.isDelete == false).ToList());

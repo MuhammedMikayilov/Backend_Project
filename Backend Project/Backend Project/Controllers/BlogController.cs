@@ -33,11 +33,26 @@ namespace Backend_Project.Controllers
             if (id == null) return NotFound();
             BlogVM blogVM = new BlogVM()
             {
-                Blog = _context.Blogs.Where(blg => blg.isDelete == false).Include(blg => blg.BlogDetail).Include(blg => blg.TagToBlogs)
-                .ThenInclude(blg => blg.Tags).FirstOrDefault(blg => blg.Id == id),
+                Blog = _context.Blogs.Where(blg => blg.isDelete == false).Include(blg => blg.BlogDetail)
+                .Include(blg => blg.TagToBlogs).ThenInclude(blg => blg.Tags)
+                .Include(blg => blg.CategoryBlogs).ThenInclude(blg => blg.Categories)
+                .FirstOrDefault(blg => blg.Id == id),
                 Categories = _context.Categories.ToList()
             };
             return View(blogVM);
+        }
+
+        public IActionResult FilterCategory(int? id)
+        {
+
+            if (id == null) return NotFound();
+            List<CategoryBlogs> categoryBlogs = _context.CategoryBlogs.Include(c => c.Blogs)
+                .Where(c => c.CategoriesId == id).ToList();
+            if (categoryBlogs == null) return RedirectToAction("ErrorPage", "Home");
+            List<Blogs> blogs = categoryBlogs.Select(x => x.Blogs).Where(c => c.isDelete == false).ToList();
+            if (blogs == null) return NotFound();
+
+            return View("~/Views/Shared/Components/Blogs/Default.cshtml", blogs);
         }
 
         public IActionResult Search(string search)
