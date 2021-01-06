@@ -1,0 +1,31 @@
+﻿@model CommentVM
+
+    <div class="reply-area">
+        <h3>LEAVE A REPLY</h3>
+        <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut<br> the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+        <form method="post" asp-controller="Subscribe" asp-action="SendMessage">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Name</p>
+                    <input asp-for="@Model.Name">
+                </div>
+                <div class="col-md-12">
+                    <p>Email</p>
+                    <input asp-for="@Model.Email">
+                </div> 
+                <div class="col-md-12">
+                    <p>Password</p>
+                    <input asp-for="@Model.Password">
+                </div>
+                <div class="col-md-12">
+                    <p>Subject</p>
+                    <input asp-for="@Model.Subject">
+                    <p>Massage</p>
+                    <textarea asp-for="@Model.Message" cols="15" rows="10"></textarea>
+                </div>
+            </div>
+            @*<a class="reply-btn" href="#" data-text="send"><span>send message</span></a>*@
+            <button type="submit" class="reply-btn btn btn-info">Send Message</button>
+            <p class="form-messege"></p>
+        </form>
+    </div>
