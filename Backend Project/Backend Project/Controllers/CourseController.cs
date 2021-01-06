@@ -43,12 +43,30 @@ namespace Backend_Project.Controllers
             return View(courseVM);
         }
 
-        public IActionResult FilterCategory(string name)
+        public IActionResult FilterCategory(int? id)
         {
-            ViewBag.Name = name;
-            List<Course> course = _context.Courses.Include(crs => crs.CourseDescription)
-                .Include(crs => crs.CategoryCourses).ThenInclude(crs => crs.Categories).ToList();
-            return View();
+            
+            if (id == null) return NotFound();
+            List<CategoryCourse> categoryCourses = _context.CategoryCourses.Include(c => c.Course)
+                .Where(c => c.CategoriesId == id).ToList();
+            if (categoryCourses == null) return RedirectToAction("ErrorPage", "Home");
+            List<Course> courses = categoryCourses.Select(x => x.Course).Where(c => c.isDelete == false).ToList();
+            if (courses == null) return NotFound();
+
+            return View("~/Views/Shared/Components/Course/Default.cshtml", courses);
+        }
+
+        public IActionResult FilterTags(int? id)
+        {
+
+            if (id == null) return NotFound();
+            List<TagCourse> coursesCategory = _context.TagCourses.Include(c => c.Course)
+                .Where(c => c.TagsId == id).ToList();
+            if (coursesCategory == null) return NotFound();
+            List<Course> courses = coursesCategory.Select(x => x.Course).Where(c => c.isDelete == false).ToList();
+            if (courses == null) return NotFound();
+
+            return View(courses);
         }
 
         public IActionResult Search(string search)
@@ -60,48 +78,8 @@ namespace Backend_Project.Controllers
             return PartialView("_SearchCoursePartial", course);
         }
 
-      
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[ActionName("Detail")]
-        //public ActionResult SendEmail(string receiver, string subject, string message)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            var senderEmail = new MailAddress("mahammadsm@code.edu.az", "Mahammad");
-        //            var receiverEmail = new MailAddress(receiver, "Receiver");
-        //            var password = "M34269594152875d";
-        //            var sub = subject;
-        //            var body = message;
-        //            var smtp = new SmtpClient
-        //            {
-        //                Host = "smtp.gmail.com",
-        //                Port = 587,
-        //                EnableSsl = true,
-        //                DeliveryMethod = SmtpDeliveryMethod.Network,
-        //                UseDefaultCredentials = false,
-        //                Credentials = new NetworkCredential(senderEmail.Address, password)
-        //            };
-        //            using (var mess = new MailMessage(senderEmail, receiverEmail)
-        //            {
-        //                Subject = subject,
-        //                Body = body
-        //            })
-        //            {
-        //                smtp.Send(mess);
-        //            }
-        //            return RedirectToAction(nameof(Detail));
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        ViewBag.Error = "Some Error";
-        //    }
-        //    return View();
-        //}
 
     }
+
+
 }

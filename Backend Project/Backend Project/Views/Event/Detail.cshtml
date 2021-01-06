@@ -41,24 +41,24 @@
                         </ul>
                         <p>@Html.Raw(Model.EventDetails.EventDescription)</p>
                         @*<div class="speakers-area fix">
-                            <h4>speakers</h4>
-                            <div class="row">
-                                @foreach (Speakers speakers in Model.EventDetails.Speakers)
-                                {
-                                    <div class="single-speaker col-md-6">
-                                        <div class="speaker-img">
-                                            <img src="~/img/event/@speakers.Image" alt="speaker">
+                                <h4>speakers</h4>
+                                <div class="row">
+                                    @foreach (Speakers speakers in Model.EventDetails.Speakers)
+                                    {
+                                        <div class="single-speaker col-md-6">
+                                            <div class="speaker-img">
+                                                <img src="~/img/event/@speakers.Image" alt="speaker">
+                                            </div>
+                                            <div class="speaker-name">
+                                                <h5>@speakers.SpeakerName</h5>
+                                                <p>@speakers.Position </p>
+                                            </div>
                                         </div>
-                                        <div class="speaker-name">
-                                            <h5>@speakers.SpeakerName</h5>
-                                            <p>@speakers.Position </p>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
+                                    }
+                                </div>
 
 
-                        </div>*@
+                            </div>*@
                     </div>
                     <div class="reply-area">
                         <h3>LEAVE A REPLY</h3>
@@ -88,38 +88,7 @@
             </div>
             <div class="col-md-4">
                 <div class="blog-sidebar right">
-                    <div class="single-blog-widget mb-50">
-                        <h3>search</h3>
-                        <div class="blog-search">
-                            <form id="search" action="#">
-                                <input type="search" placeholder="Search..." name="search" />
-                                <button type="submit">
-                                    <span><i class="fa fa-search"></i></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>categories</h3>
-                        <ul>
-                            <li><a href="#">CSS Engineering (10)</a></li>
-                            <li><a href="#">Political Science (12)</a></li>
-                            <li><a href="#">Micro Biology (08)</a></li>
-                            <li><a href="#">HTML5 &amp; CSS3 (15)</a></li>
-                            <li><a href="#">Web Design (20)</a></li>
-                            <li><a href="#">PHP (23)</a></li>
-                        </ul>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <div class="single-blog-banner">
-                            <a href="blog-details.html" id="blog"><img src="~/img/blog/blog-img.jpg" alt="blog"></a>
-                            <h2>best<br> eductaion<br> theme</h2>
-                        </div>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>latest post</h3>
-                        @await Component.InvokeAsync("LatestBlog")
-                    </div>
+                    @await Component.InvokeAsync("Sidebar")
                     <div class="single-blog-widget">
                         <h3>tags</h3>
                         <div class="single-tag">
@@ -129,8 +98,8 @@
                             }
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Event Details End -->
+    <!-- Event Details End -->

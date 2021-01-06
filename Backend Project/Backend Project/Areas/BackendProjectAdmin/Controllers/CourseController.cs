@@ -214,7 +214,7 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
                 }
             }
 
-            if (course == null) return Content("Null");
+            if (course == null) return RedirectToAction("ErrorPage", "Home");
             if (course.Photo != null)
             {
                 if (!course.Photo.IsImage())
@@ -236,39 +236,17 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             #region Many to Many
             //List<CategoryCourse> categoryCourses = new List<CategoryCourse>();
-            //List<TagCourse> tagCourses = new List<TagCourse>();
+            List<TagCourse> tagCourses = new List<TagCourse>();
 
-            //if (CategId.Count == 0)
-            //{
-            //    ModelState.AddModelError("", "Category cannot be empty");
-            //    return View();
-            //}
-
-            //foreach (var item in CategId)
-            //{
-            //    CategoryCourse categoryCourse = new CategoryCourse()
-            //    {
-            //        CourseId = course.Id,
-            //        CategoriesId = item
-            //    };
-            //    categoryCourses.Add(categoryCourse);
-            //}
-
-            //if (TagId.Count == 0)
-            //{
-            //    ModelState.AddModelError("", "Tag cannot be empty");
-            //    return View();
-            //}
-
-            //foreach (var item in TagId)
-            //{
-            //    TagCourse tagCourse = new TagCourse()
-            //    {
-            //        CourseId = newCourse.Id,
-            //        TagsId = item
-            //    };
-            //    tagCourses.Add(tagCourse);
-            //}
+            foreach (var item in TagId)
+            {
+                TagCourse tagCourse = new TagCourse()
+                {
+                    CourseId = course.Id,
+                    TagsId = item
+                };
+                tagCourses.Add(tagCourse);
+            }
             #endregion
 
             #region Update line
@@ -297,7 +275,9 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null) return NotFound();
-            Course course = await _context.Courses.Include(c => c.CourseDetail).FirstOrDefaultAsync(c => c.Id == id);
+            Course course = await _context.Courses.Include(c => c.CourseDetail)
+                .Include(c=>c.CategoryCourses).ThenInclude(c=>c.Categories)
+                .Include(c=>c.TagCourses).ThenInclude(c=>c.Tags).FirstOrDefaultAsync(c => c.Id == id);
             if (course == null) return NotFound();
             return View(course);
         }
