@@ -17,7 +17,7 @@
     <ul>
         @foreach (Categories ctr in Model)
         {
-            <li><a asp-action="FilterCategory" asp-route-id="@ctr.Id">@ctr.NameCategory (0) <!--will be course's count--></a></li>
+            <li><a asp-action="FilterCategory" asp-route-id="@ctr.Id">@ctr.NameCategory<!--will be course's count--></a></li>
         }
     </ul>
 </div>

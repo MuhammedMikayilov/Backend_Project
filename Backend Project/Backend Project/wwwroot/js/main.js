@@ -232,22 +232,6 @@ $(document).ready(function () {
     $(document).on('click', '#search-list-header', function (e) {
         e.preventDefault();
     })
-
-
-    //$(document).on('click', '#mc-embedded-subscribe', function (e) {
-    //    //e.preventDefault()
-    //    let val = $("#mce-EMAIL").val()
-    //    console.log(val)
-    //    $.ajax({
-    //        url: "/Subscribe/Index?EMAIL=" + val,
-    //        type: 'GET',
-    //        success: function (res) {
-    //            console.log(res)
-    //        }
-    //    })
-    //})
-
-
 })
 //----Searching end----\\
 

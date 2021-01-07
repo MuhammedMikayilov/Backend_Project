@@ -37,29 +37,6 @@
                     </div>
                 </div>
             </div>
-
-            @*<div class="category">
-                    <div class="main-menu">
-                        <nav>
-
-                            <ul>
-                                <h1>Categories</h1>
-                                <li><a href="#" data-id="all">All</a></li>
-                                @foreach (Categories categories in Model)
-                                {
-                                    <li class="text-danger">
-                                <a
-                                   asp-controller="Blog"
-                                   asp-action="Filter"
-                                   asp-route-name="@categories.NameCategory">
-                                        @categories.NameCategory
-                                    </a></li>
-                                }
-                            </ul>
-                        </nav>
-                    </div>
-                </div>*@
-
             <div class="row" id="search-list-blg">
                 @await Component.InvokeAsync("Blogs", 6)
             </div>

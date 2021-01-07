@@ -163,7 +163,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             if (id == null) return NotFound();
             AppUser user = _userManager.Users.FirstOrDefault(c => c.Id == id);
             if (user == null) return NotFound();
-            //UserVM userVM = await GetUserVMAsync(user);
             return View(user);
         }
 

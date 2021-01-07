@@ -57,13 +57,15 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             if (!ModelState.IsValid) return RedirectToAction("ErrorPage", "Home");
 
+
+
             Blogs blogs = new Blogs();
             BlogDetail blogDetail = new BlogDetail();
             bool isExist = _context.Blogs.Where(cr => cr.isDelete == false)
-               .Any(cr => cr.Title == blog.Title);
+               .Any(cr => cr.Title.ToLower() == blog.Title.ToLower());
             if (isExist)
             {
-                ModelState.AddModelError("Blogs.Title", "This name already exist");
+                ModelState.AddModelError("", "This name already exist");
                 return View();
             }
             #region Images
