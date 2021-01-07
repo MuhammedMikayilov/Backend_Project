@@ -21,6 +21,39 @@
                             <li class="list-group-item"><span>venue : </span>@Model.EventPlace</li>
                         </ul>
                         <p>@Html.Raw(Model.EventDetails.EventDescription)</p>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="list-group">
+                                    <h5>Tags</h5>
+                                    @foreach (TagsToEvents item in Model.TagsToEvents)
+                                    {
+                                        <li class="list-group-item">@item.Tags.TagName</li>
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4">
+                                <ul class="list-group">
+                                    <h5>Speakers</h5>
+                                    @foreach (EventSpeakers item in Model.EventSpeakers)
+                                    {
+                                        <li class="list-group-item">@item.Speakers.SpeakerName</li>
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4">
+                                <ul class="list-group">
+                                    <h5>Categories</h5>
+                                    @foreach (CategoryEvents item in Model.CategoryEvents)
+                                    {
+                                        <li class="list-group-item">@item.Categories.NameCategory</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
                         <a asp-action="Index" class="btn btn-info">Go Back</a>
                     </div>
                 </div>

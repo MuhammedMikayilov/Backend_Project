@@ -37,7 +37,6 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         {
             List<Event> events = _context.Events.Where(cr => cr.isDelete == false)
                 .Include(cr => cr.EventDetails)
-                //.Include(cr => cr.EventDetails.Speakers)
                 .Include(cr => cr.TagsToEvents).ThenInclude(cr => cr.Tags)
                 .OrderByDescending(cr => cr.CreatedTime).ToList();
             return View(events);
@@ -47,14 +46,23 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
         #region Create
         public IActionResult Create()
         {
-            ViewBag.Tags = _context.Tags.ToList();
+            ViewBag.Tags = _context.Tags.Take(6).ToList();
+            ViewBag.Speakers = _context.Speakers.Take(6).ToList();
+            ViewBag.Category = _context.Categories.Take(6).ToList();
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Event events, List<int> TagsId, List<int> SpeakerId)
+        public async Task<IActionResult> Create(Event events, List<int> TagsId, List<int> SpeakerId, List<int> CategId)
         {
-            ViewBag.Tags = _context.Tags.ToList();
+            ViewBag.Tags = _context.Tags.Take(6).ToList();
+            ViewBag.Speakers = _context.Speakers.Take(6).ToList();
+            ViewBag.Category = _context.Categories.Take(6).ToList();
+
+            if (ViewBag.Tags.Count>6)
+            {
+                ViewBag.Tags = _context.Tags.Skip(6).Take(6).ToList();
+            }
 
             bool isExist = _context.Events.Where(cr => cr.isDelete == false)
                 .Any(cr => cr.Title == events.Title);
@@ -69,6 +77,12 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
             {
                 ModelState.AddModelError("","Error");
                 return View();
+            }
+
+            if(events.Photo == null)
+            {
+                ModelState.AddModelError("", "Photo cannot null");
+                return View(newEvent);
             }
 
             if (!events.Photo.IsImage())
@@ -87,8 +101,10 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             #region Many to Many
             List<TagsToEvents> tagCourses = new List<TagsToEvents>();
+            List<EventSpeakers> eventSpeakers = new List<EventSpeakers>();
+            List<CategoryEvents> categoryEvents = new List<CategoryEvents>();
 
-
+            #region Tags
             if (TagsId.Count == 0)
             {
                 ModelState.AddModelError("", "Tag cannot be empty");
@@ -97,17 +113,57 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
             foreach (var item in TagsId)
             {
-                TagsToEvents tagCourse = new TagsToEvents()
+                TagsToEvents tagEvent = new TagsToEvents()
                 {
                     EventsId = newEvent.Id,
                     TagsId = item
                 };
-                tagCourses.Add(tagCourse);
+                tagCourses.Add(tagEvent);
+                await _context.TagToEvents.AddAsync(tagEvent);
             }
+            #endregion
+            #region Speakers
+            if (SpeakerId.Count == 0)
+            {
+                ModelState.AddModelError("", "Speaker cannot be empty");
+                return View();
+            }
+
+            foreach (var item in SpeakerId)
+            {
+                EventSpeakers eventSpeaker = new EventSpeakers()
+                {
+                    EventId = newEvent.Id,
+                    SpeakersId = item
+                };
+                eventSpeakers.Add(eventSpeaker);
+                await _context.EventSpeakers.AddAsync(eventSpeaker);
+            }
+            #endregion
+            #region Categories
+            if (CategId.Count == 0)
+            {
+                ModelState.AddModelError("", "Category cannot be empty");
+                return View();
+            }
+
+            foreach (var item in CategId)
+            {
+                CategoryEvents categoryEv = new CategoryEvents()
+                {
+                    EventId = newEvent.Id,
+                    CategoriesId = item
+                };
+                categoryEvents.Add(categoryEv);
+                await _context.CategoryEvents.AddAsync(categoryEv);
+            }
+            #endregion
 
             #endregion
             #region Courses
             newEvent.TagsToEvents = tagCourses;
+            newEvent.EventSpeakers = eventSpeakers;
+            newEvent.CategoryEvents = categoryEvents;
             events.CreatedTime = DateTime.Now;
             newEvent.CreatedTime = events.CreatedTime;
             await _context.Events.AddAsync(newEvent);
@@ -231,7 +287,11 @@ namespace Backend_Project.Areas.BackendProjectAdmin.Controllers
 
         public IActionResult Detail(int? id)
         {
-            Event @event = _context.Events.Include(ev=>ev.EventDetails).FirstOrDefault(ev => ev.Id == id);
+            Event @event = _context.Events.Include(ev=>ev.EventDetails)
+                .Include(e=>e.TagsToEvents).ThenInclude(e=>e.Tags)
+                .Include(e => e.CategoryEvents).ThenInclude(e => e.Categories)
+                .Include(e => e.EventSpeakers).ThenInclude(e => e.Speakers)
+                .FirstOrDefault(ev => ev.Id == id);
             return View(@event);
         }
 

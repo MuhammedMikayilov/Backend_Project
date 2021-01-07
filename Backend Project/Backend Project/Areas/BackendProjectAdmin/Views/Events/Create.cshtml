@@ -3,6 +3,7 @@
     ViewData["Title"] = "Create";
 }
 
+
 <div class="container bg-white p-5">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
@@ -65,7 +66,7 @@
 
 
                 <div class="row" style="margin-left:20%">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h4 class="text-info">Tags</h4>
                         @foreach (Tags tag in ViewBag.Tags)
                         {
@@ -76,6 +77,32 @@
                                 </label>
                             </div>
                         }
+
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-info">Speakers</h4>
+                        @foreach (Speakers speaker in ViewBag.Speakers)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="SpeakerId" value="@speaker.Id">
+                                <label class="form-check-label">
+                                    @speaker.SpeakerName
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-info">Categories</h4>
+                        @foreach (Categories categ in ViewBag.Category)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="CategId" value="@categ.Id">
+                                <label class="form-check-label">
+                                    @categ.NameCategory
+                                </label>
+                            </div>
+                        }
+
                     </div>
                 </div>
                 <div class="text-center">
@@ -86,7 +113,6 @@
         </div>
     </div>
 </div>
-
 
 <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 <script>
@@ -110,4 +136,14 @@
             fileReader.readAsDataURL(file, "UTF-8");
         });
     });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".mul-select").select2({
+            placeholder: "select country", //placeholder
+            tags: true,
+            tokenSeparators: ['/', ',', ';', " "]
+        });
+    })
 </script>
