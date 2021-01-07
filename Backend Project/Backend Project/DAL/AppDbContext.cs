@@ -31,6 +31,8 @@ namespace Backend_Project.DAL
         public DbSet<Event> Events { get; set; }
         public DbSet<EventDetails> EventDetails { get; set; }
         public DbSet<Speakers> Speakers { get; set; }
+        public DbSet<EventSpeakers> EventSpeakers { get; set; }
+
         #endregion
         #region Blogs
         public DbSet<Blogs> Blogs { get; set; }

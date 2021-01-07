@@ -4,14 +4,16 @@ using Backend_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210107002647_ChangeSpeaker")]
+    partial class ChangeSpeaker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -511,34 +513,21 @@ namespace Backend_Project.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpeakerName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EventId")
                         .IsUnique();
 
                     b.ToTable("EventDetails");
-                });
-
-            modelBuilder.Entity("Backend_Project.Models.EventSpeakers", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpeakersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("SpeakersId");
-
-                    b.ToTable("EventSpeakers");
                 });
 
             modelBuilder.Entity("Backend_Project.Models.Notice", b =>
@@ -604,27 +593,6 @@ namespace Backend_Project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
-                });
-
-            modelBuilder.Entity("Backend_Project.Models.Speakers", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpeakerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Speakers");
                 });
 
             modelBuilder.Entity("Backend_Project.Models.TagCourse", b =>
@@ -1067,21 +1035,6 @@ namespace Backend_Project.Migrations
                     b.HasOne("Backend_Project.Models.Event", "Event")
                         .WithOne("EventDetails")
                         .HasForeignKey("Backend_Project.Models.EventDetails", "EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Backend_Project.Models.EventSpeakers", b =>
-                {
-                    b.HasOne("Backend_Project.Models.Event", "Event")
-                        .WithMany("EventSpeakers")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend_Project.Models.Speakers", "Speakers")
-                        .WithMany("EventSpeakers")
-                        .HasForeignKey("SpeakersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

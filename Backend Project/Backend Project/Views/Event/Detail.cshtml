@@ -40,25 +40,25 @@
                             <li><span>venue : </span>@Model.EventPlace</li>
                         </ul>
                         <p>@Html.Raw(Model.EventDetails.EventDescription)</p>
-                        @*<div class="speakers-area fix">
-                <h4>speakers</h4>
-                <div class="row">
-                    @foreach (Speakers speakers in Model.EventDetails.Speakers)
-                    {
-                        <div class="single-speaker col-md-6">
-                            <div class="speaker-img">
-                                <img src="~/img/event/@speakers.Image" alt="speaker">
+                        <div class="speakers-area fix">
+                            <h4>speakers</h4>
+                            <div class="row">
+                                @foreach (EventSpeakers speakers in Model.EventSpeakers)
+                                {
+                                    <div class="single-speaker col-md-6">
+                                        <div class="speaker-img">
+                                            <img src="~/img/event/@speakers.Speakers.Image" alt="speaker">
+                                        </div>
+                                        <div class="speaker-name">
+                                            <h5>@speakers.Speakers.SpeakerName</h5>
+                                            <p>@speakers.Speakers.Position </p>
+                                        </div>
+                                    </div>
+                                }
                             </div>
-                            <div class="speaker-name">
-                                <h5>@speakers.SpeakerName</h5>
-                                <p>@speakers.Position </p>
-                            </div>
+
+
                         </div>
-                    }
-                </div>
-
-
-            </div>*@
                     </div>
                     @await Component.InvokeAsync("SendMessage")
                 </div>

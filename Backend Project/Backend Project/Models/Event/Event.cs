@@ -32,6 +32,8 @@ namespace Backend_Project.Models
         public int EventDetailsId { get; set; }
         public ICollection<TagsToEvents> TagsToEvents { get; set; }
         public ICollection<CategoryEvents> CategoryEvents { get; set; }
+        public ICollection<EventSpeakers> EventSpeakers { get; set; }
+
 
     }
 }

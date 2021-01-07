@@ -13,11 +13,13 @@ namespace Backend_Project.Models
         public int Id { get; set; }
         //[Required]
         public string Image { get; set; }
-        //[NotMapped]
-        //public IFormFile Photo { get; set; }
+        [NotMapped]
+        public IFormFile Photo { get; set; }
         public string SpeakerName { get; set; }
         public string Position { get; set; }
-        public virtual EventDetails EventDetails { get; set; }
-        public int EventDetailsId { get; set; }
+        //public virtual EventDetails EventDetails { get; set; }
+        //public int EventDetailsId { get; set; }
+        public ICollection<EventSpeakers> EventSpeakers { get; set; }
+
     }
 }
